@@ -4,12 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
+using ISLI.Model;
+using SqlSugar;
+using ISLI.Unility;
+
 namespace ISLIAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        SqlSugarClient db = BaseDB.GetClient();
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -40,6 +46,13 @@ namespace ISLIAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [HttpGet]
+        public IEnumerable<User> GetUserList()
+        {
+            var userlist = db.Queryable<User>().ToList();
+            return userlist;
         }
     }
 }
