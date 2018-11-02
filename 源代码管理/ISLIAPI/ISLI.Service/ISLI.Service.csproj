@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ISLI.IService\ISLI.IService.csproj" />
+    <ProjectReference Include="..\ISLI.Model\ISLI.Model.csproj" />
+  </ItemGroup>
+
+</Project>
