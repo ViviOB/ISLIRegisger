@@ -41,7 +41,6 @@ namespace ISLI.Model
         /// </summary>
         public string ResourceList { get; set; }
 
-
         /// <summary>
         /// 大小
         /// </summary>
