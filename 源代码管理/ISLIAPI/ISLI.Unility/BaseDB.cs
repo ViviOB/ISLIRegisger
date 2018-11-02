@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Linq;
 using SqlSugar;
 namespace ISLI.Unility
 {
