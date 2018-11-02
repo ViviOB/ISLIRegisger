@@ -33,5 +33,6 @@ namespace ISLI.Model
         /// 是否启用
         /// </summary>
         public int IsEnabled { get; set; }
+
     }
 }
