@@ -6,12 +6,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ISLIClient.Models;
 
+using ISLI.Unility;
+using ISLI.Cache;
+using ISLI.Model;
+using Microsoft.Extensions.Caching.Distributed;
+
 namespace ISLIClient.Controllers
 {
     public class HomeController : Controller
     {
+
+
         public IActionResult Index()
         {
+            var userlist = HttpUtils.HttpGet("https://localhost:44326/api/values/getuserlist", null);
+            RedisHelper.Set("user", userlist);
+            var userlist2 = RedisHelper.Get("user");
             return View();
         }
 

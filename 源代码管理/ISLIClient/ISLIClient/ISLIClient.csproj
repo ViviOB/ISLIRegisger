@@ -9,4 +9,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ISLI.Cache\ISLI.Cache.csproj" />
+    <ProjectReference Include="..\ISLI.Model\ISLI.Model.csproj" />
+    <ProjectReference Include="..\ISLI.Unility\ISLI.Unility.csproj" />
+  </ItemGroup>
+
 </Project>
