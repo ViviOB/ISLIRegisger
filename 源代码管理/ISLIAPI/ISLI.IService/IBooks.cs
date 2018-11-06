@@ -9,16 +9,16 @@ namespace ISLI.IService
         /// <summary>
         /// 添加图书，ISLI编码
         /// </summary>
-        int Add { get; set; }
+        int Add(Books books);
 
         /// <summary>
         /// 修改图书，ISLI编码
         /// </summary>
-        int Update { get; set; }
+        int Update(Books books);
 
         /// <summary>
         /// 显示图书，ISLI编码
         /// </summary>
-        List<Books> BooksList { get; set; }
+        List<Books> BooksList();
     }
 }
