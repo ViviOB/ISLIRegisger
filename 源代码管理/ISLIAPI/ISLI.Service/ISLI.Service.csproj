@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ISLI.IService\ISLI.IService.csproj" />
     <ProjectReference Include="..\ISLI.Model\ISLI.Model.csproj" />
+    <ProjectReference Include="..\ISLI.Unility\ISLI.Unility.csproj" />
   </ItemGroup>
 
 </Project>
