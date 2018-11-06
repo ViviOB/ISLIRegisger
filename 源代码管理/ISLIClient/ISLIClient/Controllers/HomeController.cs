@@ -19,7 +19,7 @@ namespace ISLIClient.Controllers
 
         public IActionResult Index()
         {
-            var userlist = HttpUtils.HttpGet("https://localhost:44326/api/values/getuserlist", null);
+            var userlist = HttpUtils.HttpGet("https://localhost:55713/api/values/getuserlist", null);
             RedisHelper.Set("user", userlist);
             var userlist2 = RedisHelper.Get("user");
             return View();
