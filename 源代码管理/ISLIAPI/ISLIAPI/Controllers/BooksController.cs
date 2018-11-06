@@ -31,5 +31,29 @@ namespace ISLIAPI.Controllers
             var  list=  _books.BooksList();
             return list;
         }
+
+        /// <summary>
+        /// 添加图书，ISLI编码
+        /// </summary>
+        /// <param name="books"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public int AddBook(Books books)
+        {
+            var i = _books.Add(books);
+            return i;
+        }
+
+        /// <summary>
+        /// 修改图书
+        /// </summary>
+        /// <param name="books"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public int UpdateBook(Books books)
+        {
+            var i = _books.Update(books);
+            return i;
+        }
     }
 }
