@@ -18,7 +18,7 @@ namespace ISLIAPI
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args).UseUrls("http://localhost:44326")
+            WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
 }

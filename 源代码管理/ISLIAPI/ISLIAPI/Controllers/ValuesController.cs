@@ -16,43 +16,25 @@ namespace ISLIAPI.Controllers
     {
         SqlSugarClient db = BaseDB.GetClient();
 
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-
+        /// <summary>
+        /// get测试
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<User> GetUserList()
         {
             var userlist = db.Queryable<User>().ToList();
             return userlist;
+        }
+
+        /// <summary>
+        /// post测试
+        /// </summary>
+        /// <param name="user"></param>
+        [HttpPost]
+        public void Login([FromBody] User user)
+        {
+            var user1 = user;
         }
     }
 }
