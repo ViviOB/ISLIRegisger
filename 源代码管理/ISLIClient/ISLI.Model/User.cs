@@ -7,7 +7,7 @@ namespace ISLI.Model
         /// <summary>
         /// 主键
         /// </summary>
-        public int Id { get; set; } 
+        public int Id { get; set; }
 
         /// <summary>
         /// 用户名
@@ -33,6 +33,5 @@ namespace ISLI.Model
         /// 是否启用
         /// </summary>
         public int IsEnabled { get; set; }
-
     }
 }
