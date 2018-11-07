@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\DLLS\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
