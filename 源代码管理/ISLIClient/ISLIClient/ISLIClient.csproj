@@ -17,4 +17,8 @@
     <ProjectReference Include="..\ISLI.Unility\ISLI.Unility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Authorization\" />
+  </ItemGroup>
+
 </Project>
