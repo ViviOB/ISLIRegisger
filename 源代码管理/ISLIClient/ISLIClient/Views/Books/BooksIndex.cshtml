@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = null;
+}
+@model List<ISLI.Model.Books>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BooksIndex</title>
+</head>
+<body>
+    <h2>卡路里</h2>
+    @foreach (var item in Model)
+    {
+        @item.BookName
+    }
+
+</body>
+</html>
+ 
