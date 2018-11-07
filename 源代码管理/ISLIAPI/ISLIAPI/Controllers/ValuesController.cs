@@ -32,7 +32,7 @@ namespace ISLIAPI.Controllers
         /// </summary>
         /// <param name="user"></param>
         [HttpPost]
-        public void Login([FromBody] User user)
+        public void Login(User user)
         {
             var user1 = user;
         }

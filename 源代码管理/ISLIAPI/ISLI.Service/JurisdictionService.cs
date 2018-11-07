@@ -26,7 +26,9 @@ namespace ISLI.Service
         /// <returns></returns>
         public User Login(User user)
         {
-            throw new NotImplementedException();
+            UserInfo user1 =(UserInfo)db.Queryable<User>().Single(u => u.UserName == user.UserName && u.UserPwd == user.UserPwd);
+            user1.AuthList = db.Queryable<Role_Authority, Authority>((ra, a) => ra.AuthId == a.Id).Where((a)=>a.RoleId==user.UserTypeId).Select((ra, a) => new Authority { Id = a.Id, AuthName = a.AuthName, AuthUrl = a.AuthUrl, ParentId = a.ParentId }).ToList();
+            return user1;
         }
     }
 }

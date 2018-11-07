@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
+using ISLI.IService;
+using ISLI.Service;
 using SqlSugar;
 
 namespace ISLIAPI
@@ -28,6 +30,9 @@ namespace ISLIAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //依赖注入
+            services.AddTransient<IJurisdiction, JurisdictionService>();
+
             var connstr = "Data Source=169.254.35.148;dataBase=isli_database;user id=root;pwd=19950503";
             BaseDB.DBConnectionString = connstr;//初始化数据库连接字符串
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

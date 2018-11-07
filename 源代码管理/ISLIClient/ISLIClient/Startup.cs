@@ -57,7 +57,7 @@ namespace ISLIClient
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Main}/{action=Index}/{id?}");
+                    template: "{controller=home}/{action=Index}/{id?}");
             });
         }
     }
