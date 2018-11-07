@@ -24,6 +24,6 @@ namespace ISLI.Model
         /// <summary>
         /// 权限父id
         /// </summary>
-        public string ParentId { get; set; }
+        public int ParentId { get; set; }
     }
 }
