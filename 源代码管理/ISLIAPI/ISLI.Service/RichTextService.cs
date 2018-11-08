@@ -4,36 +4,38 @@ using System.Text;
 
 using ISLI.IService;
 using ISLI.Model;
-using SqlSugar;
 using ISLI.Unility;
+using SqlSugar;
+
 namespace ISLI.Service
 {
-    public class PictureService:IPicture
+    public class RichTextService : IRichText
     {
         /// <summary>
-        /// 添加图片信息
+        /// 添加富文本
         /// </summary>
-        /// <param name="audio"></param>
+        /// <param name="richText"></param>
         /// <returns></returns>
-        public int AddPicture(Picture picture)
+        public int AddRichText(RichText richText)
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                var i = db.Insertable<Picture>(picture).ExecuteCommand();
+                var i = db.Insertable<RichText>(richText).ExecuteCommand();
                 return i;
             }
         }
 
         /// <summary>
-        /// 显示图片信息
+        /// 显示富文本
         /// </summary>
         /// <returns></returns>
-        public List<Picture> GetPictures()
+        public List<RichText> GetRichTexts()
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                var list = db.Queryable<Picture>().ToList();
+                var list = db.Queryable<RichText>().ToList();
                 return list;
+
             }
         }
     }
