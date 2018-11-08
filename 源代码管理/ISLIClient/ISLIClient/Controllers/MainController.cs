@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using ISLI.Unility;
 using ISLI.Cache;
 using ISLI.Model;
+using Newtonsoft.Json;
 
 namespace ISLIClient.Controllers
 {
@@ -15,19 +16,40 @@ namespace ISLIClient.Controllers
         public IActionResult Index()
         {
             //获取用户菜单
-            ViewBag.MenuList = RedisHelper.Get<List<Authority>>("authority");
+            ViewBag.LoginInfo = RedisHelper.Get<UserInfo>("userinfo");
             return View();
         }
 
+        /// <summary>
+        /// 注册界面
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Register()
         {
             return View();
         }
-
-        public IActionResult Login(User user)
+        
+        public IActionResult Login()
         {
-            var user1 = WebApiHelper.GetApiResult("post", "Jurisdiction", "Login", user);
             return View();
+        }
+
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public bool Login(User user)
+        {
+            var json = WebApiHelper.GetApiResult("post", "Jurisdiction", "Login", user);
+            var userinfo = JsonConvert.DeserializeObject<UserInfo>(json);
+            if (userinfo != null)
+            {
+                RedisHelper.Set<UserInfo>("userinfo", userinfo);
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 
 using ISLI.Model;
 using ISLI.IService;
+using Microsoft.AspNetCore.Cors;
 
 namespace ISLIAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
+    [EnableCors("CorsConfig")]
     [ApiController]
     public class JurisdictionController : ControllerBase
     {
@@ -34,7 +36,7 @@ namespace ISLIAPI.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpPost]
-        public User Login(User user)
+        public UserInfo Login(User user)
         {
             return  _jurisdiction.Login(user);
         }
