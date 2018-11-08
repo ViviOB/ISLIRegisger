@@ -11,11 +11,20 @@ namespace ISLIClient.Controllers
 {
     public class AuthorizationController : Controller
     {
+
+        /// <summary>
+        /// 分页方法
+        /// </summary>
+        /// <returns></returns>
+        public List<PublishApply> Paging()
+        {
+            string json = WebApiHelper.GetApiResult("get", "BackStage", "Paging", null);
+            var paging = JsonConvert.DeserializeObject<List<PublishApply>>(json);
+        }
         public ActionResult Index()
         {
             string json = WebApiHelper.GetApiResult("get", "BackStage", "GetPublishApplysList", null);
             var list = JsonConvert.DeserializeObject<List<PublishApply>>(json);
-            ViewBag.list = list;
             return View();
         }
       
