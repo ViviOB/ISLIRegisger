@@ -31,6 +31,7 @@ namespace ISLIAPI
         public void ConfigureServices(IServiceCollection services)
         {
             //依赖注入
+            services.AddTransient<IFacilitator, FacilitatorService>();
             services.AddTransient<IJurisdiction, JurisdictionService>();
             services.AddTransient<IBooks, BooksService>();
             services.AddTransient<IPublishApply, PublishApplyService>();
