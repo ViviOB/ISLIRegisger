@@ -28,7 +28,7 @@ namespace ISLI.Service
         /// 显示图片信息
         /// </summary>
         /// <returns></returns>
-        public List<Picture> GetPicture()
+        public List<Picture> GetPictures()
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
