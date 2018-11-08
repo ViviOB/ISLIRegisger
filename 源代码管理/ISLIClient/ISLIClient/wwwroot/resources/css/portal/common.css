@@ -1,0 +1,514 @@
+@charset "utf-8";
+html{
+	height:100%;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td {
+	margin:0px;
+	padding:0px;
+}
+h1,h2,h3,h4,h5,h6{ font-size:120%;}
+ul{
+	list-style: none;
+}
+img {
+	border:none;
+	vertical-align:top;
+}
+input{ border:1px solid #ccc; height:24px; line-height:24px; padding:0 5px; vertical-align:middle; color:#666;}
+textarea{ resize:none; overflow:auto;border:1px solid #ccc; vertical-align:top; color:#666; padding:5px;font-size:12px;}
+select{ vertical-align:middle;border:1px solid #ccc;}
+input.hover,textarea.hover,input.focus,textarea.focus{ border-color:#06c;}
+.ckb,.rdo{ border:none;}
+body {
+	font: normal 12px/20px "宋体", Arial, Helvetica, sans-serif;
+	text-align: center;
+	color:#666;
+	min-width:1200px;
+	min-height:100%;
+}
+.font-enlarge{ font-size:14px;}
+a{
+	color:#0367bd;
+	text-decoration: none;
+	cursor:pointer;
+}
+a:hover { text-decoration:underline;}
+.clear {content:".";clear: both; display: block; font-size: 0; height: 0; line-height: 0; overflow: hidden;}
+.hidden {display:none;}
+
+.header{ width:990px; min-width:990px; max-width:1200px; margin:0 auto;  text-align:left;  clear:both; position:relative;}
+
+.clearpad .header,.clearpad .nav .bd,.clearpad .content,.clearpad .copy{ width:990px; _width:996px; padding-left:0; padding-right:0;}
+
+.search-btn,.more,.ico,.timeIcon,.expan,.less,.del,.modify,.revocation,.extension,.down,.del-u,.modify-u,.revocation-u,.extension-u,.down-u,.dl-ico,.m-btn-ico,.tools-btn,.cross,.register-info-h3 .num,.register-info-h3 s,.statistics-text,.dl-ul li,.dl-ul5 li,.focus-text li.on s,.dl-hd .dl-close,.sl-menu li a{background:url(../../../images/portal/ico.png) no-repeat;}
+.btn-one,.btn-two,.btn-three,.btn-four,.nav,.nav ul,.nav li,.nav li a:hover,.nav li a.on,.table-one thead,.dl-hd{background:url(../../images/portal/jb.png) repeat-x;}
+
+.blue{color:#0367bd;}
+.gray{color:#999;}
+.red{ color:#c33;}
+.yellow{color:#c53727;}
+
+.mar25{ margin-bottom:25px;}
+.mar10{ margin-bottom:10px;}
+
+.round{ border:solid #CCC; border-width:1px 0; margin:0 1px; position:relative;}
+.round .inner{ width:100%; height:100%; border:solid #CCC; border-width:0 1px; margin:0 -1px; float:left; position:relative;}
+
+.btn{ font-size:120%; display:inline-block; text-align:center; vertical-align:middle;}
+.btn-one{ width:70px; height:30px; line-height:30px; background-position:left -38px; border-color:#0058ac; color:#FFF;}
+.btn-one:hover{ color:#FFF;}
+.btn-one .inner{ border-color:#0058ac;}
+.btn-two{ height:30px; line-height:30px;background-position:left -441px;border-color:#417aa7; color:#FFF; font-weight:bold;}
+.btn-two:hover{ color:#FFF; background-position:left -493px; }
+.btn-two .inner{ width:auto; min-width:60px; padding:0 15px; border-color:#417aa7;}
+.btn-three{ width:120px; height:34px; line-height:34px; background-position:left -198px; border-color:#9e9e9e; color:#444;}
+.btn-three:hover{ color:#444;}
+.btn-three .inner{ border-color:#9e9e9e;}
+.btn-four{ width:58px; height:25px; line-height:25px; background-position:left -286px; border-color:#4d9cd8; color:#fff;}
+.btn-four:hover{ color:#fff;}
+.btn-four .inner{ border-color:#4d9cd8;}
+
+.ico{ display:inline-block; width:12px; height:16px; vertical-align:middle; overflow:hidden;}
+.i1{ background-position:-218px -185px;}
+.i2{ background-position:-218px -212px;}
+.i3{ background-position:-218px -237px;}
+.i4{ width:15px; height:15px; background-position:left top;}
+
+.search{ float:right; height:30px; position:relative;}
+.search-btn{ display:inline-block; width:16px; height:16px; background-position:-214px -25px; position:absolute; right:6px; top:6px;}
+.search-key{ width:250px; height:26px; line-height:26px; padding:0 5px;}
+
+.tab{ width:100%; height:30px; padding-top:20px;}
+.tab li{ float:left;}
+.tab li a{ display:inline-block; min-width:70px; height:29px; line-height:29px; text-align:center; padding:0 20px; background:#e6e6e6; border:solid; border-width:1px 1px 0; border-color:#ddd #ddd #255f8f #ddd; cursor:pointer;}
+.tab li a:hover{ text-decoration:none;}
+.tab li.on a{ background:#c5c5c5; border-color:#bbb; color:#333;}
+
+.tab2{ display:inline-block; width:100%; height:30px;}
+.tab2 li{ float:left;}
+.tab2 li a{ display:inline-block; min-width:50px; height:28px; line-height:28px; text-align:center; padding:0 20px; background:#f8f8f8; border:solid #ddd; border-width:1px 1px 0; cursor:pointer; text-decoration:none; color:#333; position:relative; top:1px;}
+.tab2 li a:hover{ text-decoration:none;}
+.tab2 li.on a{ background:#fff; border-width:1px; border-color:#ccc #ccc #fff;}
+
+.table1{ width:100%; border:0;}
+.table1 thead{ background:#f3f7fa;}
+.table1 th{ font-weight:normal; height:22px; line-height:22px; border-bottom:1px solid #ddd; padding:5px 10px;}
+.table1 tbody tr:hover{ background:#f1f1f1;}
+.table1 td{ padding:5px 10px;}
+
+.table2{ width:100%; border:0;}
+.table2 thead{ background:#f4f4f4;}
+.table2 th{ font-weight:normal; height:30px; line-height:30px; padding:0 20px;}
+.table2 td{ padding:12px 20px 8px; border-bottom:1px dotted #CCC;font-size:12px;}
+
+.table3{ width:100%; border:0;}
+.table3 thead{ background:#f8f8f8;}
+.table3 th{ font-weight:normal; height:22px; line-height:22px; padding:5px 10px;}
+.table3 td{ padding:10px 10px; border-bottom:1px dotted #bbb;}
+
+.table4{ width:100%; border:0;table-layout: fixed;}
+.table4 thead{ background:#f3f7fa;}
+.table4 th{ font-weight:normal; height:22px; line-height:22px; border-bottom:1px solid #ddd; padding:5px 10px; color: #333;}
+.table4 tbody tr:hover{ background:#f1f1f1;}
+.table4 td{ padding:5px 10px;white-space: nowrap;text-overflow:ellipsis;overflow: hidden;}
+
+.table5{
+	width: 100%; border: 0;
+}
+
+.table5 th{
+	width: 15%;
+	height: 30px;
+	text-align: right;
+	font-weight: normal;
+	white-space: nowrap;
+	vertical-align: top;
+}
+.table5 td{
+	width:30%;
+	text-align: left;
+	padding-left: 5px;
+	white-space: normal;
+	word-break:break-all;
+	vertical-align: top;
+}
+
+.page{ width:100%; padding:30px 0 10px;}
+.page input{ height:24px; line-height:24px; width:22px; padding:0 12px;}
+.page a{ height:24px; line-height:24px; display:inline-block; border:1px solid #ddd; padding:0 8px;}
+.page a:hover{ text-decoration:none;}
+.page a.on{ border-color:#0067bc; background:#0067bc; color:#fff; font-weight:bold;}
+.page a.fail{ background:#efefef;}
+.page a.fail:hover{ background:#efefef;}
+.page a.jump{ background:#f0f0f0; color:#666; border:1px solid #b9b9b9; vertical-align:middle; overflow:hidden;}
+.page a.jump:hover{ border-color:#b2b2b2; color:#666;}
+
+.form-dl{ display:inline-block; width:100%; line-height:26px; padding:15px 0; clear:both; position:relative;}
+.form-dl dt{ width:50px; height:26px; vertical-align:top; text-align:right; position:absolute; left:0; top:15px;}
+.form-dl dt .fd-dt-p { position:absolute; right:12px; top:-18px;}
+.form-dl dd{ margin-left:55px;}
+.form-dl dd select{ _vertical-align:top; margin-top:2px;}
+.form-dl img{ vertical-align:middle;}
+
+.wid1{ width:150px;}
+.wid2{ width:300px;}
+.wid3{ width:400px;}
+.wid8{ width:172px;}
+.wid16D {height:32px;}
+/*color*/
+.icolor,.login li .icolor {color:#333;}
+
+.servicesBtnL input.hover,textarea.hover,input.focus,textarea.focus{ border-color:#06c;}
+
+.f-l{ float:left;}
+.error,.right{ font-size:13px;display:inline-block;line-height:24px; color:#595959; margin-left:5px; padding:0 5px 0 26px; position:relative; vertical-align:middle;}
+.error{background:url(../../images/portal/error2.png) no-repeat 1px 1px;color: red;background-position: 9px 6px;}
+input.error{background-position: 9px -21px;margin-left:0px;}
+.right{background:url(../../images/portal/right.png) no-repeat 1px 1px #f0ffe3; border:1px solid #9bde64;}
+.error-p{display: inline-block; float:left;}
+.error-p .error,.error-p .right{ margin:5px 0 0 0;}
+
+.crumb-ico{ font-family:"宋体"; font-weight:bold; color:#adadad; padding:0 5px;}
+.errorD16 .error {margin:5px 0;}
+/*列表排序图标*/
+.spanDesc {
+    background:url(../../images/system/ico.png) no-repeat -13px -206px;
+    display: inline-block;
+    height: 14px;
+    vertical-align: middle;
+    width: 14px;
+}
+.spanAsc {
+	background:url(../../images/system/ico.png) no-repeat -47px -207px;
+	display: inline-block;
+    height: 14px;
+    vertical-align: middle;
+    width: 14px;
+}
+
+/*视频播放按钮的样式*/
+.play {
+	background: url(../../images/play.png) no-repeat;
+	z-index: 30;
+	width: 72px;
+	height: 72px;
+	position: absolute;
+	top: 43%;
+	left: 46%;
+}
+.blDs {color:#0367bd;}
+.navHov a:hover {color:#0367BD}
+
+/**新增**/
+.processBox {
+	width: 650px;
+	height: 68px;
+	padding: 30px 278px;
+}
+
+.processBox ul li {
+	width: 182px;
+	height: 80px;
+	float: left;
+}
+
+.processBox ul li a {
+	width: 100%;
+	height: 37px;
+	line-height: 37px;
+	text-align: center;
+	font-size: 18px;
+	color: #fff;
+	font-weight: bold;
+	display: block;
+	background: url(../../images/process_bg.png) no-repeat;
+	cursor: default;
+}
+
+.processBox ul li p {
+	width: 100%;
+	height: 37px;
+	line-height: 37px;
+	text-align: center;
+	font-size: 18px;
+	color: #ccc;
+	font-weight: bold;
+	cursor: default;
+}
+
+.processBox ul li.selected p {
+	color: #7fbf5a;
+}
+
+.processBox ul li.selected a {
+	background: url(../../images/process_bg_hover.png) no-repeat;
+}
+
+.processBox ul li a:hover {
+	text-decoration: none;
+}
+.servicebox{
+	margin: 0 auto;
+    position: relative;
+    width: 1000px;
+   /*  height: 700px; */
+    overflow: hidden;
+    border: 1px solid #ddd;
+    padding-top:5px;
+}
+.servicebox p{
+	text-indent: 2em;
+    line-height: 26px;
+    font-size: 13px;
+}
+.servicebox h2{
+	height: :60px;
+	line-height: 60px;
+	text-align: center;
+	font-size: 18px;
+	margin-top: 10px;
+}
+.container {
+    width: 1280px;
+    height: auto;
+    background: #fff;
+    margin: 0 auto;
+}
+.serviceContent{
+	padding:5px 10px;
+}
+.centerButton {
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px 0;
+}
+.regBtnOk{
+	    width: 94px;
+    height: 32px;
+    line-height: 32px;
+    display: inline-block;
+    background: url(../../images/btn.png) no-repeat center center;
+    border: none;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    vertical-align: top;
+}
+.btnBackh{
+	width: 94px;
+    height: 32px;
+    line-height: 32px;
+    display: inline-block;
+    border: none;
+    font-size: 14px;
+    vertical-align: top;
+    text-align: center;
+    color: #939393;
+    background: url(../../images/btng.png) no-repeat center center;
+}
+.btnDown,.btnBack{
+	display: inline-block;
+    width: 190px;
+    height: 50px;
+    background: #0168b5;
+    line-height: 50px;
+    color: #fff;
+    font-size: 14px;
+}
+.btnBack{height: 48px;background: #fff;border:1px solid #c3c2c2;}
+.btnBack:hover a{color:#313131;text-decoration: none;}
+.btnBack a{color:#666;}
+.btnDown a{color:#fff;}
+.btnDown:hover{background: #0683e0;}
+.btnDown:hover a{text-decoration: none;}
+.footer{
+	    border-top: 1px solid #e9e9e9;
+}
+.navLine {
+    width: 1284px;
+    height: 5px;
+    background: url(../../images/nav_bg.png) repeat-y;
+}
+
+.navLine2 {
+    width: 1284px;
+    height: 7px;
+    background: url(../../images/nav_bg.png) repeat-y;
+    margin-top: -8px;
+    position: relative;
+    z-index: 9999;
+}
+
+.regisBox dl dd input[type=text].width55 {
+    width: 55px;
+    margin-right: 10px;
+    float:left;
+    font-size:13px;
+}
+
+.regAdd {
+    width: 16px;
+    height: 24px;
+    background: url(../../images/portal/ico.png) no-repeat 0px -347px;
+    display: block;
+    cursor: pointer;
+    float:left;
+    font-size:0;
+}
+
+.regRemove {
+    background-position: 0 -375px;
+}
+.servicesBtn .btnOk{
+    width: 94px;
+    height: 32px;
+    display: inline-block;
+    background: url(../../images/btn.png) no-repeat center center;
+    line-height: 32px;
+    border: none;
+    text-decoration: none;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    }
+.des-print {
+    text-align: left;
+    margin: 35px 24px;
+}
+.des-print p{
+	padding:5px 0;
+}
+.des-print .info{
+	font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+.print-wrap{
+	width: 873px;
+    background: #f2f2f2;
+    position: relative;
+    margin: 0 auto;
+    padding: 18px 50px;
+    border-radius: 5px;
+}
+.tips{
+	width: 873px;
+    text-align: left;
+    margin: 0 auto;
+    color:#000;
+    background:url(../../images/portal/u322.png) no-repeat;
+    background-position: -1px 2px;
+    font-weight: bold;
+    padding-left: 30px;
+}
+.regPrinter{
+	width: 873px;
+    margin: 0 auto;
+    text-align: left;
+    border: 1px dashed #ff0000;
+    padding: 20px 20px 20px 45px;
+    }
+.regPrinter span{
+	position: relative;
+	color:#ff0000;	
+	font-size: 13px;
+}
+.regPrinter span:before{
+	content: '';
+	width: 20px;
+    height: 20px;
+	position: absolute;
+    top: 0;
+    left: -25px; 
+    background:url(../../images/light.png) no-repeat;   
+}
+/*弹框*/
+.passCnt {
+    position: absolute;
+    top: 260px;
+    left: 50%;
+    _top: expression(documentElement.scrollTop+300);
+    margin-left: -205px;
+    width: 408px;
+    background: #eaeaea;
+    border: 1px solid #ccc;
+    display: none;
+    z-index: 700;
+}
+.pcnTit {
+    font-size: 14px;
+    color: #4b4b4b;
+    font-weight: bold;
+    padding-left: 12px;
+    height: 34px;
+    line-height: 34px;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+.pcnClo1t {
+    width: 10px;
+    height: 10px;
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    background: url(../../images/system/ico.png) no-repeat -78px -56px;
+    cursor: pointer;
+}
+.btnOkt {
+    width: 50px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    color: #fff;
+    margin: 6px 6px 6px 0;
+    background: url(../../images/system/line2.png) repeat-x;
+    float: right;
+    display: inline;
+    cursor: pointer;
+    border: 1px solid #CCC;
+}
+.pTipE {
+    color: #AE0505;
+    display: inline-block;
+    float: left;
+    height: 35px;
+    line-height: 35px;
+    overflow: hidden;
+    padding-left: 10px;
+    width: 240px;
+    text-align: left;
+}
+.clear {
+    content: ".";
+    clear: both;
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+.tanCd1 {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    filter: Alpha(Opacity=40);
+    opacity: .4;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 199;
+    display: none;
+}
+.ml15{
+	margin-left:15px;
+}
+.ml91{
+	margin-left:91px;
+}
+.regisBox .boldp{
+	text-align:left;
+	border:none;
+}
