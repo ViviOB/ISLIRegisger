@@ -32,7 +32,7 @@ namespace ISLIAPI
         {
             //依赖注入
             services.AddTransient<IJurisdiction, JurisdictionService>();
-
+            services.AddTransient<IPublishApply, PublishApplyService>();
             var connstr = "Data Source=169.254.35.148;dataBase=isli_database;user id=root;pwd=19950503";
             BaseDB.DBConnectionString = connstr;//初始化数据库连接字符串
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

@@ -10,7 +10,7 @@ using ISLI.Model;
 
 namespace ISLIAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class BackStageController : ControllerBase
     {

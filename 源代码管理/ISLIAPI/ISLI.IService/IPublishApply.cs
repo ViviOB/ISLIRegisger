@@ -5,26 +5,26 @@ using System.Text;
 using ISLI.Model;
 namespace ISLI.IService
 {
-    public interface IAuthorize
+    public interface IPublishApply
     {
         /// <summary>
         /// 获取列表
         /// </summary>
         /// <returns></returns>
-        List<Authorize> GetAuthorizesList();
-        
+        List<PublishApply> GetPublishApplysList();
+
         /// <summary>
         /// 根据ID获取
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Authorize UpdateById(int id);
+        Publisher UpdateById(int id);
 
         /// <summary>
         /// 修改
         /// </summary>
         /// <param name="authorize"></param>
         /// <returns></returns>
-        int Update(Authorize authorize);
+        int Update(Publisher publisher);
     }
 }

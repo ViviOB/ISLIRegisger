@@ -14,12 +14,16 @@ namespace ISLI.Service
         /// 获取数据
         /// </summary>
         /// <returns></returns>
-        public List<Publisher> GetAuthorizesList()
+        public List<PublishApply> GetPublishApplysList()
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                var getauthorizelist = db.Queryable<Publisher>().ToList();
-                return getauthorizelist;
+                // var list = db.Queryable<User, Publisher>((st, sc) => st.UserInfoId == sc.Id).Select<PublishApply>.ToList();
+
+                var list = db.Queryable<User, Publisher>((st, sc) => st.UserInfoId == sc.Id).Where(st=>st.UserTypeId==2).Select((st, sc) => new PublishApply[1]).Select<PublishApply>().ToList();
+                var getByWhere = db.Queryable<User>().Where(m => m.Id ==2).ToList();
+                //var list = db.Queryable<User, Publisher>((st, sc) => new object[] {JoinType.Inner,st.UserInfoId==sc.Id}).Select<PublishApply>().ToList();
+                return list;
             }
         }
 
