@@ -57,6 +57,15 @@ namespace ISLIClient.Controllers
 
         #endregion
 
+        #region 出版单位注册
+
+        public IActionResult PublishingAdd()
+        {
+            return View();
+        }
+
+        #endregion
+
         /// <summary>
         /// 注册界面
         /// </summary>

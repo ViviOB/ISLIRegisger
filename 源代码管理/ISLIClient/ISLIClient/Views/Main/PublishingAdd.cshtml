@@ -1,0 +1,403 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>引导注册页</title>
+    <link href="~/resources/css/common.css" rel="stylesheet" />
+    <link href="~/resources/css/portal/common.css" type="text/css" rel="stylesheet" />
+    <link href="~/resources/css/zh_CN.css" type="text/css" rel="stylesheet" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="bookmark" type="image/x-icon" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script src="~/resources/js/jquery.js" type="text/javascript"></script>
+    <script src="~/resources/commons/jquery.validate.js" type="text/javascript"></script>
+    <script src="~/resources/js/validatePlugin.js" type="text/javascript"></script>
+    <script src="~/resources/js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="~/resources/js/message_zh_CN.js"></script>
+    <style>
+
+        .detailBox dl dd input[type="checkbox"] {
+            margin-right: 0;
+        }
+
+        .mr10 {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!--header-->
+        <div id="header" class="header">
+            <a class="logo" href="/main/login"></a>
+        </div>
+        <form id="publisherApplyForm">
+            <div class="adminConent passwordReset">
+                <div class="processBox clearfix">
+                    <ul class="ml91">
+                        <li class="selected">
+                            <a>1</a>
+                            <p>注册信息</p>
+                        </li>
+                        <li>
+                            <a>2</a>
+                            <p>企业资质证明</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="regisBox detailBox ">
+                    <h3 class="passP boldp">
+                        申请人信息
+                    </h3>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            申请人邮箱：
+                        </dt>
+                        <dd>
+                            <input type="text" name="applyUserMail" id="applyUserMail" class="width220" />
+                            <input type="hidden" name="contextPath" value="/isli" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>&nbsp;</dt>
+                        <dd>
+                            <span class="regInfo red" id="tips" style="display: block;color: #333;text-align: left;">该邮箱用于激活账户邮箱，请认真核对！</span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            申请人姓名：
+                        </dt>
+                        <dd>
+                            <span class="passID"></span>
+                            <input type="text" name="applyUserName" id="applyUserName" class="width220" />
+                            <span class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            联系电话（办公）：
+                        </dt>
+                        <dd>
+                            <input type="text" name="applyUserTelOffice" class="width35" maxlength="4" onblur="applyUserTelOfficeBlur()" />
+                            <input type="text" name="applyUserTelOffice" class="width190" maxlength="11" onblur="applyUserTelOfficeBlur()" />
+                            <span id="applyUserTelOfficeSpanId" class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            联系电话（手机）：
+                        </dt>
+                        <dd>
+                            <input type="text" name="applyUserTelPhone" id="applyUserTelPhone" class="width220" />
+                            <span class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    <h3 class="passP boldp">
+                        出版单位信息
+                    </h3>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            出版单位省份：
+                        </dt>
+                        <dd>
+                            <select name="provinceId" id="provinceId" onchange="getPval();" style="width:270px;">
+                                <option value="">
+                                    请选择
+                                </option>
+                            </select>
+                            <span class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            出版单位归属：
+                        </dt>
+                        <dd>
+                            <input type="hidden" name="groupName" id="groupName" />
+                            <input type="hidden" name="grouptName" id="grouptName" />
+                            <input type="hidden" name="provi" id="provi" />
+                            <select name="groupProperty" id="groupProperty" onchange="chubanshe();" style="width:130px;">
+                                <option value="">请选择</option>
+                                <option value="0">独立出版单位</option>
+                                <option value="1">集团下属出版单位</option>
+                                <option value="2">集团</option>
+                            </select>
+                            <select id="select2" name="groupId" onchange="getNval();" style="display:none;width:130px;"></select>
+                            <span class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            出版单位名称中文：
+                        </dt>
+                        <dd>
+                            <input type="text" name="publisherCn" id="publisherCn" class="width350" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            出版单位名称英文：
+                        </dt>
+                        <dd>
+                            <input type="text" name="publisherEn" id="publisherEn" class="width350" />
+                            <span class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            统一社会信用代码：
+                        </dt>
+                        <dd>
+                            <input type="text" name="regno" id="regno" class="width220" />
+                            <span id="regnoSpan" class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>出版物资质：
+                        </dt>
+                        <dd>
+                            <span class="regInfo mr10">
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="tushu" value="1"  />
+                                图书
+                            </span>
+                            <span class="regInfo mr10">
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="baozhi" value="3"  />
+                                报纸
+                            </span>
+                            <span class="regInfo mr10">
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="qikan" value="2"  />
+                                期刊
+                            </span>
+
+                            <span class="regInfo mr10">
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="yinxiang" value="4"  />
+                                音像制品
+                            </span>
+                            <span class="regInfo mr10">
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="dianzi" value="5"  />
+                                电子出版物
+                            </span>
+                            <span class="regInfo mr10">
+                                <input type="checkbox" class="chechBox" name="publicationTypeId" id="internet" value="6">
+                                互联网出版物
+                            </span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            出版范围：
+                        </dt>
+                        <dd>
+                            <input type="text" name="bookrange" id="bookrange" class="width220" />
+                            <span class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            通讯地址：
+                        </dt>
+                        <dd>
+                            <input type="text" id="address" name="address" class="width350" />
+                            <span class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            邮编：
+                        </dt>
+                        <dd>
+                            <input type="text" name="zipCode" id="zipCode" class="width220" />
+                            <span class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    </dl>
+                    <dl>
+                        <dt>
+                            出版单位网址：
+                        </dt>
+                        <dd>
+                            <input type="text" name="website" id="website" class="width350" />
+                            <span class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            主办单位：
+                        </dt>
+                        <dd>
+                            <input type="text" name="zbdw" id="zbdw" class="width350" />
+                            <span class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            主管单位：
+                        </dt>
+                        <dd>
+                            <input type="text" name="zgdw" id="zgdw" class="width350" />
+                            <span class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            法人代表姓名：
+                        </dt>
+                        <dd>
+                            <input type="text" name="legalPersonName" id="legalPersonName" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            法人代表电话：
+                        </dt>
+                        <dd>
+                            <input type="text" name="legalPersonTel" class="width35" maxlength="4" onblur="legalPersonTelBlur()" />
+                            <input type="text" name="legalPersonTel" class="width190" maxlength="11" onblur="legalPersonTelBlur()" />
+                            <span id="legalPersonTelSpanId" class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            法人代表手机：
+                        </dt>
+                        <dd>
+                            <input type="text" id="legalPersonMobile" name="legalPersonMobile" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            法人代表职务：
+                        </dt>
+                        <dd>
+                            <input type="text" name="legalPersonPost" id="legalPersonPost" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            法人代表传真：
+                        </dt>
+                        <dd>
+                            <input type="text" id="legalPersonFax" name="legalPersonFax" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            法人代表邮箱：
+                        </dt>
+                        <dd>
+                            <input type="text" id="legalPersonMail" name="legalPersonMail" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            联系人姓名：
+                        </dt>
+                        <dd>
+                            <input type="text" name="contactName" id="contactName" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            联系人电话：
+                        </dt>
+                        <dd>
+                            <input type="text" name="contactTel" class="width35" maxlength="4" onblur="contactTelBlur()" />
+                            <input type="text" name="contactTel" class="width190" maxlength="11" onblur="contactTelBlur()" />
+                            <span id="contactTelSpanId" class="regInfo"></span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            联系人手机：
+                        </dt>
+                        <dd>
+                            <input type="text" name="contactMobile" id="contactMobile" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            联系人职务：
+                        </dt>
+                        <dd>
+                            <input type="text" name="contactPost" id="contactPost" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            联系人传真：
+                        </dt>
+                        <dd>
+                            <input type="text" name="contactFax" id="contactFax" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            联系人邮箱：
+                        </dt>
+                        <dd>
+                            <input type="text" name="contactMail" id="contactMail" class="width220" />
+                        </dd>
+                    </dl>
+                    <div class="servicesBtn servicesBtnL centerButton" id="show2">
+                        <input type="button" name="next" value="下一步" class="btnOk" />
+                        <input type="button" name="leave" value="稍后再说" class="btnBackh ml-15" />
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!--底部-->
+        <div id="footer" class="footer">
+
+
+            <div class="footer-wrap">
+                <ul class="linkmap">
+                    <li></li>
+                    <li></li>
+                </ul>
+                <p class="info">
+                    <span id="footp2"></span>
+                    <span id="footp3"></span>
+                    <span id="footp4"></span>
+                </p>
+                <p class="contact-info">
+                    <span class="address"> </span>
+                    <span class="phone"></span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
