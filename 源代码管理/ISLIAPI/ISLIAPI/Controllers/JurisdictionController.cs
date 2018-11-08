@@ -7,17 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 
 using ISLI.Model;
 using ISLI.IService;
+using Microsoft.AspNetCore.Cors;
 
 namespace ISLIAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
+    [EnableCors("CorsConfig")]
     [ApiController]
     public class JurisdictionController : ControllerBase
     {
         /// <summary>
         /// 权限层
         /// </summary>
-        private readonly IJurisdiction _jurisdiction;
+        private readonly IJurisdiction _jurisdiction;
+
         /// <summary>
         /// 构造函数注入
         /// </summary>
@@ -33,7 +36,7 @@ namespace ISLIAPI.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpPost]
-        public User Login(User user)
+        public UserInfo Login(User user)
         {
             return  _jurisdiction.Login(user);
         }

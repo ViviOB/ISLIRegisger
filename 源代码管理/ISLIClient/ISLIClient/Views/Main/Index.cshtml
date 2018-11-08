@@ -63,9 +63,9 @@
     </header>
     <aside class="Hui-aside">
         <div class="menu_dropdown bk_2">
-            @if (ViewBag.MenuList != null)
+            @if (ViewBag.LoginInfo.AuthList != null)
             {
-                IEnumerable<ISLI.Model.Authority> menuList = ViewBag.MenuList;
+                IEnumerable<ISLI.Model.Authority> menuList = ViewBag.LoginInfo.AuthList;
                 foreach (var item in menuList.Where(n => n.ParentId == 0))
                 {
                     <dl id="menu-product">
