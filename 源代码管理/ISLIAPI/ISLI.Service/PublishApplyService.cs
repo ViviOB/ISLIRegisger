@@ -10,6 +10,10 @@ namespace ISLI.Service
 {
     public class PublishApplyService : IPublishApply
     {
+
+        var pageIndex = 1;
+        var pageSize = 2;
+        var totalCount = 0;
         /// <summary>
         /// 获取数据
         /// </summary>
@@ -41,7 +45,7 @@ namespace ISLI.Service
         public Publisher UpdateById(int id)
         {
             using (SqlSugarClient db = BaseDB.GetClient())
-            {
+            { 
                 //根据主键查询
                 var getByPrimaryKey = db.Queryable<Publisher>().InSingle(id);
                 //根据条件查询
