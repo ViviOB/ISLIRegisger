@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Cors;
 
 namespace ISLIAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [EnableCors("CorsConfig")]  //允许跨域请求
     [ApiController]
     public class AudioController : ControllerBase
