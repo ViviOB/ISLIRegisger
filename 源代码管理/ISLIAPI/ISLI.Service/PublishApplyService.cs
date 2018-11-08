@@ -18,7 +18,7 @@ namespace ISLI.Service
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                var list = db.Queryable<User, Publisher>((st, sc) => new object[] { JoinType.Inner, st.UserInfoId == sc.Id }).Select<PublishApply>().Where(st => st.UserTypeId == 2).ToList();
+                var list = db.Queryable<User, Publisher>((st, sc) => new object[] { JoinType.Inner, st.UserInfoId == sc.PId }).Select<PublishApply>().Where(st => st.UserTypeId == 2).ToList();
                 return list;
             }
         }
