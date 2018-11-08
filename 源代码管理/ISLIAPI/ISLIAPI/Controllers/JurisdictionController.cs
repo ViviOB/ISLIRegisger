@@ -17,7 +17,8 @@ namespace ISLIAPI.Controllers
         /// <summary>
         /// 权限层
         /// </summary>
-        private readonly IJurisdiction _jurisdiction;
+        private readonly IJurisdiction _jurisdiction;
+
         /// <summary>
         /// 构造函数注入
         /// </summary>

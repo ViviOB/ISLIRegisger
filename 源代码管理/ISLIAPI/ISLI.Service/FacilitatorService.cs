@@ -20,7 +20,6 @@ namespace ISLI.Service
             {
                 var getList = db.Queryable<Adhibition>().ToList();
                 return getList;
-
             }
         }
     }
