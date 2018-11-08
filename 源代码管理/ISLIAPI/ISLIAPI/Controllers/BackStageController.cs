@@ -42,6 +42,11 @@ namespace ISLIAPI.Controllers
         {
             return _publishApply.UpdateById(id);
         }
+
+        public List<PublishApply> Paging(int pageIndex = 1, int pageSize = 2, int totalCount = 0)
+        {
+            return _publishApply.Paging(pageIndex, pageSize, totalCount);
+        }
         #endregion
 
 
