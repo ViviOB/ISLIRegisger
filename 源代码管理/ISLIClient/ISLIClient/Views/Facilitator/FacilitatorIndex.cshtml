@@ -1,24 +1,31 @@
 ﻿
+
+@{
+    Layout = null;
+}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>用户管理</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="~/css/x-admin.css" media="all">
-    <link rel="stylesheet" href="~/css/pag.css" media="all">
+
+    <link href="~/css/x-admin.css" rel="stylesheet" />
+    <link href="~/css/pag.css" rel="stylesheet" />
     <script src="~/js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <div class="x-nav"> <span class="layui-breadcrumb"> <a><cite>首页</cite></a> <a><cite>档案管理</cite></a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
-    <div class="x-body">
+    <div class="x-nav">
+        <span class="layui-breadcrumb">
+            <a><cite>首页</cite></a>
+            <a><cite>档案管理</cite></a>
+        </span>
+        <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+            <i class="layui-icon" style="line-height:30px">ဂ</i>
+        </a>
+    </div>
+    <div class="x-body" id="app">
         <form class="layui-form x-center" action="" style="width:85%">
             <div class="layui-form-pane">
                 <div class="layui-form-item">
@@ -43,18 +50,8 @@
                 </div>
             </div>
         </form>
-
-        <div class="tools">
-            <ul class="toolbar">
-                <li><span><img src="images/t03.png" /></span>批量删除</li>
-                <li onclick="user_management_add('添加用户','Dangan-add.html','1000','600')"><span><img src="images/t01.png" /></span>添加</li>
-                <li onclick="user_management_edit('用户编辑','Dangan-edit.html','600','500')"><span><img src="images/t02.png" /></span>编辑</li>
-                <li onclick="user_management_show('用户查看','Dangan-look.html','600','500')"><span><img src="images/t06.png" /></span>查看</li>
-            </ul>
-            <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>
-        </div>
-        <table class="tablelist" id="app" >
-            <thead v-for:"item in info">
+        <table class="tablelist">
+            <thead>
                 <tr>
                     <th>序号</th>
                     <th> ISLI编码 </th>
@@ -65,17 +62,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>{{item.Id}}</td>
-                    <td>{{item.ISLICode}}</td>
-                    <td> {{item.SourceName}}</td>
-                    <td> {{item.SourceFragment}}</td>
-                    <td> {{item.AllocationTime}}</td>
-                    <td><a href="test.html"><button class="sp">查看</button></a></td>
-                </tr>
-            </tbody>
+                    <tr v-for="item in info" v-bind:key="item.id">
+                        <td> {{item.id}}</td>
+                        <td> {{item.isliCode}}</td>
+                        <td> {{item.sourceName}}</td>
+                        <td> {{item.sourceFragment}}</td>
+                        <td> {{item.allocationTime}}</td>
+                        <td><a href="test.html"><button class="sp">查看</button></a></td>
+                    </tr>
+                </tbody>
         </table>
-        <div class="page" v-show="show">
+        <div class="page">
             <div class="pagelist">
                 <span class="jump">上一页</span> <span class="jump">1</span> <span class="jump">2</span> <span class="jump">3</span> <span class="jump">4</span> <span class="jump">5</span> <span class="jump">6</span> <span class="ellipsis">...</span> <span class="jump">下一页</span> <span class="jumppoint">跳转到：</span> <span class="jumpinp">
                     <input type="text">
@@ -86,43 +83,34 @@
     <br />
     <br />
     <br />
-    <script src="./lib/layui/layui.js" charset="utf-8"></script>
-    <script src="./js/x-layui.js" charset="utf-8"></script>
-    <script src="js/jquery2.js" charset="utf-8"></script>
-    <script src="js/js.js" charset="utf-8"></script>
+    <script src="~/lib/layui/layui.js"></script>
+    <script src="~/js/x-layui.js"></script>
+    <script src="~/js/js.js"></script>
+    <script src="~/js/jquery2.js"></script>
     <script>
         layui.use(['laydate', 'element', 'laypage', 'layer'], function () {
             $ = layui.jquery;
             lement = layui.element();//面包导航
             laypage = layui.laypage;//分页
             layer = layui.layer;//弹出层
-
         });
-        /*用户-添加*/
-        function user_management_add(title, url, w, h) {
-            x_admin_show(title, url, w, h);
-        }
-        /*用户-查看*/
-        function user_management_show(title, url, w, h) {
-            x_admin_show(title, url, w, h);
-        }
-        // 用户-编辑
-        function user_management_edit(title, url, w, h) {
-            x_admin_show(title, url, w, h);
-        }
-    </script>
-    <script type="text/javascript">
         $('.tablelist tbody tr:odd').addClass('odd');
-    </script>
-    <script>
-        var app = new vue({
+        var app = new Vue({
             el: '#app',
             data: {
-                info:null
+                info: null
             },
             mounted: function () {
-                axios.get('/Facilitator/FacilitatorIndex')
-                    .then(m => (this.info = m.data));
+                alert(1)
+                var that = this;
+                axios({
+                    method: "get",
+                    url: "/Facilitator/GetList"
+                }).then(function (res) {
+                    that.info = res.data;
+                    console.log(res)
+                })
+
             }
         })
     </script>
