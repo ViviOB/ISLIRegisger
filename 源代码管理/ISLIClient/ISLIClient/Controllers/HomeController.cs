@@ -19,6 +19,7 @@ namespace ISLIClient.Controllers
 
         public IActionResult Index()
         {
+            var list = WebApiHelper.GetApiResult("get", "values", "getuserlist");
             return View();
         }
 

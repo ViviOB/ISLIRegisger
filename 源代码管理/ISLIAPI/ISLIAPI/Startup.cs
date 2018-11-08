@@ -32,14 +32,15 @@ namespace ISLIAPI
         {
             //依赖注入
             services.AddTransient<IJurisdiction, JurisdictionService>();
+            services.AddTransient<IBooks, BooksService>();
             services.AddTransient<IPublishApply, PublishApplyService>();
             var connstr = "Data Source=169.254.35.148;dataBase=isli_database;user id=root;pwd=19950503";
             BaseDB.DBConnectionString = connstr;//初始化数据库连接字符串
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddTransient<IBooks, BooksService>();//注入
-            services.AddTransient<IAuthorization, AuthorizationService>();//注入
-            services.AddTransient<IFacilitator, FacilitatorService>();//注入
-            services.AddTransient<IUserInformation, UserInformationService>();//注入
+
+            //api跨域
+            services.AddCors(options => options.AddPolicy("CorsConfig",
+              p => p.WithOrigins("https://localhost:44361").AllowAnyMethod().AllowAnyHeader()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

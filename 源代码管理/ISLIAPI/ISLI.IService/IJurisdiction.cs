@@ -16,6 +16,6 @@ namespace ISLI.IService
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        User Login(User user);
+        UserInfo Login(User user);
     }
 }

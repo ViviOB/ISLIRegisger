@@ -8,18 +8,18 @@ using SqlSugar;
 using ISLI.Unility;
 namespace ISLI.Service
 {
-    public class PictureService
+    public class PictureService:IPicture
     {
         /// <summary>
         /// 添加图片信息
         /// </summary>
         /// <param name="audio"></param>
         /// <returns></returns>
-        public int AddPicture(Picture audio)
+        public int AddPicture(Picture picture)
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                var i = db.Insertable<Audio>(audio).ExecuteCommand();
+                var i = db.Insertable<Picture>(picture).ExecuteCommand();
                 return i;
             }
         }
@@ -28,7 +28,7 @@ namespace ISLI.Service
         /// 显示图片信息
         /// </summary>
         /// <returns></returns>
-        public List<Picture> GetPictures()
+        public List<Picture> GetPicture()
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {

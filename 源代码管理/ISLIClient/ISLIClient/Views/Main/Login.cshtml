@@ -15,11 +15,16 @@
     <link href="/css/axure_rp_page.css" rel="stylesheet" />
     <link href="/css/jquery-ui-themes.css" rel="stylesheet" />
     <link href="/css/styles1.css" rel="stylesheet" />
-    <script src="/js/jquery-1.7.1.min.js"></script>
-    <script src="/js/jquery-ui-1.8.10.custom.min.js"></script>
     <link href="~/css/styles.css" rel="stylesheet" />
+
+    <script src="~/lib/jquery/1.9.1/jquery.js"></script>
+    <script src="~/lib/layer/2.4/layer.js"></script>
+    <script src="~/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+    <script src="~/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+    <script src="~/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+    <script src="~/lib/jquery/jquery.unobtrusive-ajax.js"></script>
 </head>
-<body style="background-image:url('/images/bg.jpg')">
+<body>
     <div id="base" class="" style="margin-left:15%">
 
         <!-- Unnamed (Rectangle) -->
@@ -34,26 +39,27 @@
                 <p><span>ISLI登录中心</span></p>
             </div>
         </div>
+        <form class="form form-horizontal" id="form-login">
+            <!-- Unnamed (Rectangle) -->
+            <div id="u10195" class="ax_default primary_button">
+                <input type="button" value="登录" style="color:white" id="u10195_div" />
+            </div>
 
-        <!-- Unnamed (Rectangle) -->
-        <div id="u10195" class="ax_default primary_button">
-            <input type="button" name="login" value="登录" style="color:white" id="u10195_div" />
-        </div>
+            <!-- Unnamed (Rectangle) -->
+            <div id="u10197" class="ax_default primary_button">
+                <input id="u10197_div" type="text" placeholder="用户名" />
+            </div>
 
-        <!-- Unnamed (Rectangle) -->
-        <div id="u10197" class="ax_default primary_button">
-            <input id="u10197_div" type="text" name="username" placeholder="用户名" />
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u10196" class="ax_default primary_button">
-            <input id="u10196_div" type="password" name="pwd" placeholder="密码" />
-        </div>
-        <select style="left:514px;top:470px;position:absolute">
-            <option>出版单位</option>
-            <option>技术服务商</option>
-            <option>管理员</option>
-        </select>
+            <!-- Unnamed (Rectangle) -->
+            <div id="u10196" class="ax_default primary_button">
+                <input id="u10196_div" type="password" v-model="pwd" placeholder="密码" />
+            </div>
+            <select style="left:514px;top:470px;position:absolute" id="select">
+                <option value="1">出版单位</option>
+                <option value="2">技术服务商</option>
+                <option value="3">管理员</option>
+            </select>
+        </form>
         <!-- Unnamed (Rectangle) -->
         <div id="u10200" class="ax_default label">
             <div id="u10200_div" class=""></div>
@@ -62,5 +68,37 @@
             </div>
         </div>
     </div>
+    <script>
+        $(function () {
+            $("#u10195_div").click(function () {
+                var username = $("#u10197_div").val()
+                var pwd = $("#u10196_div").val()
+                var usertype = $("#select").val()
+                if (username == "") {
+                    layer.msg("用户名不能为空")
+                }
+                else if (pwd == "") {
+                    layer.msg("密码不能为空")
+                }
+                else {
+                    $.ajax({
+                        url: '/main/login',
+                        type: 'post',
+                        data: { "UserName": username, "UserPwd": pwd, "UserTypeId": usertype },
+                        success: function (res) {
+                            if (res) {
+                                layer.msg("登录成功!")
+                                location.href = "/main/index";
+                            }
+                            else {
+                                layer.msg("登录失败!")
+                            }
+                        }
+                    })
+                }
+               
+            })
+        })
+    </script>
 </body>
 </html>

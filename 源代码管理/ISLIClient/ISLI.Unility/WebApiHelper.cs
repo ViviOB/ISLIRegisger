@@ -22,7 +22,7 @@ namespace ISLI.Unility
 
             //创建客户端，指定uri地址访问WebApi
             HttpClient client = new HttpClient();
-            Uri uri = new Uri("http://localhost:44326/api/" + controller + "/");
+            Uri uri = new Uri("http://localhost:44327/api/" + controller + "/");
             client.BaseAddress = uri;
 
             /*根据不同的动作执行不同的方法*/
