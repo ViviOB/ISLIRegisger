@@ -37,6 +37,9 @@ namespace ISLIAPI
             BaseDB.DBConnectionString = connstr;//初始化数据库连接字符串
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IBooks, BooksService>();//注入
+            services.AddTransient<IAuthorization, AuthorizationService>();//注入
+            services.AddTransient<IFacilitator, FacilitatorService>();//注入
+            services.AddTransient<IUserInformation, UserInformationService>();//注入
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
