@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+using ISLI.IService;
+using ISLI.Model;
+using SqlSugar;
+using ISLI.Unility;
+namespace ISLI.Service
+{
+    public class PublishApplyService : IPublishApply
+    {
+        /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <returns></returns>
+        public List<Publisher> GetAuthorizesList()
+        {
+            using (SqlSugarClient db = BaseDB.GetClient())
+            {
+                var getauthorizelist = db.Queryable<Publisher>().ToList();
+                return getauthorizelist;
+            }
+        }
+
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="authorize"></param>
+        /// <returns></returns>
+        public int Update(Publisher publisher)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 根据iD获取对象
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Publisher UpdateById(int id)
+        {
+            using (SqlSugarClient db = BaseDB.GetClient())
+            {
+                //根据主键查询
+                var getByPrimaryKey = db.Queryable<Publisher>().InSingle(id);
+                //根据条件查询
+                // var getByWhere = db.Queryable<Student>().Where(it => it.Id == 1 || it.Name == "a").ToList();
+                return getByPrimaryKey;
+            }
+        }
+    }
+}
