@@ -13,12 +13,49 @@ namespace ISLIClient.Controllers
 {
     public class MainController : Controller
     {
+        #region 主页面
+
+        /// <summary>
+        /// 菜单导航
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 主页
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Main()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 左菜单
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Left()
         {
             //获取用户菜单
             ViewBag.LoginInfo = RedisHelper.Get<UserInfo>("userinfo");
             return View();
         }
+
+        /// <summary>
+        /// 头部
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Head()
+        {
+            //获取用户菜单
+            ViewBag.LoginInfo = RedisHelper.Get<UserInfo>("userinfo");
+            return View();
+        }
+
+        #endregion
 
         /// <summary>
         /// 注册界面
@@ -28,7 +65,7 @@ namespace ISLIClient.Controllers
         {
             return View();
         }
-        
+
         public IActionResult Login()
         {
             return View();
@@ -50,6 +87,15 @@ namespace ISLIClient.Controllers
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// 退出
+        /// </summary>
+        public void SignOut()
+        {
+            RedisHelper.Remove("userinfo");
+            Response.Redirect("/main/login");
         }
     }
 }
