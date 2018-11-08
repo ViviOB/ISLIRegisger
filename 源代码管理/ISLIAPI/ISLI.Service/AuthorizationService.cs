@@ -1,24 +1,24 @@
-﻿using System;
+﻿using ISLI.IService;
+using ISLI.Model;
+using ISLI.Unility;
+using SqlSugar;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-using ISLI.IService;
-using ISLI.Model;
-using SqlSugar;
-using ISLI.Unility;
 namespace ISLI.Service
 {
-   public class FacilitatorService:IFacilitator
+    public class AuthorizationService : IAuthorization
     {
         /// <summary>
-        /// 显示关联信息回填信息
+        /// 显示授权详情表
         /// </summary>
         /// <returns></returns>
-        public List<Adhibition> AdhibitionList()
+        public List<Authorize> AuthorizeList()
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                var getList = db.Queryable<Adhibition>().ToList();
+                var getList = db.Queryable<Authorize>().ToList();
                 return getList;
             }
         }

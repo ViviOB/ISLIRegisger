@@ -8,7 +8,7 @@ namespace ISLIClient.Controllers
 {
     public class FacilitatorController : Controller
     {
-        public IActionResult Index()
+        public IActionResult FacilitatorIndex()
         {
             return View();
         }
