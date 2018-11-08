@@ -9,7 +9,7 @@ namespace ISLI.Model
         /// <summary>
         /// 主键
         /// </summary>
-        public int Id { get; set; }
+        public int PId { get; set; }
 
         /// <summary>
         /// 申请人姓名
