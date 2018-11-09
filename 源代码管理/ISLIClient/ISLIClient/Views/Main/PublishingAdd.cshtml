@@ -34,12 +34,12 @@
 </head>
 
 <body>
-    <div class="container">
-        <!--header-->
-        <div id="header" class="header">
-            <a class="logo" href="/main/login"></a>
-        </div>
-        <form id="publisherApplyForm">
+    <form id="publisherApplyForm">
+        <div class="container">
+            <!--header-->
+            <div id="header" class="header">
+                <a class="logo" href="/main/login"></a>
+            </div>
             <div class="adminConent passwordReset">
                 <div class="processBox clearfix">
                     <ul class="ml91">
@@ -53,7 +53,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="regisBox detailBox ">
+                <div class="regisBox detailBox " id="publis">
                     <h3 class="passP boldp">
                         申请人信息
                     </h3>
@@ -175,24 +175,24 @@
                         </dt>
                         <dd>
                             <span class="regInfo mr10">
-                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="tushu" value="1"  />
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="tushu" value="1" />
                                 图书
                             </span>
                             <span class="regInfo mr10">
-                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="baozhi" value="3"  />
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="baozhi" value="3" />
                                 报纸
                             </span>
                             <span class="regInfo mr10">
-                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="qikan" value="2"  />
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="qikan" value="2" />
                                 期刊
                             </span>
 
                             <span class="regInfo mr10">
-                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="yinxiang" value="4"  />
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="yinxiang" value="4" />
                                 音像制品
                             </span>
                             <span class="regInfo mr10">
-                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="dianzi" value="5"  />
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="dianzi" value="5" />
                                 电子出版物
                             </span>
                             <span class="regInfo mr10">
@@ -230,7 +230,6 @@
                             <span class="regInfo"></span>
                         </dd>
                     </dl>
-                    </dl>
                     <dl>
                         <dt>
                             出版单位网址：
@@ -239,7 +238,6 @@
                             <input type="text" name="website" id="website" class="width350" />
                             <span class="regInfo"></span>
                         </dd>
-                    </dl>
                     </dl>
                     <dl>
                         <dt>
@@ -251,7 +249,6 @@
                             <span class="regInfo"></span>
                         </dd>
                     </dl>
-                    </dl>
                     <dl>
                         <dt>
                             <span class="red">*</span>
@@ -261,7 +258,6 @@
                             <input type="text" name="zgdw" id="zgdw" class="width350" />
                             <span class="regInfo"></span>
                         </dd>
-                    </dl>
                     </dl>
                     <dl>
                         <dt>
@@ -373,31 +369,101 @@
                         <input type="button" name="leave" value="稍后再说" class="btnBackh ml-15" />
                     </div>
                 </div>
+                <div id="certify" class="regisBox detailBox " hidden>
+                    <dl>
+                        <dt>
+                            类型：
+                        </dt>
+                        <dd>
+                            <input type="radio" name="radio" id="type" class="radio" checked value="1" onclick="radioselect(this)" /> 统一社会信用代码证
+                            <input type="radio" name="radio" id="type" class="radio" value="2" onclick="radioselect(this)" /> 营业执照
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            统一社会信用代码证：
+                        </dt>
+                        <dd>
+                            <input type="file" name="publis" id="unit" class="layui-upload-file" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>出版物资质：
+                        </dt>
+                        <dd>
+                            <span class="regInfo mr10">
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="tushu1" value="1" />
+                                图书
+                            </span>
+                            <span class="regInfo mr10">
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="baozhi1" value="3" />
+                                报纸
+                            </span>
+                            <span class="regInfo mr10">
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="qikan1" value="2" />
+                                期刊
+                            </span>
+
+                            <span class="regInfo mr10">
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="yinxiang1" value="4" />
+                                音像制品
+                            </span>
+                            <span class="regInfo mr10">
+                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publicationTypeId" id="dianzi1" value="5" />
+                                电子出版物
+                            </span>
+                            <span class="regInfo mr10">
+                                <input type="checkbox" class="chechBox" name="publicationTypeId" id="internet1" value="6">
+                                互联网出版物
+                            </span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            出版物资质证明：
+                        </dt>
+                        <dd>
+                            <input type="file" name="publis" id="unit" class="layui-upload-file" />
+                        </dd>
+                    </dl>
+
+                    <div class="servicesBtn servicesBtnL centerButton" id="show2">
+                        <input type="button" name="last" value="上一步" class="btnBackh ml10" />
+                        <input type="button" name="submit" value="提交" class=" btnOk" />
+                    </div>
+                </div>
             </div>
-        </form>
-        <!--底部-->
-        <div id="footer" class="footer">
-
-
-            <div class="footer-wrap">
-                <ul class="linkmap">
-                    <li></li>
-                    <li></li>
-                </ul>
-                <p class="info">
-                    <span id="footp2"></span>
-                    <span id="footp3"></span>
-                    <span id="footp4"></span>
-                </p>
-                <p class="contact-info">
-                    <span class="address"> </span>
-                    <span class="phone"></span>
-                </p>
-            </div>
-
         </div>
-    </div>
+    </form>
+    <script>
+        $(function () {
+            $("input[name='next']").click(function () {
+                $("#publis").prop("hidden", "hidden")
+                $("#certify").prop("hidden", "")
+                $("[class='ml91']").find("li").eq(0).removeClass('selected')
+                $("[class='ml91']").find("li").eq(1).addClass('selected')
+            })
+            $("input[name='last']").click(function () {
+                $("#certify").prop("hidden", "hidden")
+                $("#publis").prop("hidden", "")
+                $("[class='ml91']").find("li").eq(1).removeClass('selected')
+                $("[class='ml91']").find("li").eq(0).addClass('selected')
+            })
+        })
 
+        function radioselect(res) {
+            console.log(res.value)
+            if (res.value == 1) {
+                $("#certify").find("dl").eq(1).find("dt").html('<span class="red">*</span>出版物资质证明')
+            }
+            else if (res.value == 2) {
+                $("#certify").find("dl").eq(1).find("dt").html('<span class="red">*</span>营业执照')
+            }
+        }
+    </script>
 </body>
 
 </html>
