@@ -13,6 +13,7 @@ namespace ISLIClient.Controllers
     {
 
         #region ///出版单位申请管理
+
         /// <summary>
         /// 分页方法
         /// </summary>
@@ -30,7 +31,6 @@ namespace ISLIClient.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-
             string json = WebApiHelper.GetApiResult("get", "BackStage", "GetPublishApplysList", null);
             var list = JsonConvert.DeserializeObject<List<PublishApply>>(json);
             return View(list);
@@ -50,9 +50,12 @@ namespace ISLIClient.Controllers
         #endregion
 
         #region ///出版单位账号管理
+
         public ActionResult AccountManage()
         {
-            return View();
+            string json = WebApiHelper.GetApiResult("get", "BackStage", "GetPublishApplysList", null);
+            var list = JsonConvert.DeserializeObject<List<PublishApply>>(json);
+            return View(list);
         }
         #endregion
     }
