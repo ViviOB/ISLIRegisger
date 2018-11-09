@@ -52,7 +52,7 @@
                         <td>{{item.chineseLibrary}}</td>
                         <td>{{item.overDate}}</td>
                         <td>{{item.applyDate}}</td>
-                        <td v-if="state ===1 "><i>11</i></td>                        
+                        <td v-if="state ===2">正常使用</td>                        
                         <td class="td-manage">
                             <a title="编辑" href="javascript:;" onclick="data_management_look('查看','data_management_look.html','4','','510')"
                                class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a> <a title="删除" href="javascript:;" onclick="data_management_del(this,'1')"
@@ -109,7 +109,7 @@
                     url: "/Books/BooksList"
                 }).then(function (res) {
                     that.info = res.data;
-                    state = res.data[0].applyState;
+                    that.state = res.data[0].applyState;
                 })
 
             }
