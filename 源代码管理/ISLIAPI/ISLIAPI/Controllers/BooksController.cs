@@ -27,11 +27,10 @@ namespace ISLIAPI.Controllers
         /// 显示所有
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        public List<Books> GetList()
-
+        [HttpPost]
+        public DataTable<Books> GetList(Page page)
         {
-            var  list=  _books.BooksList();
+            var  list=  _books.BooksList(page);
             return list;
         }
 
