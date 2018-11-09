@@ -1,0 +1,357 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model ISLI.Model.PublishApply
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>引导注册页</title>
+    <link href="~/resources/css/common.css" rel="stylesheet" />
+    <link href="~/resources/css/portal/common.css" type="text/css" rel="stylesheet" />
+    <link href="~/resources/css/zh_CN.css" type="text/css" rel="stylesheet" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="bookmark" type="image/x-icon" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script src="~/resources/js/jquery.js" type="text/javascript"></script>
+    <script src="~/resources/commons/jquery.validate.js" type="text/javascript"></script>
+    <script src="~/resources/js/validatePlugin.js" type="text/javascript"></script>
+    <script src="~/resources/js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="~/resources/js/message_zh_CN.js"></script>
+    <style>
+
+        .detailBox dl dd input[type="checkbox"] {
+            margin-right: 0;
+        }
+
+        .mr10 {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="publisherApplyForm">
+        @Html.HiddenFor(m => m.PId)
+        <div class="container">
+            <div class="adminConent passwordReset">
+                <div class="regisBox detailBox " id="publis">
+                    <h3 class="passP boldp">
+                        账户信息
+                    </h3>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            账户状态：
+                        </dt>
+                        <dd>
+                            @if(Model.IsEnabled==1)
+                            {
+                              @Html.Label("","正常使用",new { @class="red"})
+                            }
+                           
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            账户ID：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.PId)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            申请时间：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.ApplicationTime)
+                        </dd>
+                    </dl>
+                    <h3 class="passP boldp">
+                        申请人信息
+                    </h3>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            申请人邮箱：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.ApplicantEmail)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            申请人姓名：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.ApplicantName)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            联系电话（办公）：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.OfficeTel)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            联系电话（手机）：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.MovTel)
+                        </dd>
+                    </dl>
+                    <h3 class="passP boldp">
+                        出版单位信息
+                    </h3>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            出版单位省份：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.BaseId)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            出版单位归属：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.PublishingEntity)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            出版单位名称中文：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.PublisheChinese)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            出版单位名称英文：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.PublisherEnglish)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            统一社会信用代码：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.CreditCode)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>出版物资质：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.Publication)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            出版范围：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.ScopePublicati)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            通讯地址：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.MailingAddress)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            邮编：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.Postcode)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            出版单位网址：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.PublisherWebsit)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            主办单位：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.Sponsor)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            主管单位：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.GoverningBody)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            法人代表姓名：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.RepresentativeName)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            法人代表电话：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.RepresentativeTel)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            法人代表手机：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.RepresentativePhon)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            法人代表职务：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.RepresentativePost)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            法人代表传真：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.RepresentativeFax)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            法人代表邮箱：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.RepresentativeEmai)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            联系人姓名：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.ContactName)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            联系人电话：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.ContactTel)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            联系人手机：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.ContactPhone)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            联系人职务：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.ContactPerson)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            联系人传真：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.ContactFax)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            联系人邮箱：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.ContactEmail)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="servicesBtn servicesBtnL centerButton" id="show2">
+                    <input type="button" name="leave" value="返回" class="btnBackh ml-15" />
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+        $(function () {
+            $("input[name='next']").click(function () {
+                $("#publis").prop("hidden", "hidden")
+                $("#certify").prop("hidden", "")
+                $("[class='ml91']").find("li").eq(0).removeClass('selected')
+                $("[class='ml91']").find("li").eq(1).addClass('selected')
+            })
+            $("input[name='last']").click(function () {
+                $("#certify").prop("hidden", "hidden")
+                $("#publis").prop("hidden", "")
+                $("[class='ml91']").find("li").eq(1).removeClass('selected')
+                $("[class='ml91']").find("li").eq(0).addClass('selected')
+            })
+        })
+
+        function radioselect(res) {
+            console.log(res.value)
+            if (res.value == 1) {
+                $("#certify").find("dl").eq(1).find("dt").html('<span class="red">*</span>出版物资质证明')
+            }
+            else if (res.value == 2) {
+                $("#certify").find("dl").eq(1).find("dt").html('<span class="red">*</span>营业执照')
+            }
+        }
+    </script>
+</body>
+
+</html>

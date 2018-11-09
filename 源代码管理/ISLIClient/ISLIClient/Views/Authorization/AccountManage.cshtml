@@ -63,7 +63,7 @@
                                     <button class="sp">正常使用</button>
                                 </td>
                                 <td class="td-manage">
-                                    @Html.ActionLink("详情", "UpdateById", "Authorization", new { id = item.PId })
+                                    @Html.ActionLink("详情", "AccountUpdateById", "Authorization", new { id = item.PId })
                                     <a style="text-decoration:none; color:darkgreen">冻结</a>
                                 </td>
                             }
@@ -73,7 +73,7 @@
                                     <button class="sp">已冻结</button>
                                 </td>
                                 <td class="td-manage">
-                                    @Html.ActionLink("详情", "UpdateById", "Authorization", new { id = item.PId })
+                                    @Html.ActionLink("详情", "AccountUpdateById", "Authorization", new { id = item.PId })
                                 </td>
                             }
                         </tr>

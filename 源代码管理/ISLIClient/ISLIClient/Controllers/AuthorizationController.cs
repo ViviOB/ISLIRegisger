@@ -57,6 +57,18 @@ namespace ISLIClient.Controllers
             var list = JsonConvert.DeserializeObject<List<PublishApply>>(json);
             return View(list);
         }
+
+        /// <summary>
+        /// 根据ID查看详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult AccountUpdateById(int id)
+        {
+            string json = WebApiHelper.GetApiResult("get", "BackStage", "UpdateById?id=" + id, null);
+            var publishapply = JsonConvert.DeserializeObject<PublishApply>(json);
+            return View(publishapply);
+        }
         #endregion
     }
 }
