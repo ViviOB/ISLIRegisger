@@ -12,6 +12,7 @@ namespace ISLIClient.Controllers
     public class AuthorizationController : Controller
     {
 
+        #region ///出版单位申请管理
         /// <summary>
         /// 分页方法
         /// </summary>
@@ -23,6 +24,10 @@ namespace ISLIClient.Controllers
             return paging;
         }
 
+        /// <summary>
+        /// 出版单位申请管理页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
 
@@ -31,12 +36,24 @@ namespace ISLIClient.Controllers
             return View(list);
         }
 
+        /// <summary>
+        /// 根据ID查看详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult UpdateById(int id)
         {
             string json = WebApiHelper.GetApiResult("get", "BackStage", "UpdateById?id=" + id, null);
             var publishapply = JsonConvert.DeserializeObject<PublishApply>(json);
             return View(publishapply);
         }
-      
+        #endregion
+
+        #region ///出版单位账号管理
+        public ActionResult AccountManage()
+        {
+            return View();
+        }
+        #endregion
     }
 }
