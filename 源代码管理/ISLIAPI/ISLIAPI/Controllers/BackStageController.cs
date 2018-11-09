@@ -38,7 +38,8 @@ namespace ISLIAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Publisher UpdateById(int id)
+        [HttpGet]
+        public PublishApply UpdateById(int id)
         {
             return _publishApply.UpdateById(id);
         }
