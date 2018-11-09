@@ -18,7 +18,7 @@ namespace ISLI.IService
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Publisher UpdateById(int id);
+        PublishApply UpdateById(int id);
 
         /// <summary>
         /// 修改
