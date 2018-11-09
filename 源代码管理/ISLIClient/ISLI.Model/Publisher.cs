@@ -155,6 +155,11 @@ namespace ISLI.Model
         /// 企业资质证明
         /// </summary>
         public int CertificateId { get; set; }
-        
+
+        /// <summary>
+        /// 申请时间
+        /// </summary>
+        public DateTime ApplicationTime { get; set; }
+
     }
 }
