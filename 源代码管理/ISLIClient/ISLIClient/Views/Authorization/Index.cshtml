@@ -27,7 +27,7 @@
                 <li><span><img src="images/t02.png" /></span>编辑</li>
                 <li><span><img src="images/t09.png" /></span>批量导出</li>
             </ul>
-            <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>
+            <span class="x-right" style="line-height:25px">共有数据：88 条</span>
         </div>
         @using (Html.BeginForm())
         {
@@ -65,14 +65,21 @@
                             <td>
                                 @if (item.SubmissionState == 1)
                                 {
-                                    已提交
+                                    <i>已提交</i>
                                 }
-                        </td>
+                                @if (item.SubmissionState == 0)
+                                {
+                                    <i>未通过</i>
+                                }
+                                @if (item.SubmissionState == 2)
+                                {
+                                    <i>已通过</i>
+                                }
+                            </td>
                         <td><button class="sp">正常</button></td>
                         <td class="td-manage">
                             <a title="处理" href="javascript:;" onclick="data_management_look('查看','data_management_look.html','4','','510')"
-                               class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a> <a title="删除" href="javascript:;" onclick="data_management_del(this,'1')"
-                                                                                                                   style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a>
+                               class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a> <a title="删除" href="javascript:;" onclick="data_management_del(this,'1')" style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a>
                         </td>
                     </tr>
                 }
