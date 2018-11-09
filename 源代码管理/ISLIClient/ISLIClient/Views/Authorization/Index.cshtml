@@ -33,10 +33,7 @@
         {
             <table class="tablelist">
                 <thead>
-                    <tr>
-                        <th>
-                            <input onclick="selectAll()" type="checkbox" name="controlAll" style="controlAll" id="controlAll">
-                        </th>
+                    <tr style="align-content:center">
                         <th>序号</th>
                         <th>出版单位名称中文</th>
                         <th> 出版单位名称英文 </th>
@@ -62,27 +59,38 @@
                             <td>@item.ApplicantName</td>
                             <td>@item.MovTel</td>
                             <td>@item.ApplicationTime</td>
-                            <td>
-                                @if (item.SubmissionState == 1)
-                                {
-                                <button class="sp">已提交</button>
-                                }
-                                @if (item.SubmissionState == 0)
-                                {
-                                <button class="sp">正常</button>
-                                }
-                                @if (item.SubmissionState == 2)
-                                {
-                                    <i>已通过</i>
-                                }
-                            </td>
-                        <td><button class="sp">正常</button></td>
-                        <td class="td-manage">
-                            <a title="处理" href="javascript:;" onclick="data_management_look('查看','data_management_look.html','4','','510')"
-                               class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a> <a title="删除" href="javascript:;" onclick="data_management_del(this,'1')" style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a>
-                        </td>
-                    </tr>
-                }
+                            @if (item.SubmissionState == 1)
+                            {
+                                <td>
+                                    <button class="sp">已提交</button>
+                                </td>
+                                <td class="td-manage">
+                                    <a style="text-decoration:none; color:darkgreen" href="">详情</a>
+                                    <a style="text-decoration:none; color:darkgreen">通过</a>
+                                    <a style="text-decoration:none; color:darkgreen">拒绝</a>
+                                </td>
+                            }
+                            @if (item.SubmissionState == 0)
+                            {
+                                <td>
+                                    <button class="sp">已通过</button>
+                                </td>
+                                <td class="td-manage">
+                                    <a title="详情" href="javascript:;" onclick="data_management_look('查看','data_management_look.html','4','','510')"class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a> 
+                                    <a title="删除" href="javascript:;" onclick="data_management_del(this,'1')" style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a>
+                                </td>
+                            }
+                            @if (item.SubmissionState == 2)
+                            {
+                                <td>
+                                    <button class="sp2">未通过</button>
+                                </td>
+                                <td class="td-manage">
+                                    <a >详情</a> <a></a>
+                                </td>
+                            }
+                        </tr>
+                    }
 
 
                 </tbody>

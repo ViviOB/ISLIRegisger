@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Authorization\" />
     <Folder Include="wwwroot\resources\" />
   </ItemGroup>
 

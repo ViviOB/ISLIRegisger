@@ -38,15 +38,13 @@ namespace ISLI.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Publisher UpdateById(int id)
+        public PublishApply UpdateById(int id)
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                //根据主键查询
-                var getByPrimaryKey = db.Queryable<Publisher>().InSingle(id);
                 //根据条件查询
-                // var getByWhere = db.Queryable<Student>().Where(it => it.Id == 1 || it.Name == "a").ToList();
-                return getByPrimaryKey;
+                var publishApply = db.Queryable<PublishApply>().Where(m => m.PId == id).First();
+                return publishApply;
             }
         }
 
@@ -57,7 +55,7 @@ namespace ISLI.Service
         /// <param name="pagesize"></param>
         /// <param name="totalCount"></param>
         /// <returns></returns>
-        public List<PublishApply> Paging(int pageIndex,int pageSize,int totalCount)
+        public List<PublishApply> Paging(int pageIndex, int pageSize, int totalCount)
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
