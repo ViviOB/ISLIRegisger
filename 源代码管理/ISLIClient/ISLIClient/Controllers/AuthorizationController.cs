@@ -22,6 +22,7 @@ namespace ISLIClient.Controllers
             var paging = JsonConvert.DeserializeObject<List<PublishApply>>(json);
             return paging;
         }
+
         public ActionResult Index()
         {
             string json = WebApiHelper.GetApiResult("get", "BackStage", "GetPublishApplysList", null);

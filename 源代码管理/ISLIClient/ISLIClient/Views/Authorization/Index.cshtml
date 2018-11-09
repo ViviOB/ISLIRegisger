@@ -42,20 +42,32 @@
                         <th> 出版单位名称英文 </th>
                         <th>出版物资质</th>
                         <th>集团属性</th>
-                        <th> 申请人 </th>
-                        <th> 电话 </th>
-                        <th> 申请时间 </th>
-                        <th> 状态 </th>
-                        <th> 操作 </th>
+                        <th>申请人</th>
+                        <th>电话</th>
+                        <th>申请时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody id="x-link">
-                    <tr>
-                        <td><input type="checkbox" value="1" name="selected"></td>
-                        <td>1</td>
-                        <td>name3</td>
-                        <td>测试题1</td>
-                        <td>2017-01-10 16:33:45</td>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@item.PId</td>
+                            <td>@item.PublisheChinese</td>
+                            <td>@item.PublisherEnglish</td>
+                            <td>@item.Publication</td>
+                            <td>@item.PublishingEntity</td>
+                            <td>@item.ApplicantName</td>
+                            <td>@item.MovTel</td>
+                            <td>@item.ApplicationTime</td>
+                            <td>
+                                @if (item.SubmissionState == 1)
+                                {
+                                    已提交
+                                }
+                        </td>
                         <td><button class="sp">正常</button></td>
                         <td class="td-manage">
                             <a title="处理" href="javascript:;" onclick="data_management_look('查看','data_management_look.html','4','','510')"
@@ -63,7 +75,9 @@
                                                                                                                    style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a>
                         </td>
                     </tr>
-                    
+                }
+
+
                 </tbody>
             </table>
         }
@@ -85,21 +99,21 @@
     <script src="js/jquery2.js" charset="utf-8"></script>
     <script src="js/js.js" charset="utf-8"></script>
     <script>
-            layui.use(['element','laypage','layer','form'], function(){
-                $ = layui.jquery;//jquery
-              lement = layui.element();//面包导航
-              laypage = layui.laypage;//分页
-              layer = layui.layer;//弹出层
-              form = layui.form();//弹出层
-            });
-            // 编辑
-            function data_management_look (title,url,id,w,h) {
-                x_admin_show(title,url,w,h);
-            }
+        layui.use(['element', 'laypage', 'layer', 'form'], function () {
+            $ = layui.jquery;//jquery
+            lement = layui.element();//面包导航
+            laypage = layui.laypage;//分页
+            layer = layui.layer;//弹出层
+            form = layui.form();//弹出层
+        });
+        // 编辑
+        function data_management_look(title, url, id, w, h) {
+            x_admin_show(title, url, w, h);
+        }
 
     </script>
     <script type="text/javascript">
-	$('.tablelist tbody tr:odd').addClass('odd');
+        $('.tablelist tbody tr:odd').addClass('odd');
     </script>
 </body>
 </html>
