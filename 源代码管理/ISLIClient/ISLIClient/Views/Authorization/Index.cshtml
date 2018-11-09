@@ -65,7 +65,7 @@
                                     <button class="sp">已提交</button>
                                 </td>
                                 <td class="td-manage">
-                                    <a style="text-decoration:none; color:darkgreen" href="">详情</a>
+                                    @Html.ActionLink("详情", "UpdateById", "Authorization", new { id=item.PId})
                                     <a style="text-decoration:none; color:darkgreen">通过</a>
                                     <a style="text-decoration:none; color:darkgreen">拒绝</a>
                                 </td>

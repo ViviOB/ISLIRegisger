@@ -43,7 +43,7 @@ namespace ISLI.Service
             using (SqlSugarClient db = BaseDB.GetClient())
             {
                 //根据条件查询
-                var publishApply = db.Queryable<PublishApply>().Where(m => m.PId == id).First();
+                var publishApply = db.Queryable<User, Publisher>((st, sc) => new object[] { JoinType.Inner, st.UserInfoId == sc.PId }).Select<PublishApply>().Where(sc => sc.PId == id).First();
                 return publishApply;
             }
         }

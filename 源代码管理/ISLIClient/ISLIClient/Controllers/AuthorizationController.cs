@@ -25,6 +25,7 @@ namespace ISLIClient.Controllers
 
         public ActionResult Index()
         {
+
             string json = WebApiHelper.GetApiResult("get", "BackStage", "GetPublishApplysList", null);
             var list = JsonConvert.DeserializeObject<List<PublishApply>>(json);
             return View(list);
