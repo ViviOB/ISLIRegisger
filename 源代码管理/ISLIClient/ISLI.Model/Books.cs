@@ -146,5 +146,20 @@ namespace ISLI.Model
         /// 服务商代码
         /// </summary>
         public string ServiceCode { get; set; }
+
+        /// <summary>
+        /// 申请时间
+        /// </summary>
+        public string ApplyDate { get; set; }
+
+        /// <summary>
+        /// 过期时间
+        /// </summary>
+        public string OverDate { get; set; }
+
+        /// <summary>
+        /// 申请状态
+        /// </summary>
+        public int ApplyState { get; set; }
     }
 }

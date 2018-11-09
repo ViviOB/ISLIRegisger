@@ -1,1034 +1,119 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
 <html>
 <head>
-    <meta name="robots" content="noindex, nofollow" />
-    <title>编码申请</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link href="~/css/jquery-ui-themes.css" rel="stylesheet" />
-    <link href="~/css/axure_rp_page.css" type="text/css" rel="stylesheet" />
-    <link href="~/css/styles.css" rel="stylesheet" />
-    <link href="files/编码申请/styles.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript">
-        AXSHARE_HOST_URL = 'http://share.axure.com';
-        AXSHARE_HOST_SECURE_URL = 'https://share.axure.com';
-        ACCOUNT_SERVICE_URL = 'http://accounts.axure.com';
-        ACCOUNT_SERVICE_SECURE_URL = 'https://accounts.axure.com';
-        ON_PREM_LDAP_ENABLED = 'false';
-    </script>
-    <script src="~/js/jquery-1.7.1.min.js"></script>
-    <script src="~/js/jquery-ui-1.8.10.custom.min.js"></script>
-    <script src="~/js/prototypePost.js"></script>
-   
-    <script src="data/document.js"></script>
-    <script src="files/编码申请/data.js"></script>
-    <script type="text/javascript">
-        $axure.utils.getTransparentGifPath = function () { return 'https://d1h0x9w88ijkiq.cloudfront.net/3372/images/transparent.gif'; };
-        $axure.utils.getOtherPath = function () { return 'resources/Other.html'; };
-        $axure.utils.getReloadPath = function () { return 'resources/reload.html'; };
-    </script>
+    <meta charset="utf-8">
+    <title>数据管理-查看</title>
+    <link href="~/css/x-admin.css" rel="stylesheet" />
+    <link href="~/css/pag.css" rel="stylesheet" />
+    <script src="~/js/jquery-1.11.0.min.js"></script>
+    <script src="~/Vue/vue.js"></script>
+    <script src="~/Vue/axios.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $("iframe").each(function (index) {
-                var iframeSrc = $(this).attr('src') || '';
-                if (iframeSrc.indexOf('http:') != -1) {
-                    $(this).attr('scrolling', 'auto');
-                    $(this).css('overflow', 'auto');
-                    $(this).attr('src', 'https://uftnur.axshare.com/');
-                }
-            });
-        });
-    </script>
 </head>
-<body style="margin-left：15%">
-    <div id="base" class="">
-
-        <!-- 内部框架 (Inline Frame) -->
-        <div id="u8486" class="ax_default ax_default_hidden" data-label="内部框架" style="display:none; visibility: hidden">
-            <iframe id="u8486_input" data-label="内部框架" scrolling="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8487" class="ax_default box_2">
-            <div id="u8487_div" class=""></div>
-        </div><!-- Unnamed (Rectangle) -->
-        <div id="u8532" class="ax_default box_2">
-            <div id="u8532_div" class=""></div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8535" class="ax_default label">
-            <div id="u8535_div" class=""></div>
-            <div id="u8535_text" class="text ">
-                <p><span>书名</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8536" class="ax_default label">
-            <div id="u8536_div" class=""></div>
-            <div id="u8536_text" class="text ">
-                <p><span>语种</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8537" class="ax_default label">
-            <div id="u8537_div" class=""></div>
-            <div id="u8537_text" class="text ">
-                <p><span>申请时间</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8538" class="ax_default label">
-            <div id="u8538_div" class=""></div>
-            <div id="u8538_text" class="text ">
-                <p><span>中图分类法</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8539" class="ax_default primary_button">
-            <div id="u8539_div" class=""></div>
-            <div id="u8539_text" class="text ">
-                <p><span>查询</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8540" class="ax_default box_1">
-            <div id="u8540_div" class=""></div>
-        </div>
-
-        <!-- Unnamed (Group) -->
-        <div id="u8541" class="ax_default" data-left="374" data-top="285" data-width="141" data-height="35">
-
-            <!-- 中图分类法一选择 (Rectangle) -->
-            <div id="u8542" class="ax_default _默认样式" data-label="中图分类法一选择">
-                <div id="u8542_div" class=""></div>
-                <div id="u8542_text" class="text ">
-                    <p><span>请选择</span></p>
-                </div>
-            </div>
-
-            <!-- Unnamed (Shape) -->
-            <div id="u8543" class="ax_default _默认样式">
-                <img id="u8543_img" class="img " src="https://d2v8ggac1o0f6z.cloudfront.net/gsc/HUXTSV/e1/f4/5c/e1f45c6938754886b7007e83d574abc1/images/编码申请管理/u1272.png?token=b7b8937e7fba6c12844e7be485e52c3c" />
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8544" class="ax_default _默认样式">
-            <div id="u8544_div" class=""></div>
-            <div id="u8544_text" class="text ">
-                <p><span>请选择日期</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Image) -->
-        <div id="u8545" class="ax_default _图片">
-            <img id="u8545_img" class="img " src="https://d2t44wh9rnwl5y.cloudfront.net/gsc/HUXTSV/e1/f4/5c/e1f45c6938754886b7007e83d574abc1/images/编码申请管理/u1274.png?token=32c96f3ad95be4a1ac36384a047a778f" />
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8546" class="ax_default _默认样式">
-            <div id="u8546_div" class=""></div>
-            <div id="u8546_text" class="text ">
-                <p><span>请选择日期</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Image) -->
-        <div id="u8547" class="ax_default _图片">
-            <img id="u8547_img" class="img " src="https://d2t44wh9rnwl5y.cloudfront.net/gsc/HUXTSV/e1/f4/5c/e1f45c6938754886b7007e83d574abc1/images/编码申请管理/u1274.png?token=32c96f3ad95be4a1ac36384a047a778f" />
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8548" class="ax_default label">
-            <div id="u8548_div" class=""></div>
-            <div id="u8548_text" class="text ">
-                <p><span>至</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Group) -->
-        <div id="u8549" class="ax_default" data-left="378" data-top="757" data-width="665" data-height="22">
-
-            <!-- pages (Dynamic Panel) -->
-            <div id="u8550" class="ax_default" data-label="pages">
-                <div id="u8550_state0" class="panel_state" data-label="State1" style="">
-                    <div id="u8550_state0_content" class="panel_state_content">
-
-                        <!-- Unnamed (Rectangle) -->
-                        <div id="u8551" class="ax_default label">
-                            <div id="u8551_div" class=""></div>
-                            <div id="u8551_text" class="text ">
-                                <p><span>1</span></p>
-                            </div>
-                        </div>
-
-                        <!-- Unnamed (Rectangle) -->
-                        <div id="u8552" class="ax_default label">
-                            <div id="u8552_div" class=""></div>
-                            <div id="u8552_text" class="text ">
-                                <p><span>2</span></p>
-                            </div>
-                        </div>
-
-                        <!-- Unnamed (Rectangle) -->
-                        <div id="u8553" class="ax_default label">
-                            <div id="u8553_div" class=""></div>
-                            <div id="u8553_text" class="text ">
-                                <p><span>3</span></p>
-                            </div>
-                        </div>
-
-                        <!-- Unnamed (Rectangle) -->
-                        <div id="u8554" class="ax_default label">
-                            <div id="u8554_div" class=""></div>
-                            <div id="u8554_text" class="text ">
-                                <p><span>4</span></p>
-                            </div>
-                        </div>
-
-                        <!-- Unnamed (Rectangle) -->
-                        <div id="u8555" class="ax_default label">
-                            <div id="u8555_div" class=""></div>
-                            <div id="u8555_text" class="text ">
-                                <p><span>5</span></p>
-                            </div>
-                        </div>
-
-                        <!-- Unnamed (Rectangle) -->
-                        <div id="u8556" class="ax_default label">
-                            <div id="u8556_div" class=""></div>
-                            <div id="u8556_text" class="text ">
-                                <p><span>···</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-          
-            </div>
-
-            <!-- icon-arrow-left (Shape) -->
-            <div id="u8586" class="ax_default icon" data-label="icon-arrow-left">
-                <img id="u8586_img" class="img " src="https://d2v8ggac1o0f6z.cloudfront.net/gsc/HUXTSV/e1/f4/5c/e1f45c6938754886b7007e83d574abc1/images/编码申请管理/icon-arrow-left_u1315.png?token=d56e574e757793e45aa86f28ca2a8b0c" />
-            </div>
-
-            <!-- icon-arrow-right (Shape) -->
-            <div id="u8587" class="ax_default icon" data-label="icon-arrow-right">
-                <img id="u8587_img" class="img " src="https://d26uhratvi024l.cloudfront.net/gsc/HUXTSV/e1/f4/5c/e1f45c6938754886b7007e83d574abc1/images/编码申请管理/icon-arrow-right_u1316.png?token=0174b43f8ff6c17b16ce1d05c87b1704" />
-            </div>
-
-            <!-- border (Rectangle) -->
-            <div id="u8588" class="ax_default box_1" data-label="border">
-                <div id="u8588_div" class=""></div>
-            </div>
-
-            <!-- Unnamed (Rectangle) -->
-            <div id="u8589" class="ax_default label">
-                <div id="u8589_div" class=""></div>
-                <div id="u8589_text" class="text ">
-                    <p><span>跳到此页</span></p>
-                </div>
-            </div>
-
-            <!-- Unnamed (Rectangle) -->
-            <div id="u8590" class="ax_default label">
-                <div id="u8590_div" class=""></div>
-                <div id="u8590_text" class="text ">
-                    <p><span>共7页，73条记录，每页显示</span></p>
-                </div>
-            </div>
-
-            <!-- Unnamed (Droplist) -->
-            <div id="u8591" class="ax_default droplist">
-                <select id="u8591_input">
-                    <option value="6">6</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                </select>
-            </div>
-
-            <!-- Unnamed (Rectangle) -->
-            <div id="u8592" class="ax_default label">
-                <div id="u8592_div" class=""></div>
-                <div id="u8592_text" class="text ">
-                    <p><span>行</span></p>
-                </div>
-            </div>
-
-            <!-- Unnamed (Rectangle) -->
-            <div id="u8593" class="ax_default label">
-                <div id="u8593_div" class=""></div>
-                <div id="u8593_text" class="text ">
-                    <p><span>7</span></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Unnamed (Text Field) -->
-        <div id="u8594" class="ax_default text_field">
-            <input id="u8594_input" type="text" value="" />
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8595" class="ax_default label">
-            <div id="u8595_div" class=""></div>
-            <div id="u8595_text" class="text ">
-                <p><span>1</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8596" class="ax_default label">
-            <div id="u8596_div" class=""></div>
-            <div id="u8596_text" class="text ">
-                <p><span>查看</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8597" class="ax_default box_2">
-            <div id="u8597_div" class=""></div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8598" class="ax_default label">
-            <div id="u8598_div" class=""></div>
-            <div id="u8598_text" class="text ">
-                <p><span>筛选查询</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8599" class="ax_default label">
-            <div id="u8599_div" class=""></div>
-            <div id="u8599_text" class="text ">
-                <p><span>收起筛选</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8600" class="ax_default primary_button">
-            <div id="u8600_div" class=""></div>
-            <div id="u8600_text" class="text ">
-                <p><span>重置</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Shape) -->
-        <div id="u8601" class="ax_default icon">
-            <img id="u8601_img" class="img " src="https://d26uhratvi024l.cloudfront.net/gsc/HUXTSV/e1/f4/5c/e1f45c6938754886b7007e83d574abc1/images/编码申请管理/u1330.png?token=d71dbfbfd21ef05d2888cc83dd56b968" />
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8602" class="ax_default primary_button">
-            <div id="u8602_div" class=""></div>
-            <div id="u8602_text" class="text ">
-                <p><span>正常使用（50）</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8603" class="ax_default primary_button">
-            <div id="u8603_div" class=""></div>
-            <div id="u8603_text" class="text ">
-                <p><span>未通过（2）</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8604" class="ax_default primary_button">
-            <div id="u8604_div" class=""></div>
-            <div id="u8604_text" class="text ">
-                <p><span>已提交（24）</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8605" class="ax_default label">
-            <div id="u8605_div" class=""></div>
-            <div id="u8605_text" class="text ">
-                <p><span>序号</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8606" class="ax_default label">
-            <div id="u8606_div" class=""></div>
-            <div id="u8606_text" class="text ">
-                <p><span>书名</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8607" class="ax_default label">
-            <div id="u8607_div" class=""></div>
-            <div id="u8607_text" class="text ">
-                <p><span>假如我是一只猫</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8608" class="ax_default label">
-            <div id="u8608_div" class=""></div>
-            <div id="u8608_text" class="text ">
-                <p><span>中国近代哲学史</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8609" class="ax_default label">
-            <div id="u8609_div" class=""></div>
-            <div id="u8609_text" class="text ">
-                <p><span>假如没有太阳</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8610" class="ax_default label">
-            <div id="u8610_div" class=""></div>
-            <div id="u8610_text" class="text ">
-                <p><span>猫和老鼠</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8611" class="ax_default label">
-            <div id="u8611_div" class=""></div>
-            <div id="u8611_text" class="text ">
-                <p><span>黑猫警长</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8612" class="ax_default label">
-            <div id="u8612_div" class=""></div>
-            <div id="u8612_text" class="text ">
-                <p><span>ISBN</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8613" class="ax_default label">
-            <div id="u8613_div" class=""></div>
-            <div id="u8613_text" class="text ">
-                <p><span>978-7-5405-7676-2</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8614" class="ax_default label">
-            <div id="u8614_div" class=""></div>
-            <div id="u8614_text" class="text ">
-                <p><span>978-7-5405-1976-3</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8615" class="ax_default label">
-            <div id="u8615_div" class=""></div>
-            <div id="u8615_text" class="text ">
-                <p><span>978-7-5405-6576-3</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8616" class="ax_default label">
-            <div id="u8616_div" class=""></div>
-            <div id="u8616_text" class="text ">
-                <p><span>978-7-5405-8176-4</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8617" class="ax_default label">
-            <div id="u8617_div" class=""></div>
-            <div id="u8617_text" class="text ">
-                <p><span>978-7-5405-8376-5</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8618" class="ax_default label">
-            <div id="u8618_div" class=""></div>
-            <div id="u8618_text" class="text ">
-                <p><span>中图分类法</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8619" class="ax_default label">
-            <div id="u8619_div" class=""></div>
-            <div id="u8619_text" class="text ">
-                <p><span>艺术；绘画</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8620" class="ax_default label">
-            <div id="u8620_div" class=""></div>
-            <div id="u8620_text" class="text ">
-                <p><span>哲学、宗教；中国哲学</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8621" class="ax_default label">
-            <div id="u8621_div" class=""></div>
-            <div id="u8621_text" class="text ">
-                <p><span>艺术；绘画</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8622" class="ax_default label">
-            <div id="u8622_div" class=""></div>
-            <div id="u8622_text" class="text ">
-                <p><span>艺术；绘画</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8623" class="ax_default label">
-            <div id="u8623_div" class=""></div>
-            <div id="u8623_text" class="text ">
-                <p><span>艺术；绘画</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8624" class="ax_default label">
-            <div id="u8624_div" class=""></div>
-            <div id="u8624_text" class="text ">
-                <p><span>2018-01-19</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8625" class="ax_default label">
-            <div id="u8625_div" class=""></div>
-            <div id="u8625_text" class="text ">
-                <p><span>申请时间</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8626" class="ax_default label">
-            <div id="u8626_div" class=""></div>
-            <div id="u8626_text" class="text ">
-                <p><span>2018-01-19</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8627" class="ax_default label">
-            <div id="u8627_div" class=""></div>
-            <div id="u8627_text" class="text ">
-                <p><span>2018-01-19</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8628" class="ax_default label">
-            <div id="u8628_div" class=""></div>
-            <div id="u8628_text" class="text ">
-                <p><span>2018-01-19</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8629" class="ax_default label">
-            <div id="u8629_div" class=""></div>
-            <div id="u8629_text" class="text ">
-                <p><span>2018-01-19</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8630" class="ax_default label">
-            <div id="u8630_div" class=""></div>
-            <div id="u8630_text" class="text ">
-                <p><span>操作</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Horizontal Line) -->
-        <div id="u8631" class="ax_default line">
-            <img id="u8631_img" class="img " src="https://d26uhratvi024l.cloudfront.net/gsc/HUXTSV/e1/f4/5c/e1f45c6938754886b7007e83d574abc1/images/编码申请管理/u1360.png?token=e1b0f14ef9bda2ca9cf641254e511ae9" />
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8632" class="ax_default box_2">
-            <div id="u8632_div" class=""></div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8633" class="ax_default label">
-            <div id="u8633_div" class=""></div>
-            <div id="u8633_text" class="text ">
-                <p><span>2</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8634" class="ax_default label">
-            <div id="u8634_div" class=""></div>
-            <div id="u8634_text" class="text ">
-                <p><span>查看</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8635" class="ax_default label">
-            <div id="u8635_div" class=""></div>
-            <div id="u8635_text" class="text ">
-                <p><span>3</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8636" class="ax_default label">
-            <div id="u8636_div" class=""></div>
-            <div id="u8636_text" class="text ">
-                <p><span>查看</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8637" class="ax_default label">
-            <div id="u8637_div" class=""></div>
-            <div id="u8637_text" class="text ">
-                <p><span>编辑</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8638" class="ax_default label">
-            <div id="u8638_div" class=""></div>
-            <div id="u8638_text" class="text ">
-                <p><span>4</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8639" class="ax_default label">
-            <div id="u8639_div" class=""></div>
-            <div id="u8639_text" class="text ">
-                <p><span>查看</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8640" class="ax_default label">
-            <div id="u8640_div" class=""></div>
-            <div id="u8640_text" class="text ">
-                <p><span>5</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8641" class="ax_default label">
-            <div id="u8641_div" class=""></div>
-            <div id="u8641_text" class="text ">
-                <p><span>查看</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8642" class="ax_default box_1">
-            <div id="u8642_div" class=""></div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8643" class="ax_default label">
-            <div id="u8643_div" class=""></div>
-            <div id="u8643_text" class="text ">
-                <p><span>导出 Excel</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Shape) -->
-        <div id="u8644" class="ax_default line">
-            <img id="u8644_img" class="img " src="https://d2t44wh9rnwl5y.cloudfront.net/gsc/HUXTSV/e1/f4/5c/e1f45c6938754886b7007e83d574abc1/images/编码申请管理/u1373.png?token=ddc6a3426ec859315e0bdcff93827156" />
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8645" class="ax_default primary_button">
-            <div id="u8645_div" class=""></div>
-            <div id="u8645_text" class="text ">
-                <p><span>全部（83）</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Group) -->
-        <div id="u8646" class="ax_default" data-left="531" data-top="285" data-width="141" data-height="35">
-
-            <!-- 中图分类法二选择 (Rectangle) -->
-            <div id="u8647" class="ax_default _默认样式" data-label="中图分类法二选择">
-                <div id="u8647_div" class=""></div>
-                <div id="u8647_text" class="text ">
-                    <p><span>请选择</span></p>
-                </div>
-            </div>
-
-            <!-- Unnamed (Shape) -->
-            <div id="u8648" class="ax_default _默认样式">
-                <img id="u8648_img" class="img " src="https://d2v8ggac1o0f6z.cloudfront.net/gsc/HUXTSV/e1/f4/5c/e1f45c6938754886b7007e83d574abc1/images/编码申请管理/u1272.png?token=b7b8937e7fba6c12844e7be485e52c3c" />
-            </div>
-        </div>
-
-        <!-- 下拉菜单 (Dynamic Panel) -->
-      
-        <!-- 日历1 (Dynamic Panel) -->
-       
-
-        <!-- 日历2 (Dynamic Panel) -->
-     
-
-        <!-- 账户 (Dynamic Panel) -->
-    
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8740" class="ax_default label">
-            <div id="u8740_div" class=""></div>
-            <div id="u8740_text" class="text ">
-                <p><span>ISLI编码申请列表</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8741" class="ax_default label">
-            <div id="u8741_div" class=""></div>
-            <div id="u8741_text" class="text ">
-                <p><span>已提交</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8742" class="ax_default label">
-            <div id="u8742_div" class=""></div>
-            <div id="u8742_text" class="text ">
-                <p><span>状态</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8743" class="ax_default label">
-            <div id="u8743_div" class=""></div>
-            <div id="u8743_text" class="text ">
-                <p><span>正常使用</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8744" class="ax_default label">
-            <div id="u8744_div" class=""></div>
-            <div id="u8744_text" class="text ">
-                <p><span>未通过</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8745" class="ax_default label">
-            <div id="u8745_div" class=""></div>
-            <div id="u8745_text" class="text ">
-                <p><span>已提交</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8746" class="ax_default label">
-            <div id="u8746_div" class=""></div>
-            <div id="u8746_text" class="text ">
-                <p><span>已注销</span></p>
-            </div>
-        </div>
-
-        <!-- 中图分类二 (Dynamic Panel) -->
-            
-        </div>
-
-        <!-- 中图分类一 (Dynamic Panel) -->
-        
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8758" class="ax_default label">
-            <div id="u8758_div" class=""></div>
-            <div id="u8758_text" class="text ">
-                <p><span>ISBN</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8759" class="ax_default box_1">
-            <div id="u8759_div" class=""></div>
-        </div>
-
-        <!-- 语种 (Dynamic Panel) -->
-        
-
-        <!-- Unnamed (Group) -->
-        
-
-        <!-- Unnamed (SVG) -->
-        <div id="u8767" class="ax_default image">
-            <img id="u8767_img" class="img " src="https://d26uhratvi024l.cloudfront.net/gsc/HUXTSV/e1/f4/5c/e1f45c6938754886b7007e83d574abc1/images/编码申请管理/u1498.svg?token=f06507602182658742bb16459423d191" />
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8768" class="ax_default primary_button">
-            <div id="u8768_div" class=""></div>
-            <div id="u8768_text" class="text ">
-                <p><span>已注销（5）</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8769" class="ax_default label">
-            <div id="u8769_div" class=""></div>
-            <div id="u8769_text" class="text ">
-                <p><span>ISLI编码</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8770" class="ax_default label">
-            <div id="u8770_div" class=""></div>
-            <div id="u8770_text" class="text ">
-                <p><span>-</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8771" class="ax_default label">
-            <div id="u8771_div" class=""></div>
-            <div id="u8771_text" class="text ">
-                <p><span>000000-037479881399999-2</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8772" class="ax_default label">
-            <div id="u8772_div" class=""></div>
-            <div id="u8772_text" class="text ">
-                <p><span>-</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8773" class="ax_default label">
-            <div id="u8773_div" class=""></div>
-            <div id="u8773_text" class="text ">
-                <p><span>-</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8774" class="ax_default label">
-            <div id="u8774_div" class=""></div>
-            <div id="u8774_text" class="text ">
-                <p><span>000000-123479881399999-5</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8775" class="ax_default label">
-            <div id="u8775_div" class=""></div>
-            <div id="u8775_text" class="text ">
-                <p><span>-</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8776" class="ax_default label">
-            <div id="u8776_div" class=""></div>
-            <div id="u8776_text" class="text ">
-                <p><span>过期时间</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8777" class="ax_default label">
-            <div id="u8777_div" class=""></div>
-            <div id="u8777_text" class="text ">
-                <p><span>2019-01-19</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8778" class="ax_default label">
-            <div id="u8778_div" class=""></div>
-            <div id="u8778_text" class="text ">
-                <p><span>-</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8779" class="ax_default label">
-            <div id="u8779_div" class=""></div>
-            <div id="u8779_text" class="text ">
-                <p><span>-</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8780" class="ax_default label">
-            <div id="u8780_div" class=""></div>
-            <div id="u8780_text" class="text ">
-                <p><span>2019-01-19</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8781" class="ax_default label">
-            <div id="u8781_div" class=""></div>
-            <div id="u8781_text" class="text ">
-                <p><span>下载二维码</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8782" class="ax_default label">
-            <div id="u8782_div" class=""></div>
-            <div id="u8782_text" class="text ">
-                <p><span>撤回</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8783" class="ax_default label">
-            <div id="u8783_div" class=""></div>
-            <div id="u8783_text" class="text ">
-                <p><span>删除</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8784" class="ax_default label">
-            <div id="u8784_div" class=""></div>
-            <div id="u8784_text" class="text ">
-                <p><span>工业大数据</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8785" class="ax_default label">
-            <div id="u8785_div" class=""></div>
-            <div id="u8785_text" class="text ">
-                <p><span>6</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8786" class="ax_default label">
-            <div id="u8786_div" class=""></div>
-            <div id="u8786_text" class="text ">
-                <p><span>-</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8787" class="ax_default label">
-            <div id="u8787_div" class=""></div>
-            <div id="u8787_text" class="text ">
-                <p><span>978-7-5405-2736-1</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8788" class="ax_default label">
-            <div id="u8788_div" class=""></div>
-            <div id="u8788_text" class="text ">
-                <p><span>工业技术；计算机技术</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8789" class="ax_default label">
-            <div id="u8789_div" class=""></div>
-            <div id="u8789_text" class="text ">
-                <p><span>2018-01-19</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8790" class="ax_default label">
-            <div id="u8790_div" class=""></div>
-            <div id="u8790_text" class="text ">
-                <p><span>查看</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8791" class="ax_default label">
-            <div id="u8791_div" class=""></div>
-            <div id="u8791_text" class="text ">
-                <p><span>已撤回</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8792" class="ax_default label">
-            <div id="u8792_div" class=""></div>
-            <div id="u8792_text" class="text ">
-                <p><span>-</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8793" class="ax_default label">
-            <div id="u8793_div" class=""></div>
-            <div id="u8793_text" class="text ">
-                <p><span>编辑</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8794" class="ax_default label">
-            <div id="u8794_div" class=""></div>
-            <div id="u8794_text" class="text ">
-                <p><span>删除</span></p>
-            </div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8795" class="ax_default primary_button">
-            <div id="u8795_div" class=""></div>
-            <div id="u8795_text" class="text ">
-                <p><span>已撤回（2）</span></p>
-            </div>
-        </div>
-
-        <!-- 删除确认 (Dynamic Panel) -->
-        
-
-        <!-- 下载 (Dynamic Panel) -->
-        
-
-        <!-- Unnamed (Rectangle) -->
-        
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8808" class="ax_default box_1">
-            <div id="u8808_div" class=""></div>
-        </div>
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u8809" class="ax_default label">
-            <div id="u8809_div" class=""></div>
-            <div id="u8809_text" class="text ">
-                <p><span>申请ISLI编码</span></p>
+<body>
+    <div class="x-nav"> <span class="layui-breadcrumb"> <a><cite>图书</cite></a> <a><cite>编码申请</cite></a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
+    <div class="x-body">
+        <div class="tools">
+            <ul class="toolbar">
+                <li><span><img src="~/images/t03.png" /></span>批量删除</li>
+                <li><span><img src="~/images/t02.png" /></span>编辑</li>
+                <li><span><img src="~/images/t09.png" /></span>批量导出</li>
+            </ul>
+            <span class="x-right" style="line-height:25px">共有数据：88 条</span>
+        </div>
+        <div id="app">
+            <table class="tablelist">
+                <thead>
+                    <tr>
+                        <th>
+                            <input onclick="selectAll()" type="checkbox" name="controlAll" style="controlAll" id="controlAll">
+                        </th>
+                        <th>编号</th>
+                        <th>书名</th>
+                        <th>ISLI编码 </th>
+                        <th>ISBN</th>
+                        <th>中图分类法</th>
+                        <th>过期时间</th>
+                        <th>申请时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="x-link">
+                    <tr v-for="item in info" id="app">
+                        <td><input type="checkbox" value="1" name="selected"></td>
+                        <td>{{item.id}}</td>
+                        <td>{{item.bookName}}</td>
+                        <td>--</td>
+                        <td>{{item.isbn}}</td>
+                        <td>{{item.chineseLibrary}}</td>
+                        <td>{{item.overDate}}</td>
+                        <td>{{item.applyDate}}</td>
+                        <td v-if="state ===1 "><i>11</i></td>                        
+                        <td class="td-manage">
+                            <a title="编辑" href="javascript:;" onclick="data_management_look('查看','data_management_look.html','4','','510')"
+                               class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a> <a title="删除" href="javascript:;" onclick="data_management_del(this,'1')"
+                                                                                                                   style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="page" v-show="show">
+            <div class="pagelist">
+                <span class="jump">上一页</span> <span class="jump">1</span> <span class="jump">2</span> <span class="jump">3</span> <span class="ellipsis">...</span> <span class="jump">下一页</span> <span class="jumppoint">跳转到：</span> <span class="jumpinp">
+                    <input type="text">
+                </span> <span class="jump gobtn">GO</span>
             </div>
         </div>
     </div>
-    <link href="~/css/books.css" rel="stylesheet" />
-    <link href="~/css/styles1.css" rel="stylesheet" />
+    <br />
+    <br />
+    <br />
+    <script src="~/lib/layui/layui.js"></script>
+    <script src="~/js/x-layui.js"></script>
+    <script src="~/js/jquery2.js"></script>
+    <script src="~/js/js.js"></script>
+    <script>
+        layui.use(['element', 'laypage', 'layer', 'form'], function () {
+            $ = layui.jquery;//jquery
+            lement = layui.element();//面包导航
+            laypage = layui.laypage;//分页
+            layer = layui.layer;//弹出层
+            form = layui.form();//弹出层
+        });
+        // 编辑
+        function data_management_look(title, url, id, w, h) {
+            x_admin_show(title, url, w, h);
+        }
+
+    </script>
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+    </script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                info: null,
+                state:0
+            },
+            mounted: function () {
+                var that = this;
+                axios({
+                    method: "get",
+                    url: "/Books/BooksList"
+                }).then(function (res) {
+                    that.info = res.data;
+                    state = res.data[0].applyState;
+                })
+
+            }
+        })
+    </script>
 </body>
 </html>

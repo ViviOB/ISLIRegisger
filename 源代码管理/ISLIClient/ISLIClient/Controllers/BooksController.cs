@@ -14,9 +14,14 @@ namespace ISLIClient.Controllers
     {
         public IActionResult BooksIndex()
         {
-            var json = WebApiHelper.GetApiResult("get", "Books", "GetList", null);
-            var list = JsonConvert.DeserializeObject<List<Books>>(json);
-            return View(list);
+            return View();
         }
+
+        public string  BooksList()
+        {
+            var json = WebApiHelper.GetApiResult("get", "Books", "GetList", null);
+            return json;
+        }
+
     }
 }
