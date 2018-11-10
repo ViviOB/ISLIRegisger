@@ -27,7 +27,6 @@
                 <li><span><img src="images/t02.png" /></span>编辑</li>
                 <li><span><img src="images/t09.png" /></span>批量导出</li>
             </ul>
-            <span class="x-right" style="line-height:25px">共有数据：88 条</span>
         </div>
         @using (Html.BeginForm())
         {
@@ -35,7 +34,7 @@
                 <thead>
                     <tr style="align-content:center">
                         <th>序号</th>
-                        <th>出版单位名称中文</th>
+                        <th>出版单位网址</th>
                         <th> 出版单位名称英文 </th>
                         <th>出版物资质</th>
                         <th>集团属性</th>
@@ -50,53 +49,38 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-
                             <td>@item.PId</td>
-                            <td>@item.PublisheChinese</td>
+                            <td>@item.PublisherWebsit</td>
                             <td>@item.PublisherEnglish</td>
                             <td>@item.Publication</td>
                             <td>@item.PublishingEntity</td>
                             <td>@item.ApplicantName</td>
                             <td>@item.MovTel</td>
                             <td>@item.ApplicationTime</td>
-                            @if (item.SubmissionState == 1)
+                            @if (item.IsEnabled == 1)
                             {
                                 <td>
-                                    <button class="sp">已提交</button>
+                                    <button class="sp">正常使用</button>
                                 </td>
                                 <td class="td-manage">
-                                    @Html.ActionLink("详情", "UpdateById", "Authorization", new { id=item.PId})
-                                    <a style="text-decoration:none; color:darkgreen">通过</a>
-                                    <a style="text-decoration:none; color:darkgreen">拒绝</a>
+                                    @Html.ActionLink("详情", "AccountUpdateById", "Authorization", new { id = item.PId })
+                                    <a style="text-decoration:none; color:darkgreen">冻结</a>
                                 </td>
                             }
-                            @if (item.SubmissionState == 0)
+                            else
                             {
                                 <td>
-                                    <button class="sp">已通过</button>
+                                    <button class="sp">已冻结</button>
                                 </td>
                                 <td class="td-manage">
-                                    <a title="详情" href="javascript:;" onclick="data_management_look('查看','data_management_look.html','4','','510')"class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a> 
-                                    <a title="删除" href="javascript:;" onclick="data_management_del(this,'1')" style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a>
-                                </td>
-                            }
-                            @if (item.SubmissionState == 2)
-                            {
-                                <td>
-                                    <button class="sp2">未通过</button>
-                                </td>
-                                <td class="td-manage">
-                                    <a >详情</a> <a></a>
+                                    @Html.ActionLink("详情", "AccountUpdateById", "Authorization", new { id = item.PId })
                                 </td>
                             }
                         </tr>
                     }
-
-
                 </tbody>
             </table>
         }
-
         <div class="page" v-show="show">
             <div class="pagelist">
                 <span class="jump">上一页</span> <span class="jump">1</span> <span class="jump">2</span> <span class="jump">3</span> <span class="jump">4</span> <span class="jump">5</span> <span class="jump">6</span> <span class="ellipsis">...</span> <span class="jump">下一页</span> <span class="jumppoint">跳转到：</span> <span class="jumpinp">
@@ -110,7 +94,6 @@
     <br />
     <script src="./lib/layui/layui.js" charset="utf-8"></script>
     <script src="./js/x-layui.js" charset="utf-8"></script>
-
     <script src="js/jquery2.js" charset="utf-8"></script>
     <script src="js/js.js" charset="utf-8"></script>
     <script>
@@ -125,7 +108,6 @@
         function data_management_look(title, url, id, w, h) {
             x_admin_show(title, url, w, h);
         }
-
     </script>
     <script type="text/javascript">
         $('.tablelist tbody tr:odd').addClass('odd');

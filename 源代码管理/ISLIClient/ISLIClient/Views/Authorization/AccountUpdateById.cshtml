@@ -26,6 +26,7 @@
         .detailBox dl dd input[type="checkbox"] {
             margin-right: 0;
         }
+
         .mr10 {
             margin-right: 10px;
         }
@@ -38,6 +39,39 @@
         <div class="container">
             <div class="adminConent passwordReset">
                 <div class="regisBox detailBox " id="publis">
+                    <h3 class="passP boldp">
+                        账户信息
+                    </h3>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            账户状态：
+                        </dt>
+                        <dd>
+                            @if(Model.IsEnabled==1)
+                            {
+                              @Html.Label("","正常使用",new { @class="red"})
+                            }
+                           
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            账户ID：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.PId)
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            申请时间：
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(m => m.ApplicationTime)
+                        </dd>
+                    </dl>
                     <h3 class="passP boldp">
                         申请人信息
                     </h3>
@@ -307,6 +341,7 @@
                 $("[class='ml91']").find("li").eq(0).addClass('selected')
             })
         })
+
         function radioselect(res) {
             console.log(res.value)
             if (res.value == 1) {

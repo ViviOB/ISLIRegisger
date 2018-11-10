@@ -19,6 +19,6 @@ namespace ISLI.IService
         /// <summary>
         /// 显示图书，ISLI编码
         /// </summary>
-        List<Books> BooksList();
+        DataTable<Books> BooksList(Page page);
     }
 }

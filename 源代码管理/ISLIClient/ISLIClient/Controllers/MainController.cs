@@ -8,6 +8,7 @@ using ISLI.Unility;
 using ISLI.Cache;
 using ISLI.Model;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ISLIClient.Controllers
 {
@@ -61,6 +62,14 @@ namespace ISLIClient.Controllers
 
         public IActionResult PublishingAdd()
         {
+            GetProvince();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult PublishingAdd(Publisher_Certificate pcertificate)
+        {
+            GetProvince();
             return View();
         }
 
@@ -106,5 +115,61 @@ namespace ISLIClient.Controllers
             RedisHelper.Remove("userinfo");
             Response.Redirect("/main/login");
         }
+
+        /// <summary>
+        /// 获取省份
+        /// </summary>
+        /// <returns></returns>
+        public void GetProvince()
+        {
+            var selectlistitem = ToSelectList(typeof(Province));
+            ViewBag.province = selectlistitem;
+        }
+
+
+        #region Enum转list<selectlistitem>
+        /// <summary>
+        /// 根据枚举生成下拉列表的数据源
+        /// </summary>
+        /// <param name="enumType">枚举类型</param>
+        /// <param name="firstText">第一行文本(一般用于查询。例如：全部/请选择)</param>
+        /// <param name="firstValue">第一行值(一般用于查询。例如：全部/请选择的值)</param>
+        /// <returns></returns>
+        public static IList<SelectListItem> ToSelectList(Type enumType
+            , string firstText = "请选择"
+            , string firstValue = "-1")
+        {
+            IList<SelectListItem> listItem = new List<SelectListItem>();
+
+            if (enumType.IsEnum)
+            {
+                AddFirst(listItem, firstText, firstValue);
+
+                Array values = Enum.GetValues(enumType);
+                if (null != values && values.Length > 0)
+                {
+                    foreach (int item in values)
+                    {
+                        listItem.Add(new SelectListItem { Value = item.ToString(), Text = Enum.GetName(enumType, item) });
+                    }
+                }
+            }
+            else
+            {
+                throw new ArgumentException("请传入正确的枚举！");
+            }
+            return listItem;
+        }
+
+        static void AddFirst(IList<SelectListItem> listItem, string firstText, string firstValue)
+        {
+            if (!string.IsNullOrWhiteSpace(firstText))
+            {
+                if (string.IsNullOrWhiteSpace(firstValue))
+                    firstValue = "-1";
+                listItem.Add(new SelectListItem { Text = firstText, Value = firstValue });
+            }
+        }
+        #endregion
     }
 }
