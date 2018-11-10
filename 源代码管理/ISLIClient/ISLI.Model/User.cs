@@ -33,5 +33,10 @@ namespace ISLI.Model
         /// 是否启用
         /// </summary>
         public int IsEnabled { get; set; }
+
+        /// <summary>
+        /// 提交状态
+        /// </summary>
+        public int SubmissionState { get; set; }
     }
 }
