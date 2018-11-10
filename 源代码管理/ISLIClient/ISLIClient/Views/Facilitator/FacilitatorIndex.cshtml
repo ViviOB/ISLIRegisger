@@ -1,5 +1,4 @@
 ﻿
-
 @{
     Layout = null;
 }
@@ -8,12 +7,11 @@
 <head>
     <meta charset="utf-8">
     <title>用户管理</title>
-
     <link href="~/css/x-admin.css" rel="stylesheet" />
     <link href="~/css/pag.css" rel="stylesheet" />
     <script src="~/js/jquery-1.11.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="~/Vue/axios.js"></script>
+    <script src="~/Vue/vue.js"></script>
 </head>
 <body>
     <div class="x-nav">
@@ -29,20 +27,17 @@
         <form class="layui-form x-center" action="" style="width:85%">
             <div class="layui-form-pane">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">编号</label>
+                    <label class="layui-form-label">ISLI编码</label>
                     <div class="layui-input-inline" style="width:100px">
-                        <input type="text" name="name" placeholder="编号" autocomplete="off" class="layui-input">
+                        <input type="text" name="name" placeholder="ISLI编码" autocomplete="off" class="layui-input" v-model="isliCode">
                     </div>
-                    <label class="layui-form-label">姓名</label>
+                    <label class="layui-form-label">目标名称</label>
                     <div class="layui-input-inline" style="width:100px">
-                        <input type="text" name="name" placeholder="姓名" autocomplete="off" class="layui-input">
+                        <input type="text" name="name" placeholder="目标名称" autocomplete="off" class="layui-input" v-model="sourceName">
                     </div>
-                    <label class="layui-form-label">被测时间</label>
+                    <label class="layui-form-label">分配时间</label>
                     <div class="layui-input-inline" style="width:150px">
-                        <input type="text" name="name" placeholder="被测时间" autocomplete="off" class="layui-input">
-                    </div>
-                    <div class="layui-input-inline" style="width:200px">
-                        <input type="text" name="link" placeholder="搜索" autocomplete="off" class="layui-input">
+                        <input type="text" name="name" placeholder="分配时间" autocomplete="off" class="layui-input" v-model="allocationTime">
                     </div>
                     <div class="layui-input-inline" style="width:80px">
                         <button class="layui-btn" lay-submit="" lay-filter="*">搜索</button>
@@ -62,15 +57,18 @@
                 </tr>
             </thead>
             <tbody>
-                    <tr v-for="item in info" v-bind:key="item.id">
-                        <td> {{item.id}}</td>
-                        <td> {{item.isliCode}}</td>
-                        <td> {{item.sourceName}}</td>
-                        <td> {{item.sourceFragment}}</td>
-                        <td> {{item.allocationTime}}</td>
-                        <td><a href="test.html"><button class="sp">查看</button></a></td>
-                    </tr>
-                </tbody>
+                <tr v-for="item in info" v-bind:key="item.id">
+                    <td> {{item.id}}</td>
+                    <td> {{item.isliCode}}</td>
+                    <td> {{item.sourceName}}</td>
+                    <td> {{item.sourceFragment}}</td>
+                    <td> {{item.allocationTime}}</td>
+                    <td class="td-manage">
+                        <a title="处理" href="javascript;" v-on:onclick="data_management_look('查看','LookInfo.cshtml','item.Id','40','','510')"
+                           class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a>
+                    </td>
+                </tr>
+            </tbody>
         </table>
         <div class="page">
             <div class="pagelist">
@@ -88,29 +86,47 @@
     <script src="~/js/js.js"></script>
     <script src="~/js/jquery2.js"></script>
     <script>
-        layui.use(['laydate', 'element', 'laypage', 'layer'], function () {
-            $ = layui.jquery;
+        layui.use(['element', 'laypage', 'layer', 'form'], function () {
+            $ = layui.jquery;//jquery
             lement = layui.element();//面包导航
             laypage = layui.laypage;//分页
             layer = layui.layer;//弹出层
+            form = layui.form();//弹出层
         });
+        // 编辑
+        function data_management_look(title, url, id, w, h) {
+            x_admin_show(title, url, w, h);
+        }
+    </script>
+    <script type="text/javascript">
         $('.tablelist tbody tr:odd').addClass('odd');
         var app = new Vue({
             el: '#app',
             data: {
-                info: null
+                info: null,
+                isliCode: '' 
             },
             mounted: function () {
-                alert(1)
                 var that = this;
                 axios({
                     method: "get",
                     url: "/Facilitator/GetList"
-                }).then(function (res) {
-                    that.info = res.data;
-                    console.log(res)
                 })
-
+                    .then(function (res) {
+                        that.info = res.data;
+                    })
+            },
+            methods: {
+                look: function (res) {
+                    var that = this;
+                    axios({
+                        method: "get",
+                        url: "/Facilitator/LookInfo?Id=" + res,
+                    })
+                        .then(function (res) {
+                            that.info = res.data;
+                        })
+                }
             }
         })
     </script>
