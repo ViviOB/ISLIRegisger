@@ -63,6 +63,33 @@ namespace ISLI.Service
                 return page;
             }
         }
-    }
 
+        /// <summary>
+        /// 修改提交状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int UpdateSbumissionState(int id)
+        {
+            using (SqlSugarClient db = BaseDB.GetClient())
+            {
+                var i = db.Updateable<User>(new { SubmissionState = "a", id = 1 }).ExecuteCommand();
+                return i;
+            }
+        }
+
+        /// <summary>
+        /// 修改用户启用状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int UpdateEnableState(int id)
+        {
+            using (SqlSugarClient db = BaseDB.GetClient())
+            {
+                var i = db.Updateable<User>(new { IsEnabled = 1, id = 1 }).ExecuteCommand();
+                return i;
+            }
+        }
+    }
 }

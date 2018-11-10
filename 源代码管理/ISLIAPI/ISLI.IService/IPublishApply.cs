@@ -35,6 +35,19 @@ namespace ISLI.IService
         /// <param name="totalCount"></param>
         /// <returns></returns>
         List<PublishApply> Paging(int pageIndex, int pageSize, int totalCount);
-        
+
+        /// <summary>
+        /// 修改提交状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        int UpdateSbumissionState(int id);
+
+        /// <summary>
+        /// 修改用户启用状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        int UpdateEnableState(int id);
     }
 }

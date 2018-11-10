@@ -55,6 +55,26 @@ namespace ISLIAPI.Controllers
         {
             return _publishApply.Paging(pageIndex, pageSize, totalCount);
         }
+
+        /// <summary>
+        /// 修改提交状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int UpdateSbumissionState(int id)
+        {
+            return _publishApply.UpdateSbumissionState(id);
+        }
+
+        /// <summary>
+        /// 修改用户启用状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int UpdateEnableState(int id)
+        {
+            return _publishApply.UpdateEnableState(id);
+        }
         #endregion
 
         #region ///服务商管理
