@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="~/css/x-admin.css" media="all">
     <link rel="stylesheet" href="~/css/pag.css" media="all">
     <script src="~/js/jquery.js"></script>
+    <script src="~/Vue/axios.js"></script>
+    <script src="~/Vue/vue.js"></script>
+    <script src="~/lib/layer/2.4/layer.js"></script>
+    <link href="~/lib/layer/2.4/skin/layer.css" rel="stylesheet" />
 </head>
 <body>
     <div class="x-nav"> <span class="layui-breadcrumb"> <a><cite>首页</cite></a> <a><cite>数据管理</cite></a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
@@ -48,7 +52,9 @@
                 <tbody id="x-link">
                     @foreach (var item in Model)
                     {
+                        @*<tr v-for="item in info" v-bind:key="item.id">*@
                         <tr>
+                            @*<td>{{item.pId}}</td>*@
                             <td>@item.PId</td>
                             <td>@item.PublisherWebsit</td>
                             <td>@item.PublisherEnglish</td>
@@ -64,7 +70,8 @@
                                 </td>
                                 <td class="td-manage">
                                     @Html.ActionLink("详情", "AccountUpdateById", "Authorization", new { id = item.PId })
-                                    <a style="text-decoration:none; color:darkgreen">冻结</a>
+                                    @*@Html.ActionLink("冻结", "UpdateState", "Authorization", new { id = item.PId })*@
+                                    <a onclick="Change(@item.PId)">冻结</a>
                                 </td>
                             }
                             else
@@ -111,6 +118,38 @@
     </script>
     <script type="text/javascript">
         $('.tablelist tbody tr:odd').addClass('odd');
+
+        //var app = new Vue({
+        //    el: '#app',
+        //    data: {
+        //        info: null,
+        //    },
+        //    mounted: function () {
+        //        var that = this;
+        //        axios({
+        //            method: "get",
+        //            url: "/authorization/accountmanage"
+        //        })
+        //            .then(function (res) {
+        //                that.info = res.data
+        //            })
+        //    }
+        //})
+    </script>
+    <script>
+        function Change(id) {
+            $.ajax({
+                url: "/authorization/UpdateState?id=" + id,
+                type: "get",
+                success: function (data) {
+                    console.log(data)
+                    if (data > 0)
+                    {
+                        parent.layer.msg('已冻结!', { icon: 5, time: 3000 });
+                    }
+                }
+            })
+        }
     </script>
 </body>
 </html>

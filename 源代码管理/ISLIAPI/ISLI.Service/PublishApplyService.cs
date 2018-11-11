@@ -65,16 +65,30 @@ namespace ISLI.Service
         }
 
         /// <summary>
-        /// 修改提交状态
+        /// 修改提交状态(通过)
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int UpdateSbumissionState(int id)
+        public int UpdateSbumissionStateToPass(PublishApply publishApply)
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                var i = db.Updateable<User>(new { SubmissionState = "a", id = 1 }).ExecuteCommand();
-                return i;
+                var m = db.Updateable<User>().UpdateColumns(it => new User() { SubmissionState = 0 }).Where(it => it.Id == publishApply.PId).ExecuteCommand();
+                return m;
+            }
+        }
+
+        /// <summary>
+        /// 修改提交状态(拒绝)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int UpdateSbumissionStateToDeny(PublishApply publishApply)
+        {
+            using (SqlSugarClient db = BaseDB.GetClient())
+            {
+                var m = db.Updateable<User>().UpdateColumns(it => new User() { SubmissionState = 2 }).Where(it => it.Id == publishApply.PId).ExecuteCommand();
+                return m;
             }
         }
 
@@ -83,12 +97,13 @@ namespace ISLI.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int UpdateEnableState(int id)
+        public int UpdateEnableState(PublishApply publishApply)
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                var i = db.Updateable<User>(new { IsEnabled = 1, id = 1 }).ExecuteCommand();
-                return i;
+                //修改为冻结
+                var m = db.Updateable<User>().UpdateColumns(it => new User() { IsEnabled = 0 }).Where(it => it.Id == publishApply.PId).ExecuteCommand();
+                return m;
             }
         }
     }

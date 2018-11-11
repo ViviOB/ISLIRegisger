@@ -57,13 +57,25 @@ namespace ISLIAPI.Controllers
         }
 
         /// <summary>
-        /// 修改提交状态
+        /// 修改提交状态(成功)
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int UpdateSbumissionState(int id)
+        [HttpPut]
+        public int UpdateSbumissionStateToPass(PublishApply publishApply)
         {
-            return _publishApply.UpdateSbumissionState(id);
+            return _publishApply.UpdateSbumissionStateToPass(publishApply);
+        }
+
+        /// <summary>
+        /// 修改提交状态(事变)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public int UpdateSbumissionStateToDeny(PublishApply publishApply)
+        {
+            return _publishApply.UpdateSbumissionStateToDeny(publishApply);
         }
 
         /// <summary>
@@ -71,9 +83,10 @@ namespace ISLIAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int UpdateEnableState(int id)
+        [HttpPut]
+        public int UpdateEnableState(PublishApply publishApply)
         {
-            return _publishApply.UpdateEnableState(id);
+            return _publishApply.UpdateEnableState(publishApply);
         }
         #endregion
 

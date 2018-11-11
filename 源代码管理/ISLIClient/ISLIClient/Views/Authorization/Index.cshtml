@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="~/css/x-admin.css" media="all">
     <link rel="stylesheet" href="~/css/pag.css" media="all">
     <script src="~/js/jquery.js"></script>
+    <script src="~/lib/layer/2.4/layer.js"></script>
+    <link href="~/lib/layer/2.4/skin/layer.css" rel="stylesheet" />
 </head>
 <body>
     <div class="x-nav"> <span class="layui-breadcrumb"> <a><cite>首页</cite></a> <a><cite>数据管理</cite></a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
@@ -65,9 +67,11 @@
                                     <button class="sp">已提交</button>
                                 </td>
                                 <td class="td-manage">
-                                    @Html.ActionLink("详情", "UpdateById", "Authorization", new { id=item.PId})
-                                    <a style="text-decoration:none; color:darkgreen">通过</a>
-                                    <a style="text-decoration:none; color:darkgreen">拒绝</a>
+                                    @Html.ActionLink("详情", "UpdateById", "Authorization", new { id = item.PId })
+                                    @*@Html.ActionLink("通过", "UpdateSbumissionStateToPass", "Authorization", new { id = item.PId })
+                                    @Html.ActionLink("拒绝", "UpdateSbumissionStateToDeny", "Authorization", new { id = item.PId })*@
+                                    <a onclick="ChangeToPass(@item.PId)">通过</a>
+                                    <a onclick="ChangeToDeny(@item.PId)">拒绝</a>
                                 </td>
                             }
                             @if (item.SubmissionState == 0)
@@ -76,8 +80,7 @@
                                     <button class="sp">已通过</button>
                                 </td>
                                 <td class="td-manage">
-                                    <a title="详情" href="javascript:;" onclick="data_management_look('查看','data_management_look.html','4','','510')"class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a> 
-                                    <a title="删除" href="javascript:;" onclick="data_management_del(this,'1')" style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a>
+                                    @Html.ActionLink("详情", "UpdateById", "Authorization", new { id = item.PId })
                                 </td>
                             }
                             @if (item.SubmissionState == 2)
@@ -86,7 +89,7 @@
                                     <button class="sp2">未通过</button>
                                 </td>
                                 <td class="td-manage">
-                                    <a >详情</a> <a></a>
+                                    @Html.ActionLink("详情", "UpdateById", "Authorization", new { id = item.PId })
                                 </td>
                             }
                         </tr>
@@ -126,6 +129,32 @@
             x_admin_show(title, url, w, h);
         }
 
+    </script>
+    <script>
+        function ChangeToPass(id) {
+            $.ajax({
+                url: "/authorization/UpdateSbumissionStateToPass?id=" + id,
+                type: "get",
+                success: function (data) {
+                    console.log(data)
+                    if (data > 0) {
+                     layer.msg('已通过!', { icon: 1, time: 3000 });
+                    }
+                }
+            })
+        }
+        function ChangeToDeny(id) {
+            $.ajax({
+                url: "/authorization/UpdateSbumissionStateToDeny?id=" + id,
+                type: "get",
+                success: function (data) {
+                    console.log(data)
+                    if (data > 0) {
+                       layer.msg('已拒绝!', { icon: 5, time: 3000 });
+                    }
+                }
+            })
+        }
     </script>
     <script type="text/javascript">
         $('.tablelist tbody tr:odd').addClass('odd');

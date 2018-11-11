@@ -47,6 +47,34 @@ namespace ISLIClient.Controllers
             var publishapply = JsonConvert.DeserializeObject<PublishApply>(json);
             return View(publishapply);
         }
+
+        /// <summary>
+        /// 修改提交状态（通过）
+        /// </summary>
+        /// <param name="id"></param>
+        public int UpdateSbumissionStateToPass(int id)
+        {
+            //获取到实体类
+            var json = WebApiHelper.GetApiResult("get", "BackStage", "UpdateById?id=" + id, null);
+            var publishapply = JsonConvert.DeserializeObject<PublishApply>(json);
+            var json2 = WebApiHelper.GetApiResult("put", "BackStage", "UpdateSbumissionStateToPass", publishapply);
+            int i = int.Parse(json2);
+            return i;
+        }
+
+        /// <summary>
+        /// 修改提交状态（拒绝）
+        /// </summary>
+        /// <param name="id"></param>
+        public int UpdateSbumissionStateToDeny(int id)
+        {
+            //获取到实体类
+            var json = WebApiHelper.GetApiResult("get", "BackStage", "UpdateById?id=" + id, null);
+            var publishapply = JsonConvert.DeserializeObject<PublishApply>(json);
+            var json2 = WebApiHelper.GetApiResult("put", "BackStage", "UpdateSbumissionStateToDeny", publishapply);
+            int i = int.Parse(json2);
+            return i;
+        }
         #endregion
 
         #region ///出版单位账号管理
@@ -68,6 +96,20 @@ namespace ISLIClient.Controllers
             string json = WebApiHelper.GetApiResult("get", "BackStage", "UpdateById?id=" + id, null);
             var publishapply = JsonConvert.DeserializeObject<PublishApply>(json);
             return View(publishapply);
+        }
+
+        /// <summary>
+        /// 修改状态
+        /// </summary>
+        /// <param name="id"></param>
+        public int UpdateState(int id)
+        {
+            //获取到实体类
+            var json = WebApiHelper.GetApiResult("get", "BackStage", "UpdateById?id=" + id, null);
+            var publishapply = JsonConvert.DeserializeObject<PublishApply>(json);
+            var json2 = WebApiHelper.GetApiResult("put", "BackStage", "UpdateEnableState", publishapply);
+            int i = int.Parse(json2);
+            return i;
         }
         #endregion
     }
