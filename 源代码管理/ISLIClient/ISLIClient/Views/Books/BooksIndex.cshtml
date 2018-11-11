@@ -11,19 +11,19 @@
     <script src="~/js/jquery-1.11.0.min.js"></script>
     <script src="~/Vue/vue.js"></script>
     <script src="~/Vue/axios.js"></script>
-
 </head>
 <body>
     <div class="x-nav"> <span class="layui-breadcrumb"> <a><cite>图书</cite></a> <a><cite>编码申请</cite></a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
     <div class="x-body">
-        <div class="tools">
-            <ul class="toolbar">
-                <li><span><img src="~/images/t03.png" /></span>批量删除</li>
-                <li><span><img src="~/images/t02.png" /></span>编辑</li>
-                <li><span><img src="~/images/t09.png" /></span><a href="/Books/Apply">添加申请</a></li>
-            </ul>
-        </div>
         <div id="app">
+            <div class="tools">
+                <ul class="toolbar">
+                    <li><span><img src="~/images/t03.png" /></span>批量删除</li>
+                    <li><span><img src="~/images/t09.png" /></span><a href="/Books/Apply">添加申请</a></li>
+                    <li><input id="Text1" type="text" /></li>
+                    <li><span><img src="~/images/t02.png" /></span><a href="javascript:;" v-on:click="check">查询</a></li>
+                </ul>
+            </div>
             <span class="x-right" style="line-height:25px">共有数据：{{count}} 条</span>
             <table class="tablelist">
                 <thead>
@@ -45,7 +45,7 @@
                 <tbody id="x-link">
                     <tr v-for="item in info" id="app">
                         <td><input type="checkbox" value="1" name="selected"></td>
-                        <td>{{item.Id}}</td>
+                        <td id="id1">{{item.Id}}</td>
                         <td>{{item.BookName}}</td>
                         <td>--</td>
                         <td>{{item.ISBN}}</td>
@@ -58,7 +58,7 @@
                         <td v-else="state ===1">已提交</td>
                         <td v-if="state ===1">已提交</td>
                         <td class="td-manage">
-                            <a title="编辑" href="javascript:;" onclick="data_management_look('查看','data_management_look.html','4','','510')"
+                            <a title="编辑" href="javascript:;" onclick="data_management_look('查看', 'GeyById','','510')"
                                class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a> <a title="删除" href="javascript:;" onclick="data_management_del(this,'1')"
                                                                                                                    style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a>
                         </td>
@@ -69,8 +69,8 @@
         <div class="page" v-show="show">
             <div class="pagelist">
                 <span class="jump">上一页</span> <span class="jump">1</span> <span class="jump">2</span> <span class="jump">3</span> <span class="ellipsis">...</span> <span class="jump">下一页</span> <span class="jumppoint">跳转到：</span> <span class="jumpinp">
-                    <input type="text">
-                </span> <span class="jump gobtn">GO</span>
+                    <input type="text" id="pages">
+                </span> <span class="jump gobtn"><a href="javascript:;" >GO</a></span>
             </div>
         </div>
     </div>
@@ -90,7 +90,7 @@
             form = layui.form();//弹出层
         });
         // 编辑
-        function data_management_look(title, url, id, w, h) {
+        function data_management_look(title, url, w, h) {
             x_admin_show(title, url, w, h);
         }
 
@@ -98,14 +98,13 @@
     <script type="text/javascript">
         $('.tablelist tbody tr:odd').addClass('odd');
     </script>
-
     <script>
         var app = new Vue({
             el: '#app',
             data: {
                 info: null,
                 state: 0,
-                count:0
+                count: 0
             },
             mounted: function () {
                 var that = this;
@@ -116,8 +115,22 @@
                     that.info = res.data;
                     that.state = res.data[0].applyState;
                     that.count = res.data.length;
-                })
-
+               })
+            },
+            methods: {
+                check: function () {           
+                    var that = this;
+                    var parm = new URLSearchParams();
+                    parm.append("str",$("#Text1").val());
+                    axios({
+                        method: "post",
+                        url: '/Books/BookSearch/',
+                        data: parm
+                    }).then(function (res){
+                        that.info = res.data;
+                        that.count = res.data.length;
+                    })
+                }              
             }
         })
     </script>
