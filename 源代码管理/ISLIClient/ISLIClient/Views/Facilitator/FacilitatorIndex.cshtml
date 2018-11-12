@@ -40,7 +40,7 @@
                         <input type="text" name="name" placeholder="分配时间" autocomplete="off" class="layui-input" v-model="allocationTime">
                     </div>
                     <div class="layui-input-inline" style="width:80px">
-                        <button class="layui-btn" lay-submit="" lay-filter="*">搜索</button>
+                        <input id="Button1" class="layui-btn" type="button" v-on:click="search" value="搜索" />
                     </div>
                 </div>
             </div>
@@ -57,14 +57,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in info" v-bind:key="item.id">
+                <tr v-for="item in dataList" v-bind:key="item.id">
                     <td> {{item.id}}</td>
                     <td> {{item.isliCode}}</td>
                     <td> {{item.sourceName}}</td>
                     <td> {{item.sourceFragment}}</td>
                     <td> {{item.allocationTime}}</td>
                     <td class="td-manage">
-                        <a title="处理" href="javascript;" v-on:onclick="data_management_look('查看','LookInfo.cshtml','item.Id','40','','510')"
+                        <a title="处理" href="javascript:;" v-on:click="data_management_look('查看', 'LookInfo?id='+item.id,'','510')"
                            class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a>
                     </td>
                 </tr>
@@ -72,9 +72,19 @@
         </table>
         <div class="page">
             <div class="pagelist">
-                <span class="jump">上一页</span> <span class="jump">1</span> <span class="jump">2</span> <span class="jump">3</span> <span class="jump">4</span> <span class="jump">5</span> <span class="jump">6</span> <span class="ellipsis">...</span> <span class="jump">下一页</span> <span class="jumppoint">跳转到：</span> <span class="jumpinp">
-                    <input type="text">
-                </span> <span class="jump gobtn">GO</span>
+                @*<span class="ellipsis">...</span>*@
+                <span class="jump" v-on:click="prevpage">上一页</span>
+                <span v-for="page in totalPage">
+                    <span class="jump pagechecked" v-if="page==currpage">{{page}}</span>
+                    <span class="jump" v-else v-on:click="thispage(page)">{{page}}</span>
+                </span>
+
+                <span class="jump" v-on:click="nextpage">下一页</span>
+                <span class="jumppoint"> 共 {{totalCount}} 条，共 {{totalPage}} 页 跳转到：</span>
+                <span class="jumpinp">
+                    <input type="text" v-model="gotopage">
+                </span>
+                <span class="jump gobtn" v-on:click="goto">GO</span>
             </div>
         </div>
     </div>
@@ -95,7 +105,7 @@
         });
         // 编辑
         function data_management_look(title, url, id, w, h) {
-            x_admin_show(title, url, w, h);
+            x_admin_show(title, url, id, w, h);
         }
     </script>
     <script type="text/javascript">
@@ -103,8 +113,14 @@
         var app = new Vue({
             el: '#app',
             data: {
-                info: null,
-                isliCode: '' 
+                dataList: null,
+                totalCount: 0,
+                totalPage: 0,
+                currpage: 1,
+                gotopage: 1,
+                isliCode: "",
+                sourceName: "",
+                allocationTime: ""
             },
             mounted: function () {
                 var that = this;
@@ -113,19 +129,99 @@
                     url: "/Facilitator/GetList"
                 })
                     .then(function (res) {
-                        that.info = res.data;
+                        console.log(res.data)
+                        that.dataList = res.data.dataList;
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
                     })
             },
             methods: {
-                look: function (res) {
+                data_management_look: function (title, url, w, h) {
+                    x_admin_show(title, url, w, h);
+                },
+                prevpage: function () {
                     var that = this;
+                    if (that.currpage > 1) {
+                        that.currpage -= 1;
+                        axios({
+                            method: "get",
+                            url: "/Facilitator/GetList",
+                            params: { 'PageIndex': that.currpage, 'isliCode': that.isliCode, 'sourceName': that.sourceName, 'allocationTime': that.allocationTime }
+                        }).then(function (res) {
+                            console.log(res.data)
+                            that.dataList = res.data.dataList;
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                        })
+                    }
+
+
+                },
+                nextpage: function () {
+                    var that = this;
+                    if (that.currpage < that.totalCount) {
+                        that.currpage += 1;
+                        axios({
+                            method: "get",
+                            url: "/Facilitator/GetList",
+                            params: { 'PageIndex': that.currpage, 'isliCode': that.isliCode, 'sourceName': that.sourceName, 'allocationTime': that.allocationTime}
+                        }).then(function (res) {
+                            console.log(res.data)
+                            that.dataList = res.data.dataList;
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                        })
+                    }
+
+
+                },
+                thispage: function (page) {
+                    var that = this;
+                    that.currpage = page;
                     axios({
                         method: "get",
-                        url: "/Facilitator/LookInfo?Id=" + res,
+                        url: "/Facilitator/GetList",
+                        params: { 'PageIndex': that.currpage, 'isliCode': that.isliCode, 'sourceName': that.sourceName, 'allocationTime': that.allocationTime }
+                    }).then(function (res) {
+                        console.log(res.data)
+                        that.dataList = res.data.dataList;
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
                     })
-                        .then(function (res) {
-                            that.info = res.data;
+                },
+                search: function () {
+                    var that = this;
+                    that.currpage = 1;
+                    axios({
+                        method: "get",
+                        url: "/Facilitator/GetList",
+                        params: { 'PageIndex': that.currpage, 'isliCode': that.isliCode, 'sourceName': that.sourceName, 'allocationTime': that.allocationTime }
+                    }).then(function (res) {
+                        console.log(res.data)
+                        that.dataList = res.data.dataList;
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                    })
+                },
+                goto: function () {
+                    var that = this;
+                    if (that.gotopage > 0 && that.gotopage <= that.totalPage) {
+                        axios({
+                            method: "get",
+                            url: "/Facilitator/GetList",
+                            params: { 'PageIndex': that.gotopage, 'isliCode': that.isliCode, 'sourceName': that.sourceName, 'allocationTime': that.allocationTime }
+                        }).then(function (res) {
+                            console.log(res.data)
+                            that.currpage = that.gotopage;
+                            that.dataList = res.data.dataList;
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
                         })
+                    }
+                    else {
+                        alert("请输入正确的页码")
+                    }
+
                 }
             }
         })

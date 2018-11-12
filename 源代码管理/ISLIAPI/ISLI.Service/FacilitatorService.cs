@@ -8,7 +8,7 @@ using SqlSugar;
 using ISLI.Unility;
 namespace ISLI.Service
 {
-   public class FacilitatorService:IFacilitator
+    public class FacilitatorService : IFacilitator
     {
         /// <summary>
         /// 显示关联信息回填信息
@@ -24,6 +24,18 @@ namespace ISLI.Service
         }
 
         /// <summary>
+        /// 获取分页数据
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+
+        public PageResult<Adhibition> GetPagedList(PageParams pageParams)
+        {
+            var result = BaseDB.PageList<Adhibition>(pageParams);
+            return result;
+        }
+
+        /// <summary>
         /// 技术服务商个人信息并返回id
         /// </summary>
         /// <param name="fqualification"></param>
@@ -32,23 +44,24 @@ namespace ISLI.Service
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                Facilitator facilitator = new Facilitator() {
+                Facilitator facilitator = new Facilitator()
+                {
                     ApplicantEmail = fqualification.ApplicantEmail,
-                    ApplicantName= fqualification.ApplicantName,
-                    CellPhone= fqualification.CellPhone,
-                    CompanyName= fqualification.CompanyName,
-                    ContactEmail= fqualification.ContactEmail,
-                    ContactName= fqualification.ContactName,
-                    ContactNumber= fqualification.ContactNumber,
-                    ContactPhone= fqualification.ContactPhone,
-                    CreditCode= fqualification.CreditCode,
-                    Email= fqualification.Email,
-                    Postcode= fqualification.Postcode,
-                    QualificationId= fqualification.QualificationId,
-                    RegistrationAddres= fqualification.RegistrationAddres,
-                    RegistrationCode= fqualification.RegistrationCode,
-                    RepresentativeName= fqualification.RepresentativeName,
-                    ServiceType= fqualification.ServiceType
+                    ApplicantName = fqualification.ApplicantName,
+                    CellPhone = fqualification.CellPhone,
+                    CompanyName = fqualification.CompanyName,
+                    ContactEmail = fqualification.ContactEmail,
+                    ContactName = fqualification.ContactName,
+                    ContactNumber = fqualification.ContactNumber,
+                    ContactPhone = fqualification.ContactPhone,
+                    CreditCode = fqualification.CreditCode,
+                    Email = fqualification.Email,
+                    Postcode = fqualification.Postcode,
+                    QualificationId = fqualification.QualificationId,
+                    RegistrationAddres = fqualification.RegistrationAddres,
+                    RegistrationCode = fqualification.RegistrationCode,
+                    RepresentativeName = fqualification.RepresentativeName,
+                    ServiceType = fqualification.ServiceType
                 };
                 var result = db.Insertable<Facilitator>(facilitator).ExecuteReturnIdentity();
                 return result;
@@ -64,10 +77,11 @@ namespace ISLI.Service
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                Qualification qualification = new Qualification() {
-                    RegTime=DateTime.Now,
-                    Type= fqualification.Type,
-                    UnifiedSocial= fqualification.UnifiedSocial
+                Qualification qualification = new Qualification()
+                {
+                    RegTime = DateTime.Now,
+                    Type = fqualification.Type,
+                    UnifiedSocial = fqualification.UnifiedSocial
                 };
                 var result = db.Insertable<Qualification>(qualification).ExecuteReturnIdentity();
                 return result;

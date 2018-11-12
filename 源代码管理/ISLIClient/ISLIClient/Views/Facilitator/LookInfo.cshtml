@@ -1,8 +1,7 @@
-﻿
+﻿@model ISLI.Model.Adhibition
 @{
     Layout = null;
 }
-
 
 <!DOCTYPE html>
 <html>
@@ -26,62 +25,37 @@
         <form class="layui-form layui-form-pane">
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
-                    编号
+                    ISLI编号
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="username" name="username" required lay-verify="required"
-                           autocomplete="off" value="1" disabled="" class="layui-input">
+                    @Html.TextBoxFor(m => m.ISLICode)
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">
-                    用户名
+                    源名称
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="username" name="username" class="layui-input">
+                    @Html.TextBoxFor(m => m.SourceName)
                 </div>
             </div>
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
-                    测试类型
+                    目标名称
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="username" name="username" required lay-verify="required"
-                           autocomplete="off" value="上传图片" class="layui-input">
+                    @Html.TextBoxFor(m => m.SourceFragment)
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">
                 <label for="content" class="layui-form-label">
-                    具体内容
+                    分配时间
                 </label>
                 <div class="layui-input-block">
-                    <textarea disabled="" id="content" name="content" autocomplete="off"
-                              class="layui-textarea" style="height: 80px;">内容就是暂时没有内容......</textarea>
+                    @Html.TextBoxFor(m => m.AllocationTime)
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    测试时间
-                </label>
-                <div class="layui-input-inline">
-                    <input type="text" id="username" name="username" required lay-verify="required"
-                           autocomplete="off" value="2017-01-10 16:33:45" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    处理状态
-                </label>
-                <div class="layui-input-inline">
-                    <input type="text" id="username" name="username" required lay-verify="required"
-                           autocomplete="off" value="已查看" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <button class="layui-btn">
-                    返回
-                </button>
-            </div>
+
 
         </form>
     </div>

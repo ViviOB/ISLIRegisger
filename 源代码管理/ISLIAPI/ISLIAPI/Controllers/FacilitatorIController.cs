@@ -31,5 +31,18 @@ namespace ISLIAPI.Controllers
             var list = _facilitator.AdhibitionList();
             return list;
         }
+
+        /// <summary>
+        /// 获取分页数据
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public PageResult<Adhibition> GetPagedList(PageParams pageParams)
+        {
+            var result = _facilitator.GetPagedList(pageParams);
+            return result;
+        }
+
     }
 }
