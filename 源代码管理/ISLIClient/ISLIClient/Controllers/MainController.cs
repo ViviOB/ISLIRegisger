@@ -41,19 +41,13 @@ namespace ISLIClient.Controllers
         /// 菜单导航
         /// </summary>
         /// <returns></returns>
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
 
         /// <summary>
         /// 主页
         /// </summary>
         /// <returns></returns>
-        public IActionResult Main()
-        {
-            return View();
-        }
+        public IActionResult Main() => View();
 
         /// <summary>
         /// 左菜单
@@ -174,10 +168,7 @@ namespace ISLIClient.Controllers
         /// 技术服务商注册页面
         /// </summary>
         /// <returns></returns>
-        public IActionResult FacilitatorAdd()
-        {
-            return View();
-        }
+        public IActionResult FacilitatorAdd() => View();
 
         /// <summary>
         /// 技术服务商基础信息添加
@@ -212,19 +203,13 @@ namespace ISLIClient.Controllers
         /// 注册界面
         /// </summary>
         /// <returns></returns>
-        public IActionResult Register()
-        {
-            return View();
-        }
+        public IActionResult Register() => View();
 
         /// <summary>
         /// 用户登录界面
         /// </summary>
         /// <returns></returns>
-        public IActionResult Login()
-        {
-            return View();
-        }
+        public IActionResult Login() => View();
 
         /// <summary>
         /// 实现用户登录
@@ -267,10 +252,7 @@ namespace ISLIClient.Controllers
         /// 服务条款
         /// </summary>
         /// <returns></returns>
-        public IActionResult TOS()
-        {
-            return View();
-        }
+        public IActionResult TOS() => View();
 
         #region Enum转list<selectlistitem>
         /// <summary>
