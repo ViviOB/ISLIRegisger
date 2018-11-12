@@ -1,0 +1,123 @@
+﻿
+@{
+    Layout = null;
+}
+@model ISLI.Model.Books
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ApplyBook</title>
+    <style>
+        #ISBN {
+            width: 85px;
+        }
+
+        #main2 {
+            visibility: visible
+        }
+    </style>
+
+    <script src="~/js/jquery.js"></script>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script>
+        $(function () {
+            $("#main2").hide();
+            $("#btnClick").click(function () {
+                $("#main1").hide();
+                $("#main2").show();
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <div style="width:800px;margin:0 auto">
+        @using (Html.BeginForm(""))
+        {
+            <h4 style="border-bottom:solid 2px;border-bottom-color:blue;text-align:center">
+                图书申请
+            </h4>
+            <br />
+            <div id="main1">
+                <p>
+                    ISBN:<input id="ISBN"name="name1" type="text" />-<input name="name2" id="ISBN" type="text" />-<input id="ISBN" name="name3" type="text" />-<input name="4" id="ISBN" type="text" />
+                </p>
+                <p>
+                    书名:@Html.TextBoxFor(m => m.BookName, new { placeholder = "假如我是一只猫" })
+                </p>
+                <p>
+                    书名的英文：@Html.TextBoxFor(m => m.EnglishName, new { placeholder = "JIARUWOSHIYIZHIMAO" })
+                </p>
+                <p>
+                    丛书名:@Html.TextBoxFor(m => m.Series)
+                </p>
+                <p>
+                    套书名:@Html.TextBoxFor(m => m.SeriesBooks)    产品形式:@Html.TextBoxFor(m => m.ProductType)
+                </p>
+                <p>
+                    责任编辑:@Html.TextBoxFor(m => m.Editor)
+                </p>
+                <p>
+                    中图分类法:<select id="ChineseLibrary">
+                        <option value="艺术">艺术</option>
+                        <option value="马克思">马克思</option>
+                    </select>
+                    出版日期：@Html.TextBoxFor(m => m.PublishDate)
+                </p>
+                <p>
+                    语种:<select id="Languages">
+                        <option value="简体中文">简体中文</option>
+                        <option value="English">English</option>
+                    </select>     制作日期:@Html.TextBoxFor(m => m.MakeDate)
+                </p>
+                <p>
+                    出版者:@Html.TextBoxFor(m => m.Publisher)   关键字:@Html.TextBoxFor(m => m.KeyWord)
+                </p>
+                <p>
+                    出版地:<select id="PublishPlace">
+                        <option value="北京">北京</option>
+                        <option value="上海">上海</option>
+                    </select>   图幅数:@Html.TextBoxFor(m => m.NumberOfGraohs)
+                </p>
+                <p>
+                    著作者:@Html.TextBoxFor(m => m.Writer)   出版标记:@Html.TextBoxFor(m => m.PublishMaket)
+                </p>
+                <p>
+                    印刷者:@Html.TextBoxFor(m => m.Printer)    纸材:@Html.TextBoxFor(m => m.PaperWood)
+                </p>
+                <p>
+                    版本类型:@Html.TextBoxFor(m => m.VersionType)   页数:@Html.TextBoxFor(m => m.PageCount)
+                </p>
+                <p>
+                    字数:@Html.TextBoxFor(m => m.WordCount)    印色:@Html.TextBoxFor(m => m.Colour)
+                </p>
+                <p>
+                    内容摘要:@Html.TextAreaFor(m => m.Content)
+                </p>              
+                <p>
+                    <input id="Button1" type="button" value="取消" class="btn btn-default" onclick="location.href='/Books/BooksIndex'" />               
+                    <input id="btnClick" type="button" value="下一步" class="btn btn-primary"/>
+                </p>
+            </div>
+            <div id="main2">
+                <p>
+                    编码类型:@Html.TextBoxFor(m => m.CodeType)
+                </p>
+                <p>
+                    目标资源类型:@Html.RadioButtonFor(m => m.TargetResource, "图片") 图片 @Html.RadioButtonFor(m => m.TargetResource, "音频")音频
+                    @Html.RadioButtonFor(m => m.TargetResource, "视频")视频 @Html.RadioButtonFor(m => m.TargetResource, "富文本")富文本
+                </p>
+                <p>
+                    服务商代码：<select name="ServiceCode">
+                        <option value="1001">1001</option>
+                        <option value="1002">1002</option>w
+                    </select>
+                </p>
+                <input id="Submit1" type="submit" value="保存" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+</body>
+</html>

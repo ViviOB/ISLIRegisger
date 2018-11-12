@@ -131,7 +131,6 @@ namespace ISLI.Model
         /// </summary>
         public string Content { get; set; }
 
-
         /// <summary>
         /// 编码类型
         /// </summary>

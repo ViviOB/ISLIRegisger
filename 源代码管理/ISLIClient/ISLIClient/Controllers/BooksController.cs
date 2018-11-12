@@ -1,12 +1,10 @@
-﻿using System;
+﻿using ISLI.Model;
+using ISLI.Unility;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-
-using ISLI.Model;
-using ISLI.Unility;
-using Newtonsoft.Json;
 
 namespace ISLIClient.Controllers
 {
@@ -20,17 +18,8 @@ namespace ISLIClient.Controllers
         #region  /// Vue显示
         public string  BooksList()
         {
-            Page page = new Page();
-            page.pageindex = 2;
-            page.pagesize = 1;
-            page.name = "";
-            page.counts = 0;
-            var json = WebApiHelper.GetApiResult("post", "Books", "GetList", page);
-            DataTable<Books> data = JsonConvert.DeserializeObject<DataTable<Books>>(json);
-           
-            var list = data.list;
-            int count = data.counts;
-            return JsonConvert.SerializeObject(list);
+            var json = GetBooks();      
+            return json;
         }
         #endregion
 
@@ -39,20 +28,16 @@ namespace ISLIClient.Controllers
         public string BookSearch(string str="")
         {
             Page page = new Page();
-            page.pageindex = 2;
+            page.pageindex = 1;
             page.pagesize = 1;
             page.name = str;
             page.counts = 0;
             var json = WebApiHelper.GetApiResult("post", "Books", "GetList", page);
-            DataTable<Books> data = JsonConvert.DeserializeObject<DataTable<Books>>(json);
-
-            var list = data.list;
-            int count = data.counts;
-            return JsonConvert.SerializeObject(list);
+            return json;
         }
 
         #endregion
-
+   
         [HttpPost]
         public string PageLisst(int index = 1)
         {
@@ -69,25 +54,40 @@ namespace ISLIClient.Controllers
             return JsonConvert.SerializeObject(list);
         }
 
-        public IActionResult GeyById(int id=1)
+        #region /// 申请图书
+        public IActionResult ApplyBook()
         {
-            var str = GetBooks().FirstOrDefault(m=>m.Id==id);
-            return View(str);
+            return View();
         }
 
+        [HttpPost]
+        public void ApplyBook(Books books)
+        {           
+            var json = WebApiHelper.GetApiResult("post","books", "AddBook", books);
+            int i = Convert.ToInt32(json);
+        }
+        #endregion
+
+        #region /// 详情
+        public IActionResult GeyById(int id)
+        {
+            var json = GetBooks();
+            var data= JsonConvert.DeserializeObject<DataTable<Books>>(json);
+            var str = data.list.FirstOrDefault(m=>m.Id==id);
+            return View(str);
+        }
+        #endregion
 
         #region /// 封装显示
-        public List<Books> GetBooks()
+        public string GetBooks()
         {
             Page page = new Page();
             page.pageindex = 1;
-            page.pagesize = 1;
+            page.pagesize = 5;
             page.name = "";
             page.counts = 0;
-            var json = WebApiHelper.GetApiResult("post", "Books", "GetList", page);
-            var data = JsonConvert.DeserializeObject<DataTable<Books>>(json);
-            var list = data.list;
-            return list;
+            var json = WebApiHelper.GetApiResult("post", "Books", "GetList", page);         
+            return json;
         }
         #endregion
 

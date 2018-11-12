@@ -19,12 +19,12 @@
             <div class="tools">
                 <ul class="toolbar">
                     <li><span><img src="~/images/t03.png" /></span>批量删除</li>
-                    <li><span><img src="~/images/t09.png" /></span><a href="/Books/Apply">添加申请</a></li>
-                    <li><input id="Text1" type="text" /></li>
+                    <li><span><img src="~/images/t09.png" /></span><a href="/Books/ApplyBook">添加申请</a></li>
+                    <li><input id="Text1" type="text" v-model="strSearch"/></li>
                     <li><span><img src="~/images/t02.png" /></span><a href="javascript:;" v-on:click="check">查询</a></li>
                 </ul>
             </div>
-            <span class="x-right" style="line-height:25px">共有数据：{{count}} 条</span>
+            <span class="x-right" style="line-height:25px">共有数据:{{count}} 条</span>
             <table class="tablelist">
                 <thead>
                     <tr>
@@ -45,20 +45,20 @@
                 <tbody id="x-link">
                     <tr v-for="item in info" id="app">
                         <td><input type="checkbox" value="1" name="selected"></td>
-                        <td id="id1">{{item.Id}}</td>
-                        <td>{{item.BookName}}</td>
+                        <td id="id1">{{item.id}}</td>
+                        <td>{{item.bookName}}</td>
                         <td>--</td>
-                        <td>{{item.ISBN}}</td>
-                        <td>{{item.ChineseLibrary}}</td>
-                        <td>{{item.OverDate}}</td>
-                        <td>{{item.ApplyDate}}</td>
+                        <td>{{item.isbn}}</td>
+                        <td>{{item.chineseLibrary}}</td>
+                        <td>{{item.overDate}}</td>
+                        <td>{{item.applyDate}}</td>
                         <td v-if="state ===1">已提交</td>
                         <td v-else="state ===2">正常使用</td>
                         <td v-else="state ===1">已提交</td>
                         <td v-else="state ===1">已提交</td>
                         <td v-if="state ===1">已提交</td>
                         <td class="td-manage">
-                            <a title="编辑" href="javascript:;" onclick="data_management_look('查看', 'GeyById','','510')"
+                            <a title="编辑" href="javascript:;" v-on:click="data_management_look('查看', 'GeyById?id='+item.id,'','510')"
                                class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a> <a title="删除" href="javascript:;" onclick="data_management_del(this,'1')"
                                                                                                                    style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a>
                         </td>
@@ -104,7 +104,8 @@
             data: {
                 info: null,
                 state: 0,
-                count: 0
+                count: 0,
+                strSearch:""
             },
             mounted: function () {
                 var that = this;
@@ -112,25 +113,28 @@
                     method: "get",
                     url: "/Books/BooksList"
                 }).then(function (res) {
-                    that.info = res.data;
-                    that.state = res.data[0].applyState;
-                    that.count = res.data.length;
+                    that.info = res.data.list;
+                    that.count = res.data.counts;
                })
             },
             methods: {
                 check: function () {           
                     var that = this;
                     var parm = new URLSearchParams();
-                    parm.append("str",$("#Text1").val());
+                  //  var strSearch = $("#Text1").val();
+                    parm.append("str", this.strSearch);
                     axios({
                         method: "post",
                         url: '/Books/BookSearch/',
                         data: parm
-                    }).then(function (res){
-                        that.info = res.data;
-                        that.count = res.data.length;
+                    }).then(function (res) {
+                        that.info = res.data.list;
+                        that.count = res.data.counts;
                     })
-                }              
+                },            
+                data_management_look(title, url, w, h) {
+                x_admin_show(title, url, w, h);
+            }
             }
         })
     </script>
