@@ -16,11 +16,12 @@
     <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="bookmark" type="image/x-icon" />
     <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="icon" type="image/x-icon" />
     <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <script src="~/resources/js/jquery.js" type="text/javascript"></script>
-    <script src="~/resources/commons/jquery.validate.js" type="text/javascript"></script>
-    <script src="~/resources/js/validatePlugin.js" type="text/javascript"></script>
-    <script src="~/resources/js/jquery.cookie.js" type="text/javascript"></script>
-    <script src="~/resources/js/message_zh_CN.js"></script>
+
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+    <script src="~/js/jquery-form.js"></script>
+    <script src="~/layer/mobile/layer.js"></script>
     <style>
 
         .detailBox dl dd input[type="checkbox"] {
@@ -34,497 +35,613 @@
 </head>
 
 <body>
-    <form id="publisherApplyForm">
-        <div class="container">
-            <!--header-->
-            <div id="header" class="header">
-                <a class="logo" href="/main/login"></a>
+    <div class="container">
+        <!--header-->
+        <div id="header" class="header">
+            <a class="logo" href="/main/login"></a>
+        </div>
+        <div class="adminConent passwordReset">
+            <div class="processBox clearfix">
+                <ul class="ml91">
+                    <li class="selected">
+                        <a>1</a>
+                        <p>注册信息</p>
+                    </li>
+                    <li>
+                        <a>2</a>
+                        <p>企业资质证明</p>
+                    </li>
+                </ul>
             </div>
-            <div class="adminConent passwordReset">
-                <div class="processBox clearfix">
-                    <ul class="ml91">
-                        <li class="selected">
-                            <a>1</a>
-                            <p>注册信息</p>
-                        </li>
-                        <li>
-                            <a>2</a>
-                            <p>企业资质证明</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="regisBox detailBox " id="publis">
-                    <h3 class="passP boldp">
-                        申请人信息
-                    </h3>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            用户名：
-                        </dt>
-                        <dd>
-                            <span class="passID"></span>
-                            <input type="text" name="username" id="username" class="width220" />
-                            <span class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            密码：
-                        </dt>
-                        <dd>
-                            <span class="passID"></span>
-                            <input type="password" name="userpwd" id="userpwd" class="width220" />
-                            <span class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            申请人邮箱：
-                        </dt>
-                        <dd>
-                            <input type="text" name="applicanemail" id="applicanemail" class="width220" />
-                            <input type="hidden" name="contextPath" value="/isli" />
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>&nbsp;</dt>
-                        <dd>
-                            <span class="regInfo red" id="tips" style="display: block;color: #333;text-align: left;">该邮箱用于激活账户邮箱，请认真核对！</span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            申请人姓名：
-                        </dt>
-                        <dd>
-                            <span class="passID"></span>
-                            <input type="text" name="applicantname" id="applicantname" class="width220" />
-                            <span class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            联系电话（办公）：
-                        </dt>
-                        <dd>
-                            <input type="text" name="officetel1" class="width35" maxlength="4" />
-                            <input type="text" name="officetel2" class="width190" maxlength="11" />
-                            <span id="applyUserTelOfficeSpanId" class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            联系电话（手机）：
-                        </dt>
-                        <dd>
-                            <input type="text" name="movtel" id="movtel" class="width220" />
-                            <span class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <h3 class="passP boldp">
-                        出版单位信息
-                    </h3>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            出版单位省份：
-                        </dt>
-                        <dd>
-                            @Html.DropDownList("baseid", ViewBag.province as List<SelectListItem>)
-                            <span class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            出版单位归属：
-                        </dt>
-                        <dd>
-                            <input type="hidden" name="groupName" id="groupName" />
-                            <input type="hidden" name="grouptName" id="grouptName" />
-                            <input type="hidden" name="provi" id="provi" />
-                            <select name="publishingentity" id="publishingentity" style="width:130px;">
-                                <option value="">请选择</option>
-                                <option value="0">独立出版单位</option>
-                                <option value="1">集团下属出版单位</option>
-                                <option value="2">集团</option>
-                            </select>
-                            <span class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            出版单位名称中文：
-                        </dt>
-                        <dd>
-                            <input type="text" name="publishchinese" id="publishchinese" class="width350" />
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            出版单位名称英文：
-                        </dt>
-                        <dd>
-                            <input type="text" name="publishenglish" id="publishenglish" class="width350" />
-                            <span class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            统一社会信用代码：
-                        </dt>
-                        <dd>
-                            <input type="text" name="creditcode" id="creditcode" class="width220" />
-                            <span id="regnoSpan" class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>出版物资质：
-                        </dt>
-                        <dd>
-                            <span class="regInfo mr10">
-                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publication" id="tushu" value="1" onclick="checkselect(this)" />
-                                图书
-                            </span>
-                            <span class="regInfo mr10">
-                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publication" id="baozhi" value="3" onclick="checkselect(this)" />
-                                报纸
-                            </span>
-                            <span class="regInfo mr10">
-                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publication" id="qikan" value="2" onclick="checkselect(this)" />
-                                期刊
-                            </span>
+            <div class="regisBox detailBox " id="publis">
+                <h3 class="passP boldp">
+                    申请人信息
+                </h3>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        用户名：
+                    </dt>
+                    <dd>
+                        <input type="text" name="username" id="username" class="width220" required />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        密码：
+                    </dt>
+                    <dd>
+                        <input type="password" name="userpwd" id="userpwd" class="width220" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        申请人邮箱：
+                    </dt>
+                    <dd>
+                        <input type="text" name="applicanemail" id="applicanemail" class="width220" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>&nbsp;</dt>
+                    <dd>
+                        <span class="regInfo red" id="tips" style="display: block;color: #333;text-align: left;">该邮箱用于激活账户邮箱，请认真核对！</span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        申请人姓名：
+                    </dt>
+                    <dd>
+                        <span class="passID"></span>
+                        <input type="text" name="applicantname" id="applicantname" class="width220" />
+                        <span class="regInfo"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        联系电话（办公）：
+                    </dt>
+                    <dd>
+                        <input type="text" name="officetel1" class="width35" maxlength="4" />
+                        <input type="text" name="officetel2" class="width190" maxlength="11" />
+                        <span id="applyUserTelOfficeSpanId" class="regInfo"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        联系电话（手机）：
+                    </dt>
+                    <dd>
+                        <input type="text" name="movtel" id="movtel" class="width220" />
+                        <span class="regInfo"></span>
+                    </dd>
+                </dl>
+                <h3 class="passP boldp">
+                    出版单位信息
+                </h3>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        出版单位省份：
+                    </dt>
+                    <dd>
+                        @Html.DropDownList("baseid", ViewBag.province as List<SelectListItem>)
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        出版单位归属：
+                    </dt>
+                    <dd>
+                        <input type="hidden" name="groupName" id="groupName" />
+                        <input type="hidden" name="grouptName" id="grouptName" />
+                        <input type="hidden" name="provi" id="provi" />
+                        <select name="publishingentity" id="publishingentity" style="width:130px;">
+                            <option value="">请选择</option>
+                            <option value="1">独立出版单位</option>
+                            <option value="2">集团下属出版单位</option>
+                            <option value="3">集团</option>
+                        </select>
+                        <span class="regInfo"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        出版单位名称中文：
+                    </dt>
+                    <dd>
+                        <input type="text" name="publishechinese" id="publishechinese" class="width350" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        出版单位名称英文：
+                    </dt>
+                    <dd>
+                        <input type="text" name="publisherenglish" id="publisherenglish" class="width350" />
+                        <span class="regInfo"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        统一社会信用代码：
+                    </dt>
+                    <dd>
+                        <input type="text" name="creditcode" id="creditcode" class="width220" />
+                        <span id="regnoSpan" class="regInfo"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>出版物资质：
+                    </dt>
+                    <dd>
+                        <span class="regInfo mr10">
+                            <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publication" id="tushu" value="图书" onclick="checkselect(this)" />
+                            图书
+                        </span>
+                        <span class="regInfo mr10">
+                            <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publication" id="baozhi" value="报纸" onclick="checkselect(this)" />
+                            报纸
+                        </span>
+                        <span class="regInfo mr10">
+                            <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publication" id="qikan" value="期刊" onclick="checkselect(this)" />
+                            期刊
+                        </span>
 
-                            <span class="regInfo mr10">
-                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publication" id="yinxiang" value="4" onclick="checkselect(this)" />
-                                音像制品
-                            </span>
-                            <span class="regInfo mr10">
-                                <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publication" id="dianzi" value="5" onclick="checkselect(this)" />
-                                电子出版物
-                            </span>
-                            <span class="regInfo mr10">
-                                <input type="checkbox" class="chechBox" name="publicationTypeId" id="internet" value="6" onclick="checkselect(this)">
-                                互联网出版物
-                            </span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            出版范围：
-                        </dt>
-                        <dd>
-                            <input type="text" name="scopepublicati" id="scopepublicati" class="width220" />
-                            <span class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            通讯地址：
-                        </dt>
-                        <dd>
-                            <input type="text" id="mailingaddress" name="mailingaddress" class="width350" />
-                            <span class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            邮编：
-                        </dt>
-                        <dd>
-                            <input type="text" name="postcode" id="postcode" class="width220" />
-                            <span class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            出版单位网址：
-                        </dt>
-                        <dd>
-                            <input type="text" name="publisherwebsit" id="publisherwebsit" class="width350" />
-                            <span class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            主办单位：
-                        </dt>
-                        <dd>
-                            <input type="text" name="sponsor" id="sponsor" class="width350" />
-                            <span class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            主管单位：
-                        </dt>
-                        <dd>
-                            <input type="text" name="governingbody" id="governingbody" class="width350" />
-                            <span class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            法人代表姓名：
-                        </dt>
-                        <dd>
-                            <input type="text" name="representativename" id="representativename" class="width220" />
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            法人代表电话：
-                        </dt>
-                        <dd>
-                            <input type="text" name="representativetel1" class="width35" maxlength="4" onblur="legalPersonTelBlur()" />
-                            <input type="text" name="representativetel2" class="width190" maxlength="11" onblur="legalPersonTelBlur()" />
-                            <span id="legalPersonTelSpanId" class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            法人代表手机：
-                        </dt>
-                        <dd>
-                            <input type="text" id="representativephon" name="representativephon" class="width220" />
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            法人代表职务：
-                        </dt>
-                        <dd>
-                            <input type="text" name="legalPersonPost" id="legalPersonPost" class="width220" />
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            法人代表传真：
-                        </dt>
-                        <dd>
-                            <input type="text" id="representativefax" name="Representativefax" class="width220" />
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            法人代表邮箱：
-                        </dt>
-                        <dd>
-                            <input type="text" id="representativeemai" name="representativeemai" class="width220" />
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            联系人姓名：
-                        </dt>
-                        <dd>
-                            <input type="text" name="contactname" id="contactname" class="width220" />
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            联系人电话：
-                        </dt>
-                        <dd>
-                            <input type="text" name="contacttel1" class="width35" maxlength="4" onblur="contactTelBlur()" />
-                            <input type="text" name="contacttel2" class="width190" maxlength="11" onblur="contactTelBlur()" />
-                            <span id="contactTelSpanId" class="regInfo"></span>
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            联系人手机：
-                        </dt>
-                        <dd>
-                            <input type="text" name="contactphone" id="contactphone" class="width220" />
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            联系人职务：
-                        </dt>
-                        <dd>
-                            <input type="text" name="contactperson" id="contactperson" class="width220" />
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            联系人传真：
-                        </dt>
-                        <dd>
-                            <input type="text" name="contactFax" id="contactFax" class="width220" />
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            联系人邮箱：
-                        </dt>
-                        <dd>
-                            <input type="text" name="contactemail" id="contactemail" class="width220" />
-                        </dd>
-                    </dl>
-                    <div class="servicesBtn servicesBtnL centerButton" id="show2">
-                        <input type="button" name="next" value="下一步" class="btnOk" />
-                        <input type="button" name="leave" value="稍后再说" class="btnBackh ml-15" />
-                    </div>
+                        <span class="regInfo mr10">
+                            <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publication" id="yinxiang" value="音像制品" onclick="checkselect(this)" />
+                            音像制品
+                        </span>
+                        <span class="regInfo mr10">
+                            <input class="chechBox" style="vertical-align: middle;" type="checkbox" name="publication" id="dianzi" value="电子出版物" onclick="checkselect(this)" />
+                            电子出版物
+                        </span>
+                        <span class="regInfo mr10">
+                            <input type="checkbox" class="chechBox" name="publicationTypeId" id="internet" value="互联网出版物" onclick="checkselect(this)">
+                            互联网出版物
+                        </span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        出版范围：
+                    </dt>
+                    <dd>
+                        <input type="text" name="scopepublicati" id="scopepublicati" class="width220" />
+                        <span class="regInfo"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        通讯地址：
+                    </dt>
+                    <dd>
+                        <input type="text" id="mailingaddress" name="mailingaddress" class="width350" />
+                        <span class="regInfo"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        邮编：
+                    </dt>
+                    <dd>
+                        <input type="text" name="postcode" id="postcode" class="width220" />
+                        <span class="regInfo"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        出版单位网址：
+                    </dt>
+                    <dd>
+                        <input type="text" name="publisherwebsit" id="publisherwebsit" class="width350" />
+                        <span class="regInfo"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        主办单位：
+                    </dt>
+                    <dd>
+                        <input type="text" name="sponsor" id="sponsor" class="width350" />
+                        <span class="regInfo"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        主管单位：
+                    </dt>
+                    <dd>
+                        <input type="text" name="governingbody" id="governingbody" class="width350" />
+                        <span class="regInfo"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        法人代表姓名：
+                    </dt>
+                    <dd>
+                        <input type="text" name="representativename" id="representativename" class="width220" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        法人代表电话：
+                    </dt>
+                    <dd>
+                        <input type="text" name="representativetel1" class="width35" maxlength="4" />
+                        <input type="text" name="representativetel2" class="width190" maxlength="11" />
+                        <span id="legalPersonTelSpanId" class="regInfo"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        法人代表手机：
+                    </dt>
+                    <dd>
+                        <input type="text" id="representativephon" name="representativephon" class="width220" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        法人代表职务：
+                    </dt>
+                    <dd>
+                        <input type="text" name="legalPersonPost" id="legalPersonPost" class="width220" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        法人代表传真：
+                    </dt>
+                    <dd>
+                        <input type="text" id="representativefax" name="Representativefax" class="width220" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        法人代表邮箱：
+                    </dt>
+                    <dd>
+                        <input type="text" id="representativeemai" name="representativeemai" class="width220" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        联系人姓名：
+                    </dt>
+                    <dd>
+                        <input type="text" name="contactname" id="contactname" class="width220" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        联系人电话：
+                    </dt>
+                    <dd>
+                        <input type="text" name="contacttel1" class="width35" maxlength="4" />
+                        <input type="text" name="contacttel2" class="width190" maxlength="11" />
+                        <span id="contactTelSpanId" class="regInfo"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        联系人手机：
+                    </dt>
+                    <dd>
+                        <input type="text" name="contactphone" id="contactphone" class="width220" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        联系人职务：
+                    </dt>
+                    <dd>
+                        <input type="text" name="contactperson" id="contactperson" class="width220" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        联系人传真：
+                    </dt>
+                    <dd>
+                        <input type="text" name="contactFax" id="contactFax" class="width220" />
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        联系人邮箱：
+                    </dt>
+                    <dd>
+                        <input type="text" name="contactemail" id="contactemail" class="width220" />
+                    </dd>
+                </dl>
+                <div class="servicesBtn servicesBtnL centerButton" id="show2">
+                    <input type="button" name="next" value="下一步" class="btnOk" />
+                    <input type="button" name="leave" value="稍后再说" class="btnBackh ml-15" />
                 </div>
-                <div id="certify" class="regisBox detailBox " hidden>
-                    <dl>
-                        <dt>
-                            类型：
-                        </dt>
-                        <dd>
-                            <input type="radio" name="radio" id="radiotype" class="radio" checked value="1" onclick="radioselect(this)" /> 统一社会信用代码证
-                            <input type="radio" name="radio" id="radiotype2" class="radio" value="2" onclick="radioselect(this)" /> 营业执照
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            统一社会信用代码证：
-                        </dt>
-                        <dd>
-                            <input type="file" name="unifiedsocial" id="unifiedsocial" class="layui-upload-file" />
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>
-                            <span class="red">*</span>
-                            出版物资质证明：
-                        </dt>
-                        <dd>
-                            <input type="file" name="certificatepublica" id="certificatepublica" class="layui-upload-file" />
-                        </dd>
-                    </dl>
+            </div>
+            <div id="certify" class="regisBox detailBox ">
+                <dl>
+                    <dt>
+                        类型：
+                    </dt>
+                    <dd>
+                        <input type="radio" name="radio" id="radiotype" class="radio" checked value="1" onclick="radioselect(this)" /> 统一社会信用代码证
+                        <input type="radio" name="radio" id="radiotype2" class="radio" value="2" onclick="radioselect(this)" /> 营业执照
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        统一社会信用代码证：
+                    </dt>
+                    <dd>
+                        <form id="unifiedsocial" method="post"  enctype="multipart/form-data"  >
+                            <input type="file" name="unifiedsocial" id="upload1" class="layui-upload-file" />
+                        </form>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="red">*</span>
+                        出版物资质证明：
+                    </dt>
+                    <dd>
+                        <form id="certificatepublica" method="post" enctype="multipart/form-data">
+                            <input type="file" name="certificatepublica" id="upload2" class="layui-upload-file" />
+                        </form>
+                    </dd>
+                </dl>
 
-                    <div class="servicesBtn servicesBtnL centerButton" id="show2">
-                        <input type="button" name="last" value="上一步" class="btnBackh ml10" />
-                        <input type="submit" name="submit" value="提交" class=" btnOk" />
-                    </div>
+                <div class="servicesBtn servicesBtnL centerButton" id="show2">
+                    <input type="button" name="last" value="上一步" class="btnBackh ml10" />
+                    <input type="button" name="submit" value="提交" class=" btnOk" />
                 </div>
             </div>
         </div>
-    </form>
-    <script src="~/js/additional-methods.js"></script>
-    <script src="~/js/jquery.min.js"></script>
-    <script src="~/js/jquery-form.js"></script>
-    <script src="~/js/jquery.validate.js"></script>
-    <script src="~/js/validate-methods.js"></script>
-    <script src="~/js/messages_zh.js"></script>
+    </div>
     <script>
+        var publicationtest = "";
         $(function () {
-            $("#publisherApplyForm").validate({
-                rules: {
-                    username: {
-                        required: true,
-                        minlength: 2,
-                        maxlength: 16
-                    },
-                    userpwd: {
-                        required: true,
-                    }
-                },
-                onkeyup: false,
-                focusCleanup: true,
-                success: "valid",
-                submitHandler: function (form) {
-
-                    var username = $("#username").val();
-                    var userpwd = $("#userpwd").val();
-                    var applicantname = $("#applicantname").val();
-                    var applicanemail = $("#applicanemail").val();
-                    var officetel = $("[name='officetel1']").val() + $("[name='officetel2']").val();
-                    var movtel = $("#movtel").val();
-                    var baseid = $("#baseid").val();
-                    var publishingentity = $("#publishingentity").val();
-                    var publishechinese = $("#publishechinese").val();
-                    var publisherenglish = $("#publisherenglish").val();
-                    var creditcode = $("#creditcode").val();
-                    var publication = '';
-                    $("[class='chechBox']:checked").each(function () {
-                        publication = publication + "、" + this.value
-                    });
-                    console.log(publication)
-                    var scopepublicati = $("#scopepublicati").val();
-                    var mailingaddress = $("#mailingaddress").val();
-                    var postcode = $("#postcode").val();
-                    var publisherwebsit = $("#publisherwebsit").val();
-                    var sponsor = $("#sponsor").val();
-                    var governingbody = $("#governingbody").val();
-                    var representativename = $("#representativename").val();
-                    var representativetel = $("[name='representativetel1']").val() + $("[name='representativetel2']").val();
-                    var representativephon = $("#representativephon").val();
-                    var representativepost = $("#representativepost").val();
-                    var representativefax = $("#representativefax").val();
-                    var representativeemai = $("#representativeemai").val();
-                    var contactname = $("#contactname").val();
-                    var contacttel = $("[name='contacttel1']").val() + $("[name='contacttel2']").val();
-                    var contactphone = $("#contactphone").val();
-                    var contactperson = $("#contactperson").val();
-                    var contactfac = $("#contactfac").val();
-                    var contactemail = $("#contactemail").val();
-                    var username = $("#username").val();
-                    var radiotype = $("[name='radiotype']").val();
-                    var publicationqualif = publication;
-
-                    $(form).ajaxSubmit({
-                        type: 'post',
-                        url: "/main/PublishingAdd",
-                        data: { "UserName": username, "UserPwd": userpwd, "ApplicantName": applicantname, "ApplicantEmail": applicanemail, "OfficeTel": officetel, "MovTel": movtel, "UserName": username, "BaseId": baseid, "PublishingEntity": publishingentity, "PublisheChinese": PublisheChinese, "PublisherEnglish": publisherenglish, "CreditCode": creditcode, "Publication": publication, "ScopePublicati": scopepublicati, "MailingAddress": mailingaddress, "Postcode": postcode, "PublisherWebsit": publisherwebsit, "Sponsor": sponsor, "GoverningBody": governingbody, "RepresentativeName": representativename, "RepresentativeTel": representativetel, "RepresentativePhon": representativephon, "RepresentativePost": representativepost, "RepresentativeFax": representativefax, "RepresentativeEmai": representativeemai, "ContactName": contactname, "ContactTel": contacttel, "ContactPhone": contactphone, "ContactPerson": contactperson, "ContactFax": contactfac, "ContactEmail": contactemail, "Type": radiotype, "PublicationQualif": publicationqualif },
-                        success: function (res) {
-                            if (res > 0) {
-                                layer.msg('添加成功!', { icon: 1, time: 1000 });
-                            }
-                        },
-                        error: function (XmlHttpRequest, textStatus, errorThrown) {
-                            layer.msg('error!', { icon: 1, time: 1000 });
+            $("#certify").hide();
+            $("[name='submit']").click(function () {
+                var username = $("#username").val();
+                var userpwd = $("#userpwd").val();
+                var applicantname = $("#applicantname").val();
+                var applicanemail = $("#applicanemail").val();
+                var officetel = $("[name='officetel1']").val() + "-" + $("[name='officetel2']").val();
+                var movtel = $("#movtel").val();
+                var baseid = $("#baseid").val();
+                var publishingentity = $("#publishingentity").val();
+                var publishechinese = $("#publishechinese").val();
+                var publisherenglish = $("#publisherenglish").val();
+                var creditcode = $("#creditcode").val();
+                var publication = publicationtest.trim('、');
+                var scopepublicati = $("#scopepublicati").val();
+                var mailingaddress = $("#mailingaddress").val();
+                var postcode = $("#postcode").val();
+                var publisherwebsit = $("#publisherwebsit").val();
+                var sponsor = $("#sponsor").val();
+                var governingbody = $("#governingbody").val();
+                var representativename = $("#representativename").val();
+                var representativetel = $("[name='representativetel1']").val() + "-" + $("[name='representativetel2']").val();
+                var representativephon = $("#representativephon").val();
+                var representativepost = $("#representativepost").val();
+                var representativefax = $("#representativefax").val();
+                var representativeemai = $("#representativeemai").val();
+                var contactname = $("#contactname").val();
+                var contacttel = $("[name='contacttel1']").val() + "-" + $("[name='contacttel2']").val();
+                var contactphone = $("#contactphone").val();
+                var contactperson = $("#contactperson").val();
+                var contactfac = $("#contactfac").val();
+                var contactemail = $("#contactemail").val();
+                var username = $("#username").val();
+                var radiotype = $("[name='radio']:checked").val();
+                var publicationqualif = publication;
+                $.ajax({
+                    url: "/main/publishingadd",
+                    type: "post",
+                    data: { "UserName": username, "UserPwd": userpwd, "ApplicantName": applicantname, "ApplicantEmail": applicanemail, "OfficeTel": officetel, "MovTel": movtel, "UserName": username, "BaseId": baseid, "PublishingEntity": publishingentity, "PublisheChinese": publishechinese, "PublisherEnglish": publisherenglish, "CreditCode": creditcode, "Publication": publication, "ScopePublicati": scopepublicati, "MailingAddress": mailingaddress, "Postcode": postcode, "PublisherWebsit": publisherwebsit, "Sponsor": sponsor, "GoverningBody": governingbody, "RepresentativeName": representativename, "RepresentativeTel": representativetel, "RepresentativePhon": representativephon, "RepresentativePost": representativepost, "RepresentativeFax": representativefax, "RepresentativeEmai": representativeemai, "ContactName": contactname, "ContactTel": contacttel, "ContactPhone": contactphone, "ContactPerson": contactperson, "ContactFax": contactfac, "ContactEmail": contactemail, "Type": radiotype, "PublicationQualif": publicationqualif },
+                    success: function (res) {
+                        if (res > 0) {
+                            layer.msg("申请成功!")
+                            location.href("/main/login")
                         }
-                    });
+                    }
+                })
+            })
+            var uploading = false;
+            $("#upload2").on("change", function () {
+                if (uploading) {
+                    alert("文件正在上传中，请稍候");
+                    return false;
                 }
+                $.ajax({
+                    url: "/main/Uploadcertificatepublica",
+                    type: 'POST',
+                    cache: false,
+                    data: new FormData($('#certificatepublica')[0]),
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    beforeSend: function () {
+                        uploading = true;
+                    },
+                    success: function (data) {
+                        if (data) {
+                            layer.msg("上传成功!")
+                        } else {
+                            showError(data.msg);
+                        }
+                        uploading = false;
+                    }
+                });
+            });
+
+            
+            $("#upload1").on("change", function () {
+                if (uploading) {
+                    alert("文件正在上传中，请稍候");
+                    return false;
+                }
+                $.ajax({
+                    url:"/main/UploadUnifiedsocial",
+                    type: 'POST',
+                    cache: false,
+                    data: new FormData($('#unifiedsocial')[0]),
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    beforeSend: function () {
+                        uploading = true;
+                    },
+                    success: function (data) {
+                        if (data) {
+                            layer.msg("上传成功!")
+                        } else {
+                            showError(data.msg);
+                        }
+                        uploading = false;
+                    }
+                });
             });
 
             $("input[name='next']").click(function () {
-                $("#publis").prop("hidden", "hidden")
-                $("#certify").prop("hidden", "")
+                $("#publis").hide()
+                $("#certify").show()
                 $("[class='ml91']").find("li").eq(0).removeClass('selected')
                 $("[class='ml91']").find("li").eq(1).addClass('selected')
             })
 
             $("input[name='last']").click(function () {
-                $("#certify").prop("hidden", "hidden")
-                $("#publis").prop("hidden", "")
+                $("#certify").hide()
+                $("#publis").show()
                 $("[class='ml91']").find("li").eq(1).removeClass('selected')
                 $("[class='ml91']").find("li").eq(0).addClass('selected')
             })
-
         })
 
+        //$(function () {
+        //    $("#publisherapplyform").validate({
+        //        rules: {
+        //            username: {
+        //                required: true,
+        //            },
+        //            userpwd: {
+        //                required: true,
+        //            },
+        //            applicanemail: {
+        //                email: true,
+        //                required: true
+        //            }
+        //        },
+        //        onkeyup: false,
+        //        focuscleanup: true,
+        //        success: "valid",
+        //        submithandler: function (form) {
+
+        //            var username = $("#username").val();
+        //            var userpwd = $("#userpwd").val();
+        //            var applicantname = $("#applicantname").val();
+        //            var applicanemail = $("#applicanemail").val();
+        //            var officetel = $("[name='officetel1']").val() + $("[name='officetel2']").val();
+        //            var movtel = $("#movtel").val();
+        //            var baseid = $("#baseid").val();
+        //            var publishingentity = $("#publishingentity").val();
+        //            var publishechinese = $("#publishechinese").val();
+        //            var publisherenglish = $("#publisherenglish").val();
+        //            var creditcode = $("#creditcode").val();
+        //            var publication = '';
+        //            $("[class='chechbox']:checked").each(function () {
+        //                publication = publication + "、" + this.value
+        //            });
+        //            console.log(publication)
+        //            var scopepublicati = $("#scopepublicati").val();
+        //            var mailingaddress = $("#mailingaddress").val();
+        //            var postcode = $("#postcode").val();
+        //            var publisherwebsit = $("#publisherwebsit").val();
+        //            var sponsor = $("#sponsor").val();
+        //            var governingbody = $("#governingbody").val();
+        //            var representativename = $("#representativename").val();
+        //            var representativetel = $("[name='representativetel1']").val() + $("[name='representativetel2']").val();
+        //            var representativephon = $("#representativephon").val();
+        //            var representativepost = $("#representativepost").val();
+        //            var representativefax = $("#representativefax").val();
+        //            var representativeemai = $("#representativeemai").val();
+        //            var contactname = $("#contactname").val();
+        //            var contacttel = $("[name='contacttel1']").val() + $("[name='contacttel2']").val();
+        //            var contactphone = $("#contactphone").val();
+        //            var contactperson = $("#contactperson").val();
+        //            var contactfac = $("#contactfac").val();
+        //            var contactemail = $("#contactemail").val();
+        //            var username = $("#username").val();
+        //            var radiotype = $("[name='radiotype']").val();
+        //            var publicationqualif = publication;
+
+        //            $(form).ajaxsubmit({
+        //                type: 'post',
+        //                url: "/main/publishingadd",
+        //                data: { "username": username, "userpwd": userpwd, "applicantname": applicantname, "applicantemail": applicanemail, "officetel": officetel, "movtel": movtel, "username": username, "baseid": baseid, "publishingentity": publishingentity, "publishechinese": publishechinese, "publisherenglish": publisherenglish, "creditcode": creditcode, "publication": publication, "scopepublicati": scopepublicati, "mailingaddress": mailingaddress, "postcode": postcode, "publisherwebsit": publisherwebsit, "sponsor": sponsor, "governingbody": governingbody, "representativename": representativename, "representativetel": representativetel, "representativephon": representativephon, "representativepost": representativepost, "representativefax": representativefax, "representativeemai": representativeemai, "contactname": contactname, "contacttel": contacttel, "contactphone": contactphone, "contactperson": contactperson, "contactfax": contactfac, "contactemail": contactemail, "type": radiotype, "publicationqualif": publicationqualif },
+        //                success: function (res) {
+        //                    if (res > 0) {
+        //                        layer.msg('添加成功!', { icon: 1, time: 1000 });
+        //                    }
+        //                },
+        //                error: function (xmlhttprequest, textstatus, errorthrown) {
+        //                    layer.msg('error!', { icon: 1, time: 1000 });
+        //                }
+        //            });
+        //        }
+        //    });
+
+        //$("input[name='next']").click(function () {
+        //    $("#publis").prop("hidden", "hidden")
+        //    $("#certify").prop("hidden", "")
+        //    $("[class='ml91']").find("li").eq(0).removeClass('selected')
+        //    $("[class='ml91']").find("li").eq(1).addClass('selected')
+        //})
+
+        //$("input[name='last']").click(function () {
+        //    $("#certify").prop("hidden", "hidden")
+        //    $("#publis").prop("hidden", "")
+        //    $("[class='ml91']").find("li").eq(1).removeClass('selected')
+        //    $("[class='ml91']").find("li").eq(0).addClass('selected')
+        //})
+
+        //})
+       
+
         function radioselect(res) {
-            console.log(res.value)
             if (res.value == 1) {
                 $("#certify").find("dl").eq(1).find("dt").html('<span class="red">*</span>出版物资质证明')
             }
             else if (res.value == 2) {
                 $("#certify").find("dl").eq(1).find("dt").html('<span class="red">*</span>营业执照')
             }
+        }
+
+        function checkselect(res) {
+            publicationtest = publicationtest + "、" + res.value;
         }
     </script>
 </body>

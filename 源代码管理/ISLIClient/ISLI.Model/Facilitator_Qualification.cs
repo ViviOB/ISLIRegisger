@@ -4,34 +4,8 @@ using System.Text;
 
 namespace ISLI.Model
 {
-    public class Publisher_Certificate : Publisher
+    public class Facilitator_Qualification:Facilitator
     {
-
-        /// <summary>
-        /// 类型
-        /// </summary>
-        public int Type { get; set; }
-
-        /// <summary>
-        /// 统一社会信用代码证
-        /// </summary>
-        public string UnifiedSocial { get; set; }
-
-        /// <summary>
-        /// 出版物资质
-        /// </summary>
-        public string PublicationQualif { get; set; }
-
-        /// <summary>
-        /// 出版物资质证明
-        /// </summary>
-        public string CertificatePublica { get; set; }
-
-        /// <summary>
-        /// 注册时间
-        /// </summary>
-        public DateTime RegTime { get; set; }
-
         /// <summary>
         /// 用户名
         /// </summary>
@@ -61,5 +35,20 @@ namespace ISLI.Model
         /// 提交状态
         /// </summary>
         public int SubmissionState { get; set; }
+
+        /// <summary>
+        /// 类型
+        /// </summary>
+        public int Type { get; set; }
+
+        /// <summary>
+        /// 统一社会信用代码证
+        /// </summary>
+        public string UnifiedSocial { get; set; }
+
+        /// <summary>
+        /// 注册时间
+        /// </summary>
+        public DateTime RegTime { get; set; }
     }
 }

@@ -1,0 +1,429 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>引导注册页</title>
+    <link href="~/resources/css/common.css" rel="stylesheet" />
+    <link href="~/resources/css/portal/common.css" type="text/css" rel="stylesheet" />
+    <link href="~/resources/css/zh_CN.css" type="text/css" rel="stylesheet" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="bookmark" type="image/x-icon" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+    <script src="~/js/jquery-form.js"></script>
+    <script src="~/layer/mobile/layer.js"></script>
+    <script src="~/lib/jquery/jquery.unobtrusive-ajax.js"></script>
+    <style>
+
+        .detailBox dl dd input[type="checkbox"] {
+            margin-right: 0;
+        }
+
+        .mr10 {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!--header-->
+        <div id="header" class="header">
+            <a class="logo" href="/main/login"></a>
+        </div>
+        <div class="adminConent passwordReset">
+            <div class="processBox clearfix">
+                <ul class="ml91">
+                    <li class="selected">
+                        <a>1</a>
+                        <p>注册信息</p>
+                    </li>
+                    <li>
+                        <a>2</a>
+                        <p>企业资质证明</p>
+                    </li>
+                </ul>
+            </div>
+            <form id="facilitatoradd" enctype="multipart/form-data" method="post" action="/main/facilitatoradd" class="form-horizontal" onsubmit="return saveReport();">
+                <div class="regisBox detailBox " id="publis">
+                    <h3 class="passP boldp">
+                        申请人信息
+                    </h3>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            用户名：
+                        </dt>
+                        <dd>
+                            <input type="text" name="UserName" id="username" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            密码：
+                        </dt>
+                        <dd>
+                            <input type="password" name="UserPwd" id="userpwd" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            申请人邮箱：
+                        </dt>
+                        <dd>
+                            <input type="text" name="ApplicantEmail" id="applicanemail" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>&nbsp;</dt>
+                        <dd>
+                            <span class="regInfo red" id="tips" style="display: block;color: #333;text-align: left;">该邮箱用于激活账户邮箱，请认真核对！</span>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            申请人姓名：
+                        </dt>
+                        <dd>
+
+                            <input type="text" name="ApplicantName" id="applicantname" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            申请人联系电话：
+                        </dt>
+                        <dd>
+                            <input type="text" name="ContactNumber" id="contactnumber" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            申请人联系手机：
+                        </dt>
+                        <dd>
+                            <input type="text" name="CellPhone" id="cellphone" class="width220" />
+                        </dd>
+                    </dl>
+                    <h3 class="passP boldp">
+                        出版单位信息
+                    </h3>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            企业名称：
+                        </dt>
+                        <dd>
+                            <input type="text" name="CompanyName" id="companyname" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            注册地址：
+                        </dt>
+                        <dd>
+                            <input type="text" name="RegistrationAddres" id="registrationaddress" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            注册地址邮编：
+                        </dt>
+                        <dd>
+                            <input type="text" name="Postcode" id="postcode" class="width350" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            注册邮箱：
+                        </dt>
+                        <dd>
+                            <input type="text" name="Email" id="email" class="width350" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            注册地行政区代码：
+                        </dt>
+                        <dd>
+                            <input type="text" name="RegistrationCode" id="registrationcode" class="width350" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            统一社会信用代码：
+                        </dt>
+                        <dd>
+                            <input type="text" name="CreditCode" id="creditcode" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            法人代表姓名：
+                        </dt>
+                        <dd>
+                            <input type="text" name="RepresentativeName" id="representativename" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            联系人姓名：
+                        </dt>
+                        <dd>
+                            <input type="text" name="ContactName" id="contactname" class="width220" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            联系人电话：
+                        </dt>
+                        <dd>
+                            <input type="text" name="ContactPhone" id="contactphone" class="width190" maxlength="11" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            联系人邮箱：
+                        </dt>
+                        <dd>
+                            <input type="text" name="ContactEmail" id="contactemail" class="width220" />
+                        </dd>
+                    </dl>
+                    <div class="servicesBtn servicesBtnL centerButton" id="show2">
+                        <input type="submit" name="next" value="下一步" class="btnOk" />
+                        <input type="button" name="leave" value="稍后再说" class="btnBackh ml-15" />
+                    </div>
+                </div>
+            </form>
+
+
+            <div id="certify" class="regisBox detailBox ">
+                <form enctype="multipart/form-data" id="qualification"  class="form-horizontal">
+                    <dl>
+                        <dt>
+                            类型：
+                        </dt>
+                        <dd>
+                            <input type="radio" name="Type" id="radiotype" class="radio" checked value="1" onclick="radioselect(this)" /> 统一社会信用代码证
+                            <input type="radio" name="Type" id="radiotype2" class="radio" value="2" onclick="radioselect(this)" /> 营业执照
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            统一社会信用代码证：
+                        </dt>
+                        <dd>
+                            <input type="file" name="unifiedsocial" id="upload1" class="layui-upload-file" />
+                        </dd>
+                    </dl>
+                    <div class="servicesBtn servicesBtnL centerButton" id="show2">
+                        <input type="button" name="last" value="上一步" class="btnBackh ml10" />
+                        <input type="button" name="submit" value="提交" class=" btnOk" />
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+
+        $(function () {
+
+            $("#certify").hide();
+
+            $("#facilitatoradd").validate({
+                rules: {
+                    UserName: {
+                        required: true,
+                        minlength: 2
+                    },
+                    //    UserPwd: {
+                    //        required: true,
+                    //        minlength: 2
+                    //    },
+                    //    ApplicantEmail: {
+                    //        required: true,
+                    //        email: true
+                    //    },
+                    //    ApplicantName:
+                    //    {
+                    //        required: true
+                    //    },
+                    //    CellPhone: {
+                    //        required: true,
+                    //        number: true,
+                    //        maxlength: 11,
+                    //        minlength:11
+                    //    },
+                    //    CompanyName: {
+                    //        required: true
+                    //    },
+                    //    RegistrationAddres:{
+                    //        required: true
+                    //    },
+                    //    Postcode: {
+                    //        required: true,
+                    //        maxlength: 6,
+                    //        minlength: 6
+                    //    },
+                    //    RepresentativeName: {
+                    //        required: true
+                    //    },
+                    //    CreditCode: {
+                    //        required: true,
+                    //        maxlength: 15,
+                    //        minlength: 11
+                    //    },
+                    //    ContactName: {
+                    //        required: true
+                    //    },
+                    //    ContactPhone: {
+                    //        required: true,
+                    //        number: true,
+                    //        maxlength: 11,
+                    //        minlength: 11
+                    //    },
+                    //    ContactEmail: {
+                    //        required: true,
+                    //        email: true
+                    //    },
+                    //    Email: {
+                    //        required: true,
+                    //        email: true
+                    //    }
+                },
+                //success: function () {
+                //    $("#facilitatoradd").ajaxForm(function (data) {
+                //        if (data) {
+                //            $("input[name='next']").click(function () {
+                //                $("#publis").hide()
+                //                $("#certify").show()
+                //                $("[class='ml91']").find("li").eq(0).removeClass('selected')
+                //                $("[class='ml91']").find("li").eq(1).addClass('selected')
+                //            })
+                //        }
+                //    });
+                //}
+                onkeyup: false,
+                focusCleanup: false,
+                submitHandler: function (form) {
+                    $("input[name='next']").click(function () {
+                        $("#publis").hide()
+                        $("#certify").show()
+                        $("[class='ml91']").find("li").eq(0).removeClass('selected')
+                        $("[class='ml91']").find("li").eq(1).addClass('selected')
+                    })
+                    $(form).ajaxSubmit()
+                }
+            })
+
+            $("[name='submit']").click(function () {
+                if ($("#upload1").val() == null) {
+                    return false;
+                }
+                $.ajax({
+                    url: "/main/QualificationAdd",
+                    type: "get",
+                    data: { "Type": $(".radio").val() },
+                    success: function (res) {
+                        if (res > 0) {
+                            layer.msg("申请成功！");
+                            location.href = '/main/login';
+                        }
+                    }
+                });
+            })
+
+            var uploading = false;
+
+            $("#qualification").on("change", function () {
+                if (uploading) {
+                    alert("文件正在上传中，请稍候");
+                    return false;
+                }
+                $.ajax({
+                    url: "/main/UploadUnifiedsocial",
+                    type: 'POST',
+                    cache: false,
+                    data: new FormData($('#qualification')[0]),
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    beforeSend: function () {
+                        uploading = true;
+                    },
+                    success: function (data) {
+                        if (data) {
+                            alert("上传成功!")
+                        } else {
+                            showError(data.msg);
+                        }
+                        uploading = false;
+                    }
+                });
+            });
+            $("input[name='last']").click(function () {
+                $("#certify").hide()
+                $("#publis").show()
+                $("[class='ml91']").find("li").eq(1).removeClass('selected')
+                $("[class='ml91']").find("li").eq(0).addClass('selected')
+            })
+            //$("[name='submit']").click(function () {
+            //    $.ajax({
+            //        url: "/main/QualificationAdd",
+            //        type:"get",
+            //        data: { "Type": $(".radio").val() },
+            //        success: function (res) {
+            //            if (res > 0) {
+            //                layer.msg("申请成功！");
+            //                location.href = '/main/login';
+            //            }
+            //        }
+            //    })
+            //})
+        })
+
+        function saveReport() {
+          
+            return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+        }
+
+        function radioselect(res) {
+            if (res.value == 1) {
+                $("#certify").find("dl").eq(1).find("dt").html('<span class="red">*</span>出版物资质证明')
+            }
+            else if (res.value == 2) {
+                $("#certify").find("dl").eq(1).find("dt").html('<span class="red">*</span>营业执照')
+            }
+        }
+    </script>
+</body>
+
+</html>
