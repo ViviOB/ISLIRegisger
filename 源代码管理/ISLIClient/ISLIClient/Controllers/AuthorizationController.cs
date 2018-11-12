@@ -152,8 +152,8 @@ namespace ISLIClient.Controllers
         {
             //获取到实体类
             var json = WebApiHelper.GetApiResult("get", "BackStage", "BooksUpdateById?id=" + id, null);
-            var publishapply = JsonConvert.DeserializeObject<PublishApply>(json);
-            var json2 = WebApiHelper.GetApiResult("put", "BackStage", "UpdateSbumissionStateToPass", publishapply);
+            var books = JsonConvert.DeserializeObject<Books>(json);
+            var json2 = WebApiHelper.GetApiResult("put", "BackStage", "UpdateBooksSbumissionStateToPass", books);
             int i = int.Parse(json2);
             return i;
         }
@@ -165,9 +165,9 @@ namespace ISLIClient.Controllers
         public int UpdateBooksSbumissionStateToDeny(int id)
         {
             //获取到实体类
-            var json = WebApiHelper.GetApiResult("get", "BackStage", "UpdateById?id=" + id, null);
-            var publishapply = JsonConvert.DeserializeObject<PublishApply>(json);
-            var json2 = WebApiHelper.GetApiResult("put", "BackStage", "UpdateSbumissionStateToDeny", publishapply);
+            var json = WebApiHelper.GetApiResult("get", "BackStage", "BooksUpdateById?id=" + id, null);
+            var books = JsonConvert.DeserializeObject<Books>(json);
+            var json2 = WebApiHelper.GetApiResult("put", "BackStage", "UpdateBooksSbumissionStateToDeny", books);
             int i = int.Parse(json2);
             return i;
         }
