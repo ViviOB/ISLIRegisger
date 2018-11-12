@@ -88,7 +88,7 @@ namespace ISLI.Service
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                var m = db.Updateable<Books>().UpdateColumns(it => new Books() { ApplyState = 0 }).Where(it => it.Id == books.Id).ExecuteCommand();
+                var m = db.Updateable<Books>().UpdateColumns(it => new Books() { ApplyState = 2 }).Where(it => it.Id == books.Id).ExecuteCommand();
                 return m;
             }
         }
@@ -102,7 +102,7 @@ namespace ISLI.Service
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                var m = db.Updateable<Books>().UpdateColumns(it => new Books() { ApplyState = 2 }).Where(it => it.Id == books.Id).ExecuteCommand();
+                var m = db.Updateable<Books>().UpdateColumns(it => new Books() { ApplyState = 0 }).Where(it => it.Id == books.Id).ExecuteCommand();
                 return m;
             }
         }

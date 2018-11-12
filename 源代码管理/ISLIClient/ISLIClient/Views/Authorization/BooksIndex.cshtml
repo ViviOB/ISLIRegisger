@@ -135,15 +135,27 @@
         //})
     </script>
     <script>
-        function Change(id) {
+        function ChangeToPass(id) {
             $.ajax({
-                url: "/authorization/UpdateState?id=" + id,
+                url: "/authorization/UpdateBooksSbumissionStateToPass?id=" + id,
                 type: "get",
                 success: function (data) {
                     console.log(data)
                     if (data > 0)
                     {
-                        parent.layer.msg('已冻结!', { icon: 5, time: 3000 });
+                       layer.msg('已通过!', { icon: 1, time: 3000 });
+                    }
+                }
+            })
+        }
+        function ChangeToDeny(id) {
+            $.ajax({
+                url: "/authorization/UpdateBooksSbumissionStateToDeny?id=" + id,
+                type: "get",
+                success: function (data) {
+                    console.log(data)
+                    if (data > 0) {
+                       layer.msg('已冻结!', { icon: 5, time: 3000 });
                     }
                 }
             })

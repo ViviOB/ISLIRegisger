@@ -54,6 +54,7 @@ namespace ISLIClient.Controllers
             return JsonConvert.SerializeObject(list);
         }
 
+        #region /// 图书详情
         public IActionResult GeyById(int id=1)
         {
             var json = GetBooks();
@@ -62,6 +63,45 @@ namespace ISLIClient.Controllers
             return View(str);
         }
 
+        #endregion
+
+        #region /// 图书申请
+        public IActionResult ApplyBook()
+        {
+            return View();
+        }
+        [HttpPost]
+        public void ApplyBook(Books books)
+        {
+            string str = Request.Form["name1"] + Request.Form["name2"] + Request.Form["name3"] + Request.Form["name3"];
+            books.ISBN = str;
+            books.ApplyDate = DateTime.Now.ToString("yyyy-MM-dd ");
+            books.OverDate = DateTime.Now.AddDays(100).ToString("yyyy-MM-dd ");
+            books.ChineseLibrary = Request.Form["ChineseLibrary"];
+            books.Languages = Request.Form["Languages"];
+            books.PublishPlace = Request.Form["PublishPlace"];
+            books.ApplyState = 1;
+            var json = WebApiHelper.GetApiResult("post", "Books", "AddBook", books);
+            int result = Convert.ToInt32(json);
+        }
+        #endregion
+
+        public IActionResult UpdateBook(int id = 1)
+        {
+            var json = GetBooks();
+            var data = JsonConvert.DeserializeObject<DataTable<Books>>(json);
+            var str = data.list.FirstOrDefault(m => m.Id == id);
+            return View(str);
+        }
+        [HttpPost]
+        public void UpdateBook(Books books)
+        {
+            var str = Request.Form["ApplyDate"];
+            books.ApplyState = 1;
+            books.Id= Convert.ToInt32(Request.Form["Id"]);
+            var json = WebApiHelper.GetApiResult("put",
+                "books", "UpdateBook", books);
+        }
         #region /// 封装显示
         public string GetBooks()
         {

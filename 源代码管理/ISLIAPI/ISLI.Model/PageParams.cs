@@ -7,8 +7,6 @@ namespace ISLI.Model
 {
     public class PageParams
     {
-
-
         public PageParams()
         {
             PageIndex = 1;
