@@ -52,15 +52,13 @@
                         <td>{{item.chineseLibrary}}</td>
                         <td>{{item.overDate}}</td>
                         <td>{{item.applyDate}}</td>
-                        <td v-if="state ===1">已提交</td>
-                        <td v-else="state ===2">正常使用</td>
-                        <td v-else="state ===1">已提交</td>
-                        <td v-else="state ===1">已提交</td>
-                        <td v-if="state ===1">已提交</td>
+                        <td>{{(item.applyState)==1?"已提交":(item.applyState)==2?"正常使用":(item.applyState)==3?"未通过":(item.applyState)==4?"已注销":"已撤回"}}</td>                    
                         <td class="td-manage">
-                            <a title="编辑" href="javascript:;" v-on:click="data_management_look('查看', 'GeyById?id='+item.id,'','510')"
-                               class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a> <a title="删除" href="javascript:;" onclick="data_management_del(this,'1')"
-                                                                                                                   style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a>
+                            <a title="详情" href="javascript:;" v-on:click="data_management_look('详情', 'GeyById?id='+item.id,'','510')"
+                               class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a> 
+                            <a title="删除" href="javascript:;" onclick="data_management_del(this,'1')"style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a>
+                            <a title="编辑" href="javascript:;" v-on:click="role_management_look('查看','UpdateBook?id='+item.id,'4','','510')"
+                              class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe63c;</i></a>
                         </td>
                     </tr>
                 </tbody>
@@ -93,7 +91,10 @@
         function data_management_look(title, url, w, h) {
             x_admin_show(title, url, w, h);
         }
-
+        //查看
+        function role_management_look(title, url, id, w, h) {
+            x_admin_show(title, url, w, h);
+        }
     </script>
     <script type="text/javascript">
         $('.tablelist tbody tr:odd').addClass('odd');
@@ -103,7 +104,6 @@
             el: '#app',
             data: {
                 info: null,
-                state: 0,
                 count: 0,
                 strSearch:""
             },
@@ -118,7 +118,7 @@
                })
             },
             methods: {
-                check: function () {           
+                check: function () {
                     var that = this;
                     var parm = new URLSearchParams();
                   //  var strSearch = $("#Text1").val();
@@ -131,10 +131,14 @@
                         that.info = res.data.list;
                         that.count = res.data.counts;
                     })
-                },            
+                },
                 data_management_look(title, url, w, h) {
-                x_admin_show(title, url, w, h);
-            }
+                     x_admin_show(title, url, w, h)
+                },
+                role_management_look(title, url, id, w, h) {
+                    x_admin_show(title, url, w, h)
+                }
+
             }
         })
     </script>
