@@ -112,6 +112,39 @@ namespace ISLIAPI.Controllers
         {
             return _books.BooksList(page);
         }
+
+        /// <summary>
+        /// 修改提交状态(成功)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public int UpdateBooksSbumissionStateToPass(Books books)
+        {
+            return _books.UpdateBooksSbumissionStateToPass(books);
+        }
+
+        /// <summary>
+        /// 修改提交状态(拒绝)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public int UpdateBooksSbumissionStateToDeny(Books books)
+        {
+            return _books.UpdateBooksSbumissionStateToDeny(books);
+        }
+
+        /// <summary>
+        /// 根据ID查找对象
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public Books BooksUpdateById(int id)
+        {
+            return _books.BooksUpdateById(id);
+        }
         #endregion
     }
 }
