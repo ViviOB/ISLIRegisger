@@ -18,11 +18,17 @@ namespace ISLIAPI.Controllers
         /// 构造函数注入
         /// </summary>
         private readonly IPublishApply _publishApply;
+
+        private readonly IBooks _books;
         public BackStageController(IPublishApply publishApply)
         {
             _publishApply = publishApply;
         }
 
+        public BackStageController(IBooks books)
+        {
+            _books = books;
+        }
         #region ///出版单位管理
         /// <summary>
         /// 获取获取出版单位申请
@@ -68,7 +74,7 @@ namespace ISLIAPI.Controllers
         }
 
         /// <summary>
-        /// 修改提交状态(事变)
+        /// 修改提交状态(拒绝)
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -94,7 +100,18 @@ namespace ISLIAPI.Controllers
 
         #endregion
 
-        #region ///ISLI编码申请管理
+        #region ///MPR编码审核管理
+
+        /// <summary>
+        /// 分页方法显示
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public DataTable<Books> GetList(Page page)
+        {
+            return _books.BooksList(page);
+        }
         #endregion
     }
 }
