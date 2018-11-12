@@ -75,7 +75,6 @@ namespace ISLIClient.Controllers
             return View(str);
         }
 
-
         #region /// 封装显示
         public List<Books> GetBooks()
         {
