@@ -60,14 +60,14 @@
                     责任编辑:@Html.TextBoxFor(m => m.Editor)
                 </p>
                 <p>
-                    中图分类法:<select id="ChineseLibrary">
+                    中图分类法:<select name="ChineseLibrary">
                         <option value="艺术">艺术</option>
                         <option value="马克思">马克思</option>
                     </select>
                     出版日期：@Html.TextBoxFor(m => m.PublishDate)
                 </p>
                 <p>
-                    语种:<select id="Languages">
+                    语种:<select name="Languages">
                         <option value="简体中文">简体中文</option>
                         <option value="English">English</option>
                     </select>     制作日期:@Html.TextBoxFor(m => m.MakeDate)
@@ -76,7 +76,7 @@
                     出版者:@Html.TextBoxFor(m => m.Publisher)   关键字:@Html.TextBoxFor(m => m.KeyWord)
                 </p>
                 <p>
-                    出版地:<select id="PublishPlace">
+                    出版地:<select name="PublishPlace">
                         <option value="北京">北京</option>
                         <option value="上海">上海</option>
                     </select>   图幅数:@Html.TextBoxFor(m => m.NumberOfGraohs)
