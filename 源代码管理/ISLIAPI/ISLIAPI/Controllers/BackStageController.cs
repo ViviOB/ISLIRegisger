@@ -20,15 +20,12 @@ namespace ISLIAPI.Controllers
         private readonly IPublishApply _publishApply;
 
         private readonly IBooks _books;
-        public BackStageController(IPublishApply publishApply)
+        public BackStageController(IPublishApply publishApply, IBooks books)
         {
             _publishApply = publishApply;
-        }
-
-        public BackStageController(IBooks books)
-        {
             _books = books;
         }
+        
         #region ///出版单位管理
         /// <summary>
         /// 获取获取出版单位申请
@@ -111,6 +108,39 @@ namespace ISLIAPI.Controllers
         public DataTable<Books> GetList(Page page)
         {
             return _books.BooksList(page);
+        }
+
+        /// <summary>
+        /// 修改提交状态(成功)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public int UpdateBooksSbumissionStateToPass(Books books)
+        {
+            return _books.UpdateBooksSbumissionStateToPass(books);
+        }
+
+        /// <summary>
+        /// 修改提交状态(拒绝)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public int UpdateBooksSbumissionStateToDeny(Books books)
+        {
+            return _books.UpdateBooksSbumissionStateToDeny(books);
+        }
+
+        /// <summary>
+        /// 根据ID查找对象
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public Books BooksUpdateById(int id)
+        {
+            return _books.BooksUpdateById(id);
         }
         #endregion
     }

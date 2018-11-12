@@ -54,29 +54,13 @@ namespace ISLIClient.Controllers
             return JsonConvert.SerializeObject(list);
         }
 
-        #region /// 申请图书
-        public IActionResult ApplyBook()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public void ApplyBook(Books books)
-        {           
-            var json = WebApiHelper.GetApiResult("post","books", "AddBook", books);
-            int i = Convert.ToInt32(json);
-        }
-        #endregion
-
-        #region /// 详情
-        public IActionResult GeyById(int id)
+        public IActionResult GeyById(int id=1)
         {
             var json = GetBooks();
             var data= JsonConvert.DeserializeObject<DataTable<Books>>(json);
             var str = data.list.FirstOrDefault(m=>m.Id==id);
             return View(str);
         }
-        #endregion
 
         #region /// 封装显示
         public string GetBooks()
