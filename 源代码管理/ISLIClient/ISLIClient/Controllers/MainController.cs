@@ -199,6 +199,8 @@ namespace ISLIClient.Controllers
 
         #endregion
 
+        #region 方法
+
         /// <summary>
         /// 注册界面
         /// </summary>
@@ -237,6 +239,16 @@ namespace ISLIClient.Controllers
             RedisHelper.Remove("userinfo");
             Response.Redirect("/main/login");
         }
+        
+        /// <summary>
+        /// 服务条款
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult TOS() => View();
+
+        #endregion
+
+        #region Enum转list<selectlistitem>
 
         /// <summary>
         /// 获取省份
@@ -248,13 +260,6 @@ namespace ISLIClient.Controllers
             ViewBag.province = selectlistitem;
         }
 
-        /// <summary>
-        /// 服务条款
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult TOS() => View();
-
-        #region Enum转list<selectlistitem>
         /// <summary>
         /// 根据枚举生成下拉列表的数据源
         /// </summary>
@@ -303,6 +308,7 @@ namespace ISLIClient.Controllers
                 listItem.Add(new SelectListItem { Text = firstText, Value = firstValue });
             }
         }
+
         #endregion
     }
 }
