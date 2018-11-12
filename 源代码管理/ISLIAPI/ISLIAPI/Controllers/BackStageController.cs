@@ -20,15 +20,12 @@ namespace ISLIAPI.Controllers
         private readonly IPublishApply _publishApply;
 
         private readonly IBooks _books;
-        public BackStageController(IPublishApply publishApply)
+        public BackStageController(IPublishApply publishApply, IBooks books)
         {
             _publishApply = publishApply;
-        }
-
-        public BackStageController(IBooks books)
-        {
             _books = books;
         }
+        
         #region ///出版单位管理
         /// <summary>
         /// 获取获取出版单位申请
