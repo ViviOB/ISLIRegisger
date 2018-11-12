@@ -7,9 +7,15 @@ namespace ISLI.Model
     public class PublishApply
     {
         /// <summary>
+        /// 用户主键
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Publisher的主键
         /// </summary>
         public int PId { get; set; }
+
         /// <summary>
         /// 用户名
         /// </summary>

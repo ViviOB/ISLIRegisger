@@ -1,15 +1,16 @@
 body {
-  margin:0px;
-  background-position:center top;
-  background-repeat:no-repeat;
-  background-attachment:fixed;
-  background-size:cover;
-  position:static;
-  left:auto;
-  width:1440px;
-  margin-left:0;
-  margin-right:0;
-  text-align:left;
+    margin: 0px;
+    background-image: url('~/image/bg.jpg');
+    background-position:center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    position: static;
+    left: auto;
+    width: 1440px;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
 }
 #base {
   position:absolute;

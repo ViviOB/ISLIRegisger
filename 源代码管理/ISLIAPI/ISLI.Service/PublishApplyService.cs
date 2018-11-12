@@ -63,6 +63,48 @@ namespace ISLI.Service
                 return page;
             }
         }
-    }
 
+        /// <summary>
+        /// 修改提交状态(通过)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int UpdateSbumissionStateToPass(PublishApply publishApply)
+        {
+            using (SqlSugarClient db = BaseDB.GetClient())
+            {
+                var m = db.Updateable<User>().UpdateColumns(it => new User() { SubmissionState = 0 }).Where(it => it.Id == publishApply.PId).ExecuteCommand();
+                return m;
+            }
+        }
+
+        /// <summary>
+        /// 修改提交状态(拒绝)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int UpdateSbumissionStateToDeny(PublishApply publishApply)
+        {
+            using (SqlSugarClient db = BaseDB.GetClient())
+            {
+                var m = db.Updateable<User>().UpdateColumns(it => new User() { SubmissionState = 2 }).Where(it => it.Id == publishApply.PId).ExecuteCommand();
+                return m;
+            }
+        }
+
+        /// <summary>
+        /// 修改用户启用状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int UpdateEnableState(PublishApply publishApply)
+        {
+            using (SqlSugarClient db = BaseDB.GetClient())
+            {
+                //修改为冻结
+                var m = db.Updateable<User>().UpdateColumns(it => new User() { IsEnabled = 0 }).Where(it => it.Id == publishApply.PId).ExecuteCommand();
+                return m;
+            }
+        }
+    }
 }

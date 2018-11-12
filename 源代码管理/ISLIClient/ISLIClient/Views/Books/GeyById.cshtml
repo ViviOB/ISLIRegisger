@@ -1,0 +1,337 @@
+﻿
+@{
+    Layout = null;
+}
+@model ISLI.Model.Books
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    @*<link rel="stylesheet" href="./css/x-admin.css" media="all">*@
+    <link href="~/css/x-admin.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="x-body" style="margin:0 auto">
+        <form class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    状态
+                </label>
+                <div class="layui-input-inline">
+
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value=" @(Model.ApplyState==1?"已提交":"已通过")" disabled="" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    提交时间
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" value="@Model.ApplyDate" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    ISBN
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.ISBN" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    原出版物
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.BookName" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    测试时间
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="2017-01-10 16:33:45" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    处理状态
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="已查看" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    书的英文拼音
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.EnglishName" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    丛书名
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.Series" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    套书名
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.SeriesBooks" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    产品形式
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.ProductType" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    责任编辑
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.Editor" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    中图分类法
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.ChineseLibrary" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    出版日期
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.PublishDate" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    语种
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.Languages" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    制作日期
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.MakeDate" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    出版者
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.Publisher" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    关键字
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.KeyWord" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    出版地
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.PublishPlace" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    图幅数
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.NumberOfGraohs" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    著作者
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.Writer" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    出版标记
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.PublishMaket" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    印刷者
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.Printer" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    纸材
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.PaperWood" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    版本类型
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.VersionType" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    页数
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.PageCount" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    字数
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.WordCount" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    印色
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.Colour" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    内容摘要
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.Content" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    编码类型
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.CodeType" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    目标资源类型
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.TargetResource" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    服务商代码
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.ServiceCode" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    申请时间
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.ApplyDate" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    过期时间
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="username" required lay-verify="required"
+                           autocomplete="off" value="@Model.OverDate" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn">
+                    返回
+                </button>
+                
+            </div>
+        </form>
+    </div>
+    <script src="~/lib/layui/layui.js"></script>
+    <script src="./lib/layui/layui.js" charset="utf-8">
+        </script>
+    <script src="~/js/x-layui.js"></script>
+    <script src="./js/x-layui.js" charset="utf-8">
+        </script>
+</body>
+
+</html>
