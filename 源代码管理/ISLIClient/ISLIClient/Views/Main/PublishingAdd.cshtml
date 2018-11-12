@@ -21,7 +21,7 @@
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
     <script src="~/js/jquery-form.js"></script>
-    <script src="~/layer/mobile/layer.js"></script>
+    <script src="~/layer/layer.js"></script>
     <style>
 
         .detailBox dl dd input[type="checkbox"] {
@@ -377,7 +377,7 @@
                 </dl>
                 <div class="servicesBtn servicesBtnL centerButton" id="show2">
                     <input type="button" name="next" value="下一步" class="btnOk" />
-                    <input type="button" name="leave" value="稍后再说" class="btnBackh ml-15" />
+                    <input type="button" name="leave" value="稍后再说" class="btnBackh ml-15" onclick="location.href='/main/register'"/>
                 </div>
             </div>
             <div id="certify" class="regisBox detailBox ">
@@ -423,6 +423,7 @@
     <script>
         var publicationtest = "";
         $(function () {
+            tos_show("服务条款",);
             $("#certify").hide();
             $("[name='submit']").click(function () {
                 var username = $("#username").val();
@@ -642,6 +643,17 @@
 
         function checkselect(res) {
             publicationtest = publicationtest + "、" + res.value;
+        }
+
+        /*服务条款显示*/
+        function tos_show(title) {
+            layer.open({
+                type: 2,
+                title: title,
+                area: ['1280px','682px'],
+                content: "/main/TOS",
+                closeBtn: false
+            })
         }
     </script>
 </body>

@@ -21,7 +21,7 @@
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
     <script src="~/js/jquery-form.js"></script>
-    <script src="~/layer/mobile/layer.js"></script>
+    <script src="~/layer/layer.js"></script>
     <script src="~/lib/jquery/jquery.unobtrusive-ajax.js"></script>
     <style>
 
@@ -255,6 +255,7 @@
 
 
         $(function () {
+            tos_show("服务条款");
 
             $("#certify").hide();
 
@@ -422,6 +423,18 @@
             else if (res.value == 2) {
                 $("#certify").find("dl").eq(1).find("dt").html('<span class="red">*</span>营业执照')
             }
+        }
+
+
+        /*服务条款显示*/
+        function tos_show(title) {
+            layer.open({
+                type: 2,
+                title: title,
+                area: ['1280px', '682px'],
+                content: "/main/TOS",
+                closeBtn: false
+            })
         }
     </script>
 </body>

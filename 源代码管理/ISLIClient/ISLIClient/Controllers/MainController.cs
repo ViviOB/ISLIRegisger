@@ -263,6 +263,15 @@ namespace ISLIClient.Controllers
             ViewBag.province = selectlistitem;
         }
 
+        /// <summary>
+        /// 服务条款
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult TOS()
+        {
+            return View();
+        }
+
         #region Enum转list<selectlistitem>
         /// <summary>
         /// 根据枚举生成下拉列表的数据源
