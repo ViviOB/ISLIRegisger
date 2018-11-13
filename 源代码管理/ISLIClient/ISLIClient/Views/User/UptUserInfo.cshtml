@@ -13,42 +13,42 @@
     <script src="~/Vue/vue.js"></script>
 </head>
 <body>
-    <div id="app" v-for="item in dataList" v-bind:key="item.id">
+    <div id="app">
         <div style="width:100%;height:50px;background-color:darkgrey;text-align:center;line-height:50px;">
             <span>账号信息</span>
         </div>
         <div style="width:100%;height:100px;text-align:center;line-height:50px;">
-            <span>账号ID</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.id}}</span><br />
+            <span>账号ID</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.Id}}</span><br />
             <span>服务商类型</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>技术服务商</span><br />
         </div>
         <div style="width:100%;height:50px;background-color:darkgrey;text-align:center;line-height:50px;">
             <span>申请人信息</span>
         </div>
         <div style="width:100%;height:200px;text-align:center;line-height:50px;">
-            <span>申请人邮箱</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.applicantEmail}}</span><br />
-            <span>申请人姓名</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.applicantName}}</span><br />
-            <span>联系电话（办公）</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.contactNumber}}</span><br />
-            <span>联系电话（手机）</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.cellPhone}}</span><br />
+            <span>申请人邮箱</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.ApplicantEmail}}</span><br />
+            <span>申请人姓名</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.ApplicantName}}</span><br />
+            <span>联系电话（办公）</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.ContactNumber}}</span><br />
+            <span>联系电话（手机）</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.CellPhone}}</span><br />
         </div>
         <div style="width:100%;height:50px;background-color:darkgrey;text-align:center;line-height:50px;">
             <span>技术服务商信息</span>
         </div>
         <div style="width:100%;height:450px;text-align:center;line-height:50px;">
-            <span>企业名称</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.companyName}}</span><br />
-            <span>注册地址</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.registrationAddres}}</span><br />
-            <span>注册地址邮编</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.postcode}}</span><br />
-            <span>注册地行政区域代码</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.registrationCode}}</span><br />
-            <span>统一社会信用代码</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.creditCode}}</span><br />
-            <span>法人代表姓名</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.representativeName}}</span><br />
-            <span>联系人姓名</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.contactName}}</span><br />
-            <span>联系人电话</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.contactPhone}}</span><br />
-            <span>联系人邮箱</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.contactEmail}}</span><br />
+            <span>企业名称</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.CompanyName}}</span><br />
+            <span>注册地址</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.RegistrationAddres}}</span><br />
+            <span>注册地址邮编</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.Postcode}}</span><br />
+            <span>注册地行政区域代码</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.RegistrationCode}}</span><br />
+            <span>统一社会信用代码</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.CreditCode}}</span><br />
+            <span>法人代表姓名</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.RepresentativeName}}</span><br />
+            <span>联系人姓名</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.ContactName}}</span><br />
+            <span>联系人电话</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.ContactPhone}}</span><br />
+            <span>联系人邮箱</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.ContactEmail}}</span><br />
         </div>
         <div style="width:100%;height:50px;background-color:darkgrey;text-align:center;line-height:50px;">
             <span>企业资质证明</span>
         </div>
         <div style="width:100%;height:100px;text-align:center;line-height:50px;">
-            <span>统一社会信用代码</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{item.qualificationId}}</span><br />
+            <span>统一社会信用代码</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>{{info.QualificationId}}</span><br />
         </div>
     </div>
 </body>
@@ -57,7 +57,7 @@
     var app = new Vue({
         el: '#app',
         data: {
-            datalist:""
+            info: ""
         },
         mounted: function () {
             var that = this;
@@ -66,7 +66,8 @@
                 url: "/User/UserInfo"
             })
                 .then(function (res) {
-                    that.datalist = res.data;
+                    that.info = res.data;
+                    console.log(that.info)
                 })
         },
     })
