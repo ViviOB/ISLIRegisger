@@ -12,18 +12,9 @@ namespace ISLIClient.Controllers
     public class AuthorizationController : Controller
     {
 
-        #region ///出版单位申请管理
+       
 
-        /// <summary>
-        /// 分页方法
-        /// </summary>
-        /// <returns></returns>
-        public List<PublishApply> Paging()
-        {
-            string json = WebApiHelper.GetApiResult("get", "BackStage", "Paging", null);
-            var paging = JsonConvert.DeserializeObject<List<PublishApply>>(json);
-            return paging;
-        }
+        #region ///出版单位申请管理
 
         /// <summary>
         /// 出版单位申请管理页面
@@ -31,9 +22,24 @@ namespace ISLIClient.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            string json = WebApiHelper.GetApiResult("post", "BackStage", "GetPublishApplysList", null);
-            var list = JsonConvert.DeserializeObject<List<PublishApply>>(json);
-            return View(list);
+            //string json = WebApiHelper.GetApiResult("post", "BackStage", "GetPublishApplysList", null);
+            //var list = JsonConvert.DeserializeObject<List<PublishApply>>(json);
+            //return View(list);
+            return View();
+        }
+
+        /// <summary>
+        /// 分页方法
+        /// </summary>
+        /// <returns></returns>
+        public string Paging(PageParams pageParams)
+        {
+            string json = WebApiHelper.GetApiResult("post", "BackStage", "Paging", pageParams);
+            //var paging = JsonConvert.DeserializeObject<PageResult<PublishApply>>(json);
+            //ViewBag.totalCount = paging.TotalCount;
+            //ViewBag.totalPage = paging.TotalPage;
+            //ViewBag.Index = pageParams.PageIndex;
+            return json;
         }
 
         /// <summary>

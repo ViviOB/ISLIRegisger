@@ -34,7 +34,7 @@ namespace ISLI.IService
         /// <param name="pageSize"></param>
         /// <param name="totalCount"></param>
         /// <returns></returns>
-        List<PublishApply> Paging(int pageIndex, int pageSize, int totalCount);
+        PageResult<PublishApply> Paging(PageParams pageParams);
 
         /// <summary>
         /// 修改提交状态（通过）
