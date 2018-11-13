@@ -26,5 +26,11 @@ namespace ISLI.IService
         /// <param name="user"></param>
         /// <returns></returns>
         int UpdateUserPwd(User user);
+
+        /// <summary>
+        /// 下拉显示服务商代码
+        /// </summary>
+        /// <returns></returns>
+        List<UserInfo> GetFacilitators();
     }
 }

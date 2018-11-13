@@ -56,5 +56,15 @@ namespace ISLIAPI.Controllers
             return i;
         }
 
+        /// <summary>
+        /// 下拉显示
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public List<UserInfo> GetUsersItem()
+        {
+            var i = _userInformation.GetFacilitators();
+            return i;
+        }
     }
 }

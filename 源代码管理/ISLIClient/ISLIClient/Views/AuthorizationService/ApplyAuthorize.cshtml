@@ -1,0 +1,181 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+@model ISLI.Model.PublishApply
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>引导注册页</title>
+    <link href="~/resources/css/common.css" rel="stylesheet" />
+    <link href="~/resources/css/portal/common.css" type="text/css" rel="stylesheet" />
+    <link href="~/resources/css/zh_CN.css" type="text/css" rel="stylesheet" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="bookmark" type="image/x-icon" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script src="~/resources/js/jquery.js" type="text/javascript"></script>
+    <script src="~/resources/commons/jquery.validate.js" type="text/javascript"></script>
+    <script src="~/resources/js/validatePlugin.js" type="text/javascript"></script>
+    <script src="~/resources/js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="~/resources/js/message_zh_CN.js"></script>
+    <script src="~/layer/2.4/layer.js"></script>
+    <style>
+        .detailBox dl dd input[type="checkbox"] {
+            margin-right: 0;
+        }
+
+        .mr10 {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="publisherApplyForm">  
+        <div class="container">
+            <div class="adminConent passwordReset">
+                <div class="regisBox detailBox " id="publis">
+                    <h3 class="passP boldp">
+                        新增服务商授权
+                    </h3>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            服务字段码：
+                        </dt>
+                        <dd>
+                            <input id="ServiceField" type="text" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            产品编码：
+                        </dt>
+                        <dd>
+                            <input id="ProductCode" type="text" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            出版单位名称：
+                        </dt>
+                        <dd>
+                            <input id="EntityChinese" type="text" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            产品类型：
+                        </dt>
+                        <dd>
+                            <input id="ApplicantName" type="text" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            关联位置编码段：
+                        </dt>
+                        <dd>
+                            <input id="PositionCodeA" type="text" style="width:80px" />
+                            <input id="PositionCodeB" type="text" style="width:80px" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            服务商名称：
+                        </dt>
+                        <dd>
+                            <input id="CompanyName" type="text"/>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            服务商代码：
+                        </dt>
+                        <dd>
+                            <select id="ProviderCode">
+                                <option value="">请选择</option>
+
+                            </select>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt style="width:35%;">
+                            <input id="Submit" type="button" value="提交" class="btnBackh ml-5" />
+                            <input type="button" name="leave" value="返回" class="btnBackh ml-15" onclick="location.href='/AuthorizationService/AuthorizationService'" />
+                        </dt>
+                    </dl>
+
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+        $(function () {
+
+            $.ajax({
+                url: "/AuthorizationService/GetUsers",
+                type: "get",
+                success: function (data) {
+                    for (var i in data) {
+                        $("#ProviderCode").append("<option value=" + data[i].userInfoId + ">" + data[i].companyName + "</option>")
+                       }                   
+                    }
+                
+            })
+
+            $("#Submit").click(function () {
+                var servicefield = $("#ServiceField").val();
+                var productcode = $("#ProductCode").val();
+                var applicantname = $("#ApplicantName").val();
+                var positioncodeA = $("#PositionCodeA").val();
+                var positioncodeB = $("#PositionCodeB").val();
+                var providercode = $("#ProviderCode").val();
+                var entitychinese = $("#EntityChinese").val();
+                var companyname = $("#CompanyName").val();
+
+                $.ajax({
+                    url: "/AuthorizationService/ApplyAuthorize",
+                    type: "post",
+                    data: {
+                        ISLICode: positioncodeA + "-" + positioncodeB,
+                        ProviderCode: providercode,
+                        EntityChinese: entitychinese,
+                        AuthorizationState: 1,
+                        CompanyName: companyname,
+                        ApplicantName: applicantname,
+                        ServiceField: servicefield,
+                        ProductCode: productcode,
+                        PositionCodeA: positioncodeA,
+                        PositionCodeB: positioncodeB,
+                        PositionCodeB: positioncodeA, positioncodeB,
+                        Publisher: 2,
+                        Qualification:1
+
+                    },
+                    success: function (data) {
+                        if (data > 0) {
+                            layer.msg(data.msg, { icon: 1, shade: 0.4 }, function () {
+                                layer.alert("提交成功！");
+                                location.href = '/AuthorizationService/AuthorizationService';
+                            });           
+                        }
+                    }
+
+                })
+            })
+        })   
+      
+    </script>
+</body>
+
+</html>
