@@ -46,8 +46,6 @@ namespace ISLIClient.Controllers
             return result;
         }
 
-
-
         /// <summary>
         ///查看 
         /// </summary>
@@ -58,6 +56,12 @@ namespace ISLIClient.Controllers
             var list = JsonConvert.DeserializeObject<List<Adhibition>>(WebApiHelper.GetApiResult("get", "Facilitator", "GetList", null));
             Adhibition adhibition = list.Find(m => m.Id == id);
             return View(adhibition);
+        }
+
+
+        public IActionResult AddAdhibition()
+        {
+            return View();
         }
     }
 }

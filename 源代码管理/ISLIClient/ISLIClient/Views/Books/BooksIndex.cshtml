@@ -67,8 +67,8 @@
         <div class="page" v-show="show">
             <div class="pagelist">
                 <span class="jump">上一页</span> <span class="jump">1</span> <span class="jump">2</span> <span class="jump">3</span> <span class="ellipsis">...</span> <span class="jump">下一页</span> <span class="jumppoint">跳转到：</span> <span class="jumpinp">
-                    <input type="text" id="pages">
-                </span> <span class="jump gobtn"><a href="javascript:;" >GO</a></span>
+                    <input type="text" v-model="gotopage">
+                </span> <span class="jump gobtn" v-on:click="goto">GO</span>
             </div>
         </div>
     </div>
@@ -105,7 +105,8 @@
             data: {
                 info: null,
                 count: 0,
-                strSearch:""
+                strSearch:"",
+                gotopage:1
             },
             mounted: function () {
                 var that = this;
@@ -115,31 +116,47 @@
                 }).then(function (res) {
                     that.info = res.data.list;
                     that.count = res.data.counts;
-               })
+                })
             },
             methods: {
                 check: function () {
                     var that = this;
-                    var parm = new URLSearchParams();
-                  //  var strSearch = $("#Text1").val();
-                    parm.append("str", this.strSearch);
                     axios({
                         method: "post",
                         url: '/Books/BookSearch/',
-                        data: parm
+                        params: { 'str': that.strSearch }
                     }).then(function (res) {
                         that.info = res.data.list;
                         that.count = res.data.counts;
                     })
                 },
                 data_management_look(title, url, w, h) {
-                     x_admin_show(title, url, w, h)
+                    x_admin_show(title, url, w, h)
                 },
                 role_management_look(title, url, id, w, h) {
                     x_admin_show(title, url, w, h)
-                }
+                },
+                goto: function () {
+                    var that = this;
+                    alert(1)
+                    if (that.gotopage > 0 && that.gotopage <= that.count) {
+                        axios({
+                            method: "post",
+                            url: "/Books/PageLisst",
+                            params: { 'index': that.gotopage }
+                        }).then(function (res) {
+                            console.log(res.data);
+                            that.info = res.data.list;
+                            that.count = res.data.counts;
+                        })
+                    }
+                    else {
+                        alert("请输入正确的页码")
+                    }
 
+                }
             }
+        
         })
     </script>
 </body>

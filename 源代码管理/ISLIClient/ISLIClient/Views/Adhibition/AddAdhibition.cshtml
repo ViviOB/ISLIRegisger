@@ -1,0 +1,602 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model ISLI.Model.Adhibition
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>引导注册页</title>
+    <link href="~/resources/css/common.css" rel="stylesheet" />
+    <link href="~/resources/css/portal/common.css" type="text/css" rel="stylesheet" />
+    <link href="~/resources/css/zh_CN.css" type="text/css" rel="stylesheet" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="bookmark" type="image/x-icon" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="~/resources/images/favicon.ico" mce_href="~/resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script src="~/resources/js/jquery.js" type="text/javascript"></script>
+    <script src="~/resources/commons/jquery.validate.js" type="text/javascript"></script>
+    <script src="~/resources/js/validatePlugin.js" type="text/javascript"></script>
+    <script src="~/resources/js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="~/resources/js/message_zh_CN.js"></script>
+    <script src="~/js/jquery.js"></script>
+    <style>
+
+        .detailBox dl dd input[type="checkbox"] {
+            margin-right: 0;
+        }
+
+        .mr10 {
+            margin-right: 10px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#div_pic").show();
+            $("#div_audio").hide();
+            $("#div_video").hide();
+            $("#div_richtext").hide();
+            $("#Select1").change(function () {
+              
+                var item = $("#Select1").val();
+                if (item == "1") {
+                    $("#div_pic").show();
+                    $("#div_audio").hide();
+                    $("#div_video").hide();
+                    $("#div_richtext").hide();
+                }
+                if (item == "2") {
+                    $("#div_pic").hide();
+                    $("#div_audio").show();
+                    $("#div_video").hide();
+                    $("#div_richtext").hide();
+                }
+                if (item == "3") {
+                    $("#div_pic").hide();
+                    $("#div_audio").hide();
+                    $("#div_video").show();
+                    $("#div_richtext").hide();
+                }
+                if (item == "4") {
+                    $("#div_pic").hide();
+                    $("#div_audio").hide();
+                    $("#div_video").hide();
+                    $("#div_richtext").show();
+                }
+            })
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <form id="publisherApplyForm">
+        <div class="container">
+            <div class="adminConent passwordReset">
+                <div class="regisBox detailBox " id="publis">
+                    <h3 class="passP boldp">
+                        服务编码元数据
+                    </h3>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            服务编码：
+                        </dt>
+                        <dd>
+                            <input id="Text1" type="text" value="000" />
+                            <select name="code">
+                                <option value="0001">0001</option>
+                                <option value="0002">0002</option>
+                            </select>
+                            <div></div>
+                        </dd>
+                    </dl>
+                    <h3 class="passP boldp">
+                        关联编码远信息
+                    </h3>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            ISLI编码：
+                        </dt>
+                        <dd>
+                            <input name="code1" type="text" style="width:70px"/>-<input name="code2" type="text" style="width:70px"/>-
+                            <input name="code3" type="text" style="width:70px"/>-<input name="code4" type="text" style="width:70px"/>
+                        </dd>
+                    </dl>                 
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            源类型：
+                        </dt>
+                        <dd>
+                            <input name="TargetId" type="text" value="图书" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>
+                            源名称：
+                        </dt>
+                        <dd>
+                            <select name="SourceName">
+                                <option></option>
+
+                            </select>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>目标名称：
+                        </dt>
+                        <dd>
+                            <input name="SourceFragment" type="text" />
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span class="red">*</span>目标资源类型：
+                        </dt>
+                        <dd>
+                            <select id="Select1">
+                                <option value="0">-请选择-</option>
+                                <option value="1" selected>-图片-</option>
+                                <option value="2">-音频-</option>
+                                <option value="3">-视频-</option>
+                                <option value="4">-富文本作品-</option>
+                            </select>
+                        </dd>
+                    </dl>
+                    <div id="div_pic">
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>名称：
+                            </dt>
+                            <dd>
+                                <input id="TypeName" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>作者：
+                            </dt>
+                            <dd>
+                                <input id="Author" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>主题：
+                            </dt>
+                            <dd>
+                                <input id="Theme" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>图片分类：
+                            </dt>
+                            <dd>
+                                <input id="Classification" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>色彩：
+                            </dt>
+                            <dd>
+                                <input id="Color" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>分辨率：
+                            </dt>
+                            <dd>
+                                <input name="Resolution" type="text" style="width:70px" />
+                                <select id="ResolutionType">
+                                    <option>请选择分辨率类型</option>
+                                    <option value="像素/厘米">像素/厘米</option>
+                                    <option value="像素/英寸">像素/英寸</option>
+                                </select>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>像素大小：
+                            </dt>
+                            <dd>
+                                <input id="PixelSizeX" type="text" style="width:60px"/>像素x <input name="PixelSizeY" type="text" style="width:60px" />像素
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>文件格式：
+                            </dt>
+                            <dd>
+                                <input id="FileFormat" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>大小：
+                            </dt>
+                            <dd>
+                                <input id="FileSize" type="text" />
+                            </dd>
+                        </dl>
+                    </div>
+                    <div id="div_audio">
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>名称：
+                            </dt>
+                            <dd>
+                                <input id="TypeName" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>创建者：
+                            </dt>
+                            <dd>
+                                <input id="Creator" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>责任方式：
+                            </dt>
+                            <dd>
+                                <input id="Responsibility" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>主题：
+                            </dt>
+                            <dd>
+                                <input id="Theme" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>音乐载体：
+                            </dt>
+                            <dd>
+                                <select id="MusicGenre">
+                                    <option value="声乐">声乐</option>
+                                    <option value="器乐">器乐</option>
+                                    <option value="戏剧">戏剧</option>
+                                </select>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>出版者：
+                            </dt>
+                            <dd>
+                                <input id="Publisher" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>出版地：
+                            </dt>
+                            <dd>
+                                <input id="PublisherPlace" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                制作者：
+                            </dt>
+                            <dd>
+                                <input id="Maker" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>其他责任者：
+                            </dt>
+                            <dd>
+                                <input id="OtherResponsible" type="text" />
+                            </dd>>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>责任方式：
+                            </dt>
+                            <dd>
+                                <input id="OtherResponsibility" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                创建日期：
+                            </dt>
+                            <dd>
+                                <input id="CreationDate" type="datetime" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                发布日期：
+                            </dt>
+                            <dd>
+                                <input id="ReleaseDate" type="datetime" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                格式：
+                            </dt>
+                            <dd>
+                                <input id="Format" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>篇幅：
+                            </dt>
+                            <dd>
+                                <input id="Space" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                载体：
+                            </dt>
+                            <dd>
+                                <select id="Carrier">
+                                    <option value="磁带">磁带</option>
+                                    <option value="录音带">录音带</option>
+                                </select>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>标识符：
+                            </dt>
+                            <dd>
+                                <input id="Identifier" type="text" placeholder="http://static.wassk.cn/Myftp/2017122616570773335.mp3" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                语种：
+                            </dt>
+                            <dd>
+                                <select id="LanguageId">
+                                    <option value="1">英文</option>
+                                    <option value="2">中文</option>
+                                    <option value="3">韩文</option>
+                                </select>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div id="div_video">
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>名称：
+                            </dt>
+                            <dd>
+                                <input id="TypeName" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>创建者：
+                            </dt>
+                            <dd>
+                                <input id="Creator" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>主题：
+                            </dt>
+                            <dd>
+                                <input id="Theme" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                摘要/描述：
+                            </dt>
+                            <dd>
+                                <input id="Desription" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>出版者：
+                            </dt>
+                            <dd>
+                                <input id="Publisher" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                出版地：
+                            </dt>
+                            <dd>
+                                <input id="PublisherPlace" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                创建日期：
+                            </dt>
+                            <dd>
+                                <input id="CreationDate" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                发布日期：
+                            </dt>
+                            <dd>
+                                <input id="ReleaseDate" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>格式：
+                            </dt>
+                            <dd>
+                                <select id="Format">
+                                    <option value="Mp4">Mp4</option>
+                                    <option value="其他">...</option>
+
+                                </select>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>标识符：
+                            </dt>
+                            <dd>
+                                <input id="Identifier" type="text" placeholder="http://www.wassk.cn/Myftp/upload/20151230095422634.mp4"/>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>语种：
+                            </dt>
+                            <dd>
+                                <select id="LanguageId">
+                                    <option value="1">对白语种</option>
+                                    <option value="2">屏幕语种</option>
+                                </select>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                压缩比率：
+                            </dt>
+                            <dd>
+                                <input id="CompressionRatio" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                相关资源：
+                            </dt>
+                            <dd>
+                                <input id="RelatedResources" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>片长：
+                            </dt>
+                            <dd>
+                                <input id="VideoLength" type="text" placeholder="1分21秒"/>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                色彩：
+                            </dt>
+                            <dd>
+                                <input id="Color" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>大小：
+                            </dt>
+                            <dd>
+                                <input id="FileSize" type="text"placeholder="5.17MB" />
+                            </dd>
+                        </dl>
+                    </div>
+                    <div id="div_richtext">
+                        <dl>
+                            <dt>
+                                <span class="red">*</span>名称：
+                            </dt>
+                            <dd>
+                                <input id="TypeName" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                简介：
+                            </dt>
+                            <dd>
+                                <input id="Introduction" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                分类：
+                            </dt>
+                            <dd>
+                                <input id="Classification" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                标签：
+                            </dt>
+                            <dd>
+                                <input id="TextLabel" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                资源清单：
+                            </dt>
+                            <dd>
+                                <input id="ResourceList" type="text" />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                大小：
+                            </dt>
+                            <dd>
+                                <input id="FileSize" type="text" />
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="servicesBtn servicesBtnL centerButton" id="show2">
+                    <input type="button" name="leave" value="返回" class="btnBackh ml-15" onclick="location.href='/authorization/index'" />
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+        $(function () {
+            $("input[name='next']").click(function () {
+                $("#publis").prop("hidden", "hidden")
+                $("#certify").prop("hidden", "")
+                $("[class='ml91']").find("li").eq(0).removeClass('selected')
+                $("[class='ml91']").find("li").eq(1).addClass('selected')
+            })
+            $("input[name='last']").click(function () {
+                $("#certify").prop("hidden", "hidden")
+                $("#publis").prop("hidden", "")
+                $("[class='ml91']").find("li").eq(1).removeClass('selected')
+                $("[class='ml91']").find("li").eq(0).addClass('selected')
+            })
+        })
+        function radioselect(res) {
+            console.log(res.value)
+            if (res.value == 1) {
+                $("#certify").find("dl").eq(1).find("dt").html('<span class="red">*</span>出版物资质证明')
+            }
+            else if (res.value == 2) {
+                $("#certify").find("dl").eq(1).find("dt").html('<span class="red">*</span>营业执照')
+            }
+        }
+    </script>
+</body>
+
+</html>
