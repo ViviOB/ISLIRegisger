@@ -33,6 +33,7 @@ namespace ISLI.IService
         /// <param name="pcertificate"></param>
         /// <returns></returns>
         int AddUser(Facilitator_Qualification fqualification);
+
         /// <summary>
         /// 获取分页方法
         /// </summary>

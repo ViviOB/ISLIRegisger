@@ -30,7 +30,18 @@ namespace ISLI.Service
             UserInfo user1 = new UserInfo();
             try
             {
-                 user1 = db.Queryable<User>().Where(u => u.UserName == user.UserName && u.UserPwd == user.UserPwd).Select(a => new UserInfo { Id = a.Id, IsEnabled = a.IsEnabled, UserInfoId = a.UserInfoId, UserName = a.UserName, UserPwd = a.UserPwd, UserTypeId = a.UserTypeId }).Single();
+                if (user.UserTypeId == 1)
+                {
+                    user1 = db.Queryable<User, Publisher>((u, p) => u.UserInfoId == p.PId).Where(u => u.UserName == user.UserName && u.UserPwd == user.UserPwd && u.IsEnabled == 1 && u.SubmissionState == 2 && u.UserTypeId == user.UserTypeId).Select<UserInfo>().Single();
+                }
+                else if (user.UserTypeId == 2)
+                {
+                    user1 = db.Queryable<User, Facilitator>((u, f) => u.UserInfoId == f.Id).Where(u => u.UserName == user.UserName && u.UserPwd == user.UserPwd && u.IsEnabled == 1 && u.SubmissionState == 2 && u.UserTypeId == user.UserTypeId).Select<UserInfo>().Single();
+                }
+                else
+                {
+                    user1 = db.Queryable<User>().Where(u => u.UserName == user.UserName && u.UserPwd == user.UserPwd && u.IsEnabled == 1 && u.SubmissionState == 2 && u.UserTypeId == user.UserTypeId).Select<UserInfo>().Single();
+                }
                 //获取用户权限
                 user1.AuthList = db.Queryable<Role_Authority, Authority>((ra, a) => ra.AuthId == a.Id)
                     .Where(ra => ra.RoleId == user.UserTypeId).Select((ra, a) => new Authority { Id = a.Id, AuthName = a.AuthName, AuthUrl = a.AuthUrl, ParentId = a.ParentId }).ToList();

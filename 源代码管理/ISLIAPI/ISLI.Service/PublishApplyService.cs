@@ -10,6 +10,7 @@ namespace ISLI.Service
 {
     public class PublishApplyService : IPublishApply
     {
+        int totalCount = 0;
         /// <summary>
         /// 获取数据
         /// </summary>
@@ -55,13 +56,18 @@ namespace ISLI.Service
         /// <param name="pagesize"></param>
         /// <param name="totalCount"></param>
         /// <returns></returns>
-        public List<PublishApply> Paging(int pageIndex, int pageSize, int totalCount)
+        public PageResult<PublishApply> Paging(PageParams pageParams)
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
                // List<PublishApply> page = db.Queryable<PublishApply>().ToPageList(pageIndex, pageSize, ref totalCount);
-                var page = db.Queryable<User, Publisher>((st, sc) => new object[] {JoinType.Inner,st.UserInfoId==sc.PId}).Select<PublishApply>().ToPageList(pageIndex, pageSize, ref totalCount);
-                return page;
+                var page = db.Queryable<User, Publisher>((st, sc) => new object[] {JoinType.Inner,st.UserInfoId==sc.PId}).Select<PublishApply>().Where(st => st.UserTypeId == 2).ToPageList(pageParams.PageIndex, pageParams.PageSize, ref totalCount);
+                PageResult<PublishApply> pageResult = new PageResult<PublishApply>();
+                pageResult.TotalCount = totalCount;
+                int i = totalCount / pageParams.PageSize;
+                pageResult.TotalPage = totalCount % pageParams.PageSize == 0 ? i : i + 1;
+                pageResult.DataList = page;
+                return pageResult;
             }
         }
 

@@ -1,0 +1,236 @@
+﻿
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>用户管理</title>
+    <link href="~/css/x-admin.css" rel="stylesheet" />
+    <link href="~/css/pag.css" rel="stylesheet" />
+    <script src="~/js/jquery-1.11.0.min.js"></script>
+    <script src="~/Vue/axios.js"></script>
+    <script src="~/Vue/vue.js"></script>
+</head>
+<body>
+    <div class="x-nav">
+        <span class="layui-breadcrumb">
+            <a><cite>首页</cite></a>
+            <a><cite>档案管理</cite></a>
+        </span>
+        <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+            <i class="layui-icon" style="line-height:30px">ဂ</i>
+        </a>
+    </div>
+    <div class="x-body" id="app">
+        <form class="layui-form x-center" action="" style="width:85%">
+            <div class="layui-form-pane">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">ISLI编码</label>
+                    <div class="layui-input-inline" style="width:100px">
+                        <input type="text" name="name" placeholder="ISLI编码" autocomplete="off" class="layui-input" v-model="isliCode">
+                    </div>
+                    <label class="layui-form-label">服务商名称</label>
+                    <div class="layui-input-inline" style="width:100px">
+                        <input type="text" name="name" placeholder="服务商名称" autocomplete="off" class="layui-input" v-model="sourceName">
+                    </div>
+                    <label class="layui-form-label">分配时间</label>
+                    <div class="layui-input-inline" style="width:150px">
+                        <input type="text" name="name" placeholder="分配时间" autocomplete="off" class="layui-input" v-model="allocationTime">
+                    </div>
+                    <div class="layui-input-inline" style="width:200px">
+                        <input id="Button1" class="layui-btn" type="button" v-on:click="search" value="搜索" />
+                        <input id="Button2" class="layui-btn" type="button" value="新增授权" onclick="location.href='/AuthorizationService/ApplyAuthorize'"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <table class="tablelist">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>ISLI编码段 </th>
+                    <th>产品类型</th>
+                    <th>服务商代码</th>
+                    <th>服务商名称</th>
+                    <th>授权时间</th>
+                    <th>状态</th>
+                    <th> 操作 </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in dataList" v-bind:key="item.id">
+                    <td> {{item.id}}</td>
+                    <td> {{item.isliCode}}</td>
+                    <td> {{item.applicantName}}</td>
+                    <td> {{item.providerCode}}</td>
+                    <td> {{item.entityChinese}}</td>
+                    <td> {{item.authorizaionDate}}</td>
+                    <td> {{item.authorizationState==1?"已提交":"未提交"}}</td>
+                    <td class="td-manage">
+                        <a title="处理" href="javascript:;" v-on:click="data_management_look('查看', 'LookInfo?id='+item.id,'','510')"
+                           class="ml-5" style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="page">
+            <div class="pagelist">
+                @*<span class="ellipsis">...</span>*@
+                <span class="jump" v-on:click="prevpage">上一页</span>
+                <span v-for="page in totalPage">
+                    <span class="jump pagechecked" v-if="page==currpage">{{page}}</span>
+                    <span class="jump" v-else v-on:click="thispage(page)">{{page}}</span>
+                </span>
+
+                <span class="jump" v-on:click="nextpage">下一页</span>
+                <span class="jumppoint"> 共 {{totalCount}} 条，共 {{totalPage}} 页 跳转到：</span>
+                <span class="jumpinp">
+                    <input type="text" v-model="gotopage">
+                </span>
+                <span class="jump gobtn" v-on:click="goto">GO</span>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <script src="~/lib/layui/layui.js"></script>
+    <script src="~/js/x-layui.js"></script>
+    <script src="~/js/js.js"></script>
+    <script src="~/js/jquery2.js"></script>
+    <script>
+        layui.use(['element', 'laypage', 'layer', 'form'], function () {
+            $ = layui.jquery;//jquery
+            lement = layui.element();//面包导航
+            laypage = layui.laypage;//分页
+            layer = layui.layer;//弹出层
+            form = layui.form();//弹出层
+        });
+        // 编辑
+        function data_management_look(title, url, id, w, h) {
+            x_admin_show(title, url, id, w, h);
+        }
+    </script>
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+        var app = new Vue({
+            el: '#app',
+            data: {
+                dataList: null,
+                totalCount: 0,
+                totalPage: 0,
+                currpage: 1,
+                gotopage: 1,
+                isliCode: "",
+                sourceName: "",
+                allocationTime: ""
+            },
+            mounted: function () {
+                var that = this;
+                axios({
+                    method: "get",
+                    url: "/AuthorizationService/GetList"
+                })
+                    .then(function (res) {
+                        console.log(res.data)
+                        that.dataList = res.data.dataList;
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                    })
+            },
+            methods: {
+                data_management_look: function (title, url, w, h) {
+                    x_admin_show(title, url, w, h);
+                },
+                prevpage: function () {
+                    var that = this;
+                    if (that.currpage > 1) {
+                        that.currpage -= 1;
+                        axios({
+                            method: "get",
+                            url: "/AuthorizationService/GetList",
+                            params: { 'PageIndex': that.currpage, 'isliCode': that.isliCode, 'sourceName': that.sourceName, 'allocationTime': that.allocationTime }
+                        }).then(function (res) {
+                            console.log(res.data)
+                            that.dataList = res.data.dataList;
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                        })
+                    }
+
+
+                },
+                nextpage: function () {
+                    var that = this;
+                    if (that.currpage < that.totalCount) {
+                        that.currpage += 1;
+                        axios({
+                            method: "get",
+                            url: "/AuthorizationService/GetList",
+                            params: { 'PageIndex': that.currpage, 'isliCode': that.isliCode, 'sourceName': that.sourceName, 'allocationTime': that.allocationTime}
+                        }).then(function (res) {
+                            console.log(res.data)
+                            that.dataList = res.data.dataList;
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                        })
+                    }
+
+
+                },
+                thispage: function (page) {
+                    var that = this;
+                    that.currpage = page;
+                    axios({
+                        method: "get",
+                        url: "/AuthorizationService/GetList",
+                        params: { 'PageIndex': that.currpage, 'isliCode': that.isliCode, 'sourceName': that.sourceName, 'allocationTime': that.allocationTime }
+                    }).then(function (res) {
+                        console.log(res.data)
+                        that.dataList = res.data.dataList;
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                    })
+                },
+                search: function () {
+                    var that = this;
+                    that.currpage = 1;
+                    axios({
+                        method: "get",
+                        url: "/AuthorizationService/GetList",
+                        params: { 'PageIndex': that.currpage, 'isliCode': that.isliCode, 'sourceName': that.sourceName, 'allocationTime': that.allocationTime }
+                    }).then(function (res) {
+                        console.log(res.data)
+                        that.dataList = res.data.dataList;
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                    })
+                },
+                goto: function () {
+                    var that = this;
+                    if (that.gotopage > 0 && that.gotopage <= that.totalPage) {
+                        axios({
+                            method: "get",
+                            url: "/AuthorizationService/GetList",
+                            params: { 'PageIndex': that.gotopage, 'isliCode': that.isliCode, 'sourceName': that.sourceName, 'allocationTime': that.allocationTime }
+                        }).then(function (res) {
+                            console.log(res.data)
+                            that.currpage = that.gotopage;
+                            that.dataList = res.data.dataList;
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                        })
+                    }
+                    else {
+                        alert("请输入正确的页码")
+                    }
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>

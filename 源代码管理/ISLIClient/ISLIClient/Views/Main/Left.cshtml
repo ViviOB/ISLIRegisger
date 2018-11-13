@@ -23,27 +23,28 @@
                     <img class="icon2" src="~/images/coin02.png" />&nbsp;&nbsp;首页
                 </div>
             </a>
-            @if(ViewBag.LoginInfo.AuthList != null)
+            @if (ViewBag.LoginInfo.AuthList != null)
             {
-                IEnumerable<ISLI.Model.Authority> menuList =ViewBag.LoginInfo.AuthList;
+                IEnumerable<ISLI.Model.Authority> menuList = ViewBag.LoginInfo.AuthList;
                 foreach (var item in menuList.Where(n => n.ParentId == 0))
                 {
-            <dl id="menu-product">
-                <dt>
-                    @item.AuthName
-                    <img class="icon3" src="~/images/coin19.png" />
-                    <img class="icon4" src="~/images/coin20.png" />
-                </dt>
-                <dd>
-                    @foreach (var twoMenu in menuList.Where(n => n.ParentId == item.Id))
-                                {
-                    <img class="coin11" src="~/images/coin111.png" />
-                    <img class="coin22" src="~/images/coin222.png" />
-                    <a href="@twoMenu.AuthUrl" target="main" class="cks">@twoMenu.AuthName</a>
-                    <img class="icon5" src="~/images/coin21.png" />
-                                }
-                </dd>
-            </dl>
+                    <dl id="menu-product">
+                        <dt>
+                            @item.AuthName
+                            <img class="icon3" src="~/images/coin19.png" />
+                            <img class="icon4" src="~/images/coin20.png" />
+                        </dt>
+                        @foreach (var twoMenu in menuList.Where(n => n.ParentId == item.Id))
+                        {
+                            <dd>
+                                <img class="coin11" src="~/images/coin111.png" />
+                                <img class="coin22" src="~/images/coin222.png" />
+                                <a href="@twoMenu.AuthUrl" target="main" class="cks">@twoMenu.AuthName</a>
+                                <img class="icon5" src="~/images/coin21.png" />
+
+                            </dd>
+                        }
+                    </dl>
                 }
             }
         </div>

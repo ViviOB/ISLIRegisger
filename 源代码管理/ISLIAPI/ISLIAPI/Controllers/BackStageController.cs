@@ -54,9 +54,10 @@ namespace ISLIAPI.Controllers
         /// <param name="pageSize"></param>
         /// <param name="totalCount"></param>
         /// <returns></returns>
-        public List<PublishApply> Paging(int pageIndex = 1, int pageSize = 1, int totalCount = 0)
+        [HttpPost]
+        public PageResult<PublishApply> Paging(PageParams pageParams)
         {
-            return _publishApply.Paging(pageIndex, pageSize, totalCount);
+            return _publishApply.Paging(pageParams);
         }
 
         /// <summary>

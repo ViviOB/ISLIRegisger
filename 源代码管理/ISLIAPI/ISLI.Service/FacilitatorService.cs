@@ -99,7 +99,7 @@ namespace ISLI.Service
             {
                 User user = new User()
                 {
-                    IsEnabled = 0,
+                    IsEnabled = 1,
                     SubmissionState = 1,
                     UserInfoId = fqualification.UserInfoId,
                     UserName = fqualification.UserName,

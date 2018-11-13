@@ -32,5 +32,29 @@ namespace ISLIAPI.Controllers
             var list = _authorization.AuthorizeList();
             return list;
         }
+
+        /// <summary>
+        /// 提交授权
+        /// </summary>
+        /// <param name="authorize"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public int AddAuthorize(Authorize authorize)
+        {
+            var i = _authorization.AddAuthorize(authorize);
+            return i;
+        }
+
+        /// <summary>
+        /// 获取分页数据
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public PageResult<Authorize> GetPagedList(PageParams pageParams)
+        {
+            var result = _authorization.GetPagedList(pageParams);
+            return result;
+        }
     }
 }

@@ -51,46 +51,56 @@
                     @foreach (var item in Model)
                     {
                         @*<tr v-for="item in info" v-bind:key="item.id">*@
-                    <tr>
-                        @*<td>{{item.pId}}</td>*@
-                        <td>@item.Id</td>
-                        <td>@item.BookName</td>
-                        <td>@item.ISBN</td>
-                        <td>@item.Publisher</td>
-                        <td>@item.ChineseLibrary</td>
-                        <td>@item.ApplyDate</td>
-                        @if (item.ApplyState == 1)
-                        {
-                            <td>
-                                <button class="sp">已提交</button>
-                            </td>
-                            <td class="td-manage">
-                                @Html.ActionLink("详情", "BooksUpdateById", "Authorization", new { id = item.Id })
-                                @*@Html.ActionLink("通过", "UpdateSbumissionStateToPass", "Authorization", new { id = item.PId })
-                                 @Html.ActionLink("拒绝", "UpdateSbumissionStateToDeny", "Authorization", new { id = item.PId })*@
-                                <a onclick="ChangeToPass(@item.Id)">通过</a>
-                                <a onclick="ChangeToDeny(@item.Id)">拒绝</a>
-                            </td>
-                        }
-                        else
-                        {
-                            <td>
-                                <button class="sp">已冻结</button>
-                            </td>
-                            <td class="td-manage">
-                                @Html.ActionLink("详情", "BooksUpdateById", "Authorization", new { id = item.Id })
-                            </td>
-                        }
-                    </tr>
+                        <tr>
+                            @*<td>{{item.pId}}</td>*@
+                            <td>@item.Id</td>
+                            <td>@item.BookName</td>
+                            <td>@item.ISBN</td>
+                            <td>@item.Publisher</td>
+                            <td>@item.ChineseLibrary</td>
+                            <td>@item.ApplyDate</td>
+                            @if (item.ApplyState == 1)
+                            {
+                                <td>
+                                    <button class="sp">已提交</button>
+                                </td>
+                                <td class="td-manage">
+                                    @Html.ActionLink("详情", "BooksUpdateById", "Authorization", new { id = item.Id })
+                                    @*@Html.ActionLink("通过", "UpdateSbumissionStateToPass", "Authorization", new { id = item.PId })
+                                    @Html.ActionLink("拒绝", "UpdateSbumissionStateToDeny", "Authorization", new { id = item.PId })*@
+                                    <a onclick="ChangeToPass(@item.Id)">通过</a>
+                                    <a onclick="ChangeToDeny(@item.Id)">拒绝</a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <button class="sp">已冻结</button>
+                                </td>
+                                <td class="td-manage">
+                                    @Html.ActionLink("详情", "BooksUpdateById", "Authorization", new { id = item.Id })
+                                </td>
+                            }
+                        </tr>
                     }
                 </tbody>
             </table>
         }
-        <div class="page" v-show="show">
+        <div class="page">
             <div class="pagelist">
-                <span class="jump">上一页</span> <span class="jump">1</span> <span class="jump">2</span> <span class="jump">3</span> <span class="jump">4</span> <span class="jump">5</span> <span class="jump">6</span> <span class="ellipsis">...</span> <span class="jump">下一页</span> <span class="jumppoint">跳转到：</span> <span class="jumpinp">
-                    <input type="text">
-                </span> <span class="jump gobtn">GO</span>
+                @*<span class="ellipsis">...</span>*@
+                <span class="jump" v-on:click="prevpage">上一页</span>
+                <span v-for="page in totalPage">
+                    <span class="jump pagechecked" v-if="page==currpage">{{page}}</span>
+                    <span class="jump" v-else v-on:click="thispage(page)">{{page}}</span>
+                </span>
+
+                <span class="jump" v-on:click="nextpage">下一页</span>
+                <span class="jumppoint"> 共 {{totalCount}} 条，共 {{totalPage}} 页 跳转到：</span>
+                <span class="jumpinp">
+                    <input type="text" v-model="gotopage">
+                </span>
+                <span class="jump gobtn" v-on:click="goto">GO</span>
             </div>
         </div>
     </div>
@@ -133,6 +143,114 @@
         //            })
         //    }
         //})
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                dataList: null,
+                totalCount: 0,
+                totalPage: 0,
+                currpage: 1,
+                gotopage: 1
+            },
+            mounted: function () {
+                var that = this;
+                axios({
+                    method: "get",
+                    url: "/authorization/paging"
+                })
+                    .then(function (res) {
+                        console.log(res.data)
+                        that.dataList = res.data.dataList;
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                    })
+            },
+            methods: {
+                data_management_look: function (title, url, w, h) {
+                    x_admin_show(title, url, w, h);
+                },
+                prevpage: function () {
+                    var that = this;
+                    if (that.currpage > 1) {
+                        that.currpage -= 1;
+                        axios({
+                            method: "get",
+                            url: "/authorization/paging",
+                            params: { 'PageIndex': that.currpage}
+                        }).then(function (res) {
+                            console.log(res.data)
+                            that.dataList = res.data.dataList;
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                        })
+                    }
+                },
+                nextpage: function () {
+                    var that = this;
+                    if (that.currpage < that.totalCount) {
+                        that.currpage += 1;
+                        axios({
+                            method: "get",
+                            url: "/authorization/paging",
+                            params: { 'PageIndex': that.currpage}
+                        }).then(function (res) {
+                            console.log(res.data)
+                            that.dataList = res.data.dataList;
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                        })
+                    }
+                },
+                thispage: function (page) {
+                    var that = this;
+                    that.currpage = page;
+                    axios({
+                        method: "get",
+                        url: "/authorization/paging",
+                        params: { 'PageIndex': that.currpage}
+                    }).then(function (res) {
+                        console.log(res.data)
+                        that.dataList = res.data.dataList;
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                    })
+                },
+                search: function () {
+                    var that = this;
+                    that.currpage = 1;
+                    axios({
+                        method: "get",
+                        url: "/authorization/paging",
+                        params: { 'PageIndex': that.currpage}
+                    }).then(function (res) {
+                        console.log(res.data)
+                        that.dataList = res.data.dataList;
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                    })
+                },
+                goto: function () {
+                    var that = this;
+                    if (that.gotopage > 0 && that.gotopage <= that.totalPage) {
+                        axios({
+                            method: "get",
+                            url: "/authorization/paging",
+                            params: { 'PageIndex': that.gotopage}
+                        }).then(function (res) {
+                            console.log(res.data)
+                            that.currpage = that.gotopage;
+                            that.dataList = res.data.dataList;
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                        })
+                    }
+                    else {
+                        alert("请输入正确的页码")
+                    }
+                }
+            }
+        })
     </script>
     <script>
         function ChangeToPass(id) {
@@ -141,9 +259,8 @@
                 type: "get",
                 success: function (data) {
                     console.log(data)
-                    if (data > 0)
-                    {
-                       layer.msg('已通过!', { icon: 1, time: 3000 });
+                    if (data > 0) {
+                        layer.msg('已通过!', { icon: 1, time: 3000 });
                     }
                 }
             })
@@ -155,7 +272,7 @@
                 success: function (data) {
                     console.log(data)
                     if (data > 0) {
-                       layer.msg('已冻结!', { icon: 5, time: 3000 });
+                        layer.msg('已冻结!', { icon: 5, time: 3000 });
                     }
                 }
             })
