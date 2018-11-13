@@ -47,8 +47,8 @@ namespace ISLIClient.Controllers
         public string UserInfo()
         {
             Facilitator facilitator = new Facilitator();
-             //int id= RedisHelper.Get<UserInfo>("userinfo").UserInfoId;
-            var list = JsonConvert.DeserializeObject<List<Facilitator>>(WebApiHelper.GetApiResult("get", "UserInfo", "GetList", null)).Find(m => m.Id == 1);
+            int id = RedisHelper.Get<UserInfo>("userinfo").UserInfoId;
+            var list = JsonConvert.DeserializeObject<List<Facilitator>>(WebApiHelper.GetApiResult("get", "UserInfo", "GetList", null)).Find(m => m.Id == id);
             var info = JsonConvert.SerializeObject(list);
             return info;
         }
