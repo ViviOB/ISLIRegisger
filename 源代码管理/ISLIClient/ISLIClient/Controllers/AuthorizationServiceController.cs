@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using ISLI.Model;
 using ISLI.Unility;
 using Microsoft.AspNetCore.Mvc;
-
+using Newtonsoft.Json;
 namespace ISLIClient.Controllers
 {
     public class AuthorizationServiceController : Controller
@@ -54,9 +55,19 @@ namespace ISLIClient.Controllers
         public int ApplyAuthorize(Authorize authorize)
         {
             authorize.AuthorizaionDate = DateTime.Now;
-
             var i = WebApiHelper.GetApiResult("post", "Authorization", "AddAuthorize", authorize);
             return Convert.ToInt32(i);
+        }
+
+        /// <summary>
+        /// 绑定下拉
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public List<User> GetUsers()
+        {
+            var list = WebApiHelper.GetApiResult("get", "UserInfo", "GetUsersItem", null);
+            return JsonConvert.DeserializeObject<List<User>>(list);
         }
         #endregion
     }

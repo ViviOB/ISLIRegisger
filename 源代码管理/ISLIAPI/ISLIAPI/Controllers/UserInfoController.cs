@@ -56,5 +56,11 @@ namespace ISLIAPI.Controllers
             return i;
         }
 
+        [HttpGet]
+        public List<User> GetUsersItem()
+        {
+            var i = _userInformation.GetFacilitators();
+            return i;
+        }
     }
 }
