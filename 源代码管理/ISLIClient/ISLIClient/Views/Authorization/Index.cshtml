@@ -244,7 +244,7 @@
                 }).then(function (res) {
                     console.log(res.data)
                     if (res.data > 0) {
-                        alert("已通过")
+                        layer.msg('已通过!', { icon: 1, time: 3000 });
                     }
                 })
             },
@@ -255,7 +255,7 @@
                     success: function (data) {
                         console.log(data)
                         if (data > 0) {
-                            layer.msg('已通过!', { icon: 1, time: 3000 });
+                            parent.layer.msg('已冻结!', { icon: 5, time: 3000 });
                         }
                     }
                 })
