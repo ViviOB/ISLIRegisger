@@ -18,12 +18,17 @@ namespace ISLIAPI.Controllers
     public class AudioController : ControllerBase
     {
         private readonly IAudio _audio;
+        private readonly IAdhibition _adhibition;
 
         public AudioController(IAudio audio)
         {
             _audio = audio;
         }
 
+        public AudioController(IAdhibition adhibition)
+        {
+            _adhibition = adhibition;
+        }
         /// <summary>
         /// 显示音频信息
         /// </summary>
@@ -47,5 +52,39 @@ namespace ISLIAPI.Controllers
             return i;
         }
 
+        /// <summary>
+        /// 显示关联信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public List<Adhibition> GetAdhibitions()
+        {
+            var list = _adhibition.GetAdhibitions();
+            return list;
+        }
+
+        /// <summary>
+        /// 添加关联信息
+        /// </summary>
+        /// <param name="adhibition"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public int AddAdhibition(Adhibition adhibition)
+        {
+            var i = _adhibition.AddAdhibition(adhibition);
+            return i;
+        }
+
+        /// <summary>
+        /// 修改关联信息
+        /// </summary>
+        /// <param name="adhibition"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public int UpdateAdhibition(Adhibition adhibition)
+        {
+            var i = _adhibition.UpdateAdhibition(adhibition);
+            return i;
+        }
     }
 }
