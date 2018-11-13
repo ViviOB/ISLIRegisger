@@ -13,6 +13,11 @@
     <script language="JavaScript" src="~/js/jquery2.js"></script>
     <script src="~/js/cloud.js"></script>
     <script language="JavaScript" src="~/js/js.js"></script>
+    <link href="~/css/x-admin.css" rel="stylesheet" />
+    <link href="~/css/pag.css" rel="stylesheet" />
+    <script src="~/js/jquery-1.11.0.min.js"></script>
+    <script src="~/Vue/axios.js"></script>
+    <script src="~/Vue/vue.js"></script>
 
 </head>
 <body>
@@ -21,13 +26,16 @@
         <div class="loginbox">
             <ul>
                 <li>
-                    <input name="" type="text" class="loginpwd" value="原密码" onclick="JavaScript:this.value=''" />
+                    <input name="pwd" type="text" class="loginpwd" value="原密码" onclick="JavaScript:this.value=''" id="pwd"/>
                 </li>
                 <li>
-                    <input name="" type="text" class="loginpwd" value="密码" onclick="JavaScript:this.value=''" />
+                    <input name="newpwd" type="text" class="loginpwd" value="密码" onclick="JavaScript:this.value=''" id="newpwd"/>
                 </li>
                 <li>
-                    <input name="" type="text" class="loginpwd" value="确认密码" onclick="JavaScript:this.value=''" />
+                    <input name="rpwd" type="text" class="loginpwd" value="确认密码" onclick="JavaScript:this.value=''"id="rpwd" />
+                </li>
+                <li>
+                    <input id="Button1" class="layui-btn" type="button" onclick="search()" value="修改密码" />
                 </li>
             </ul>
         </div>
@@ -35,3 +43,16 @@
 
 </body>
 </html>
+<script>
+    function search() {
+        if (@ViewBag.UserPwd!= $("#pwd").val()) {
+            alert("原密码不正确，请重新输入！");
+        }
+        else if ($("#rpwd").val() != $("#newpwd").val()) {
+            alert("两次密码不一致，重新输入！");
+        }
+        else {
+            alert("修改成功！");
+        }
+    }
+</script>

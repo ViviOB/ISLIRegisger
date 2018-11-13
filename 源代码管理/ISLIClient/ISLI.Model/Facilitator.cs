@@ -90,5 +90,10 @@ namespace ISLI.Model
         /// 统一社会信用代码
         /// </summary>
         public string CreditCode { get; set; }
+
+        /// <summary>
+        /// 用户Id
+        /// </summary>
+        public int UserId { get; set; }
     }
 }
