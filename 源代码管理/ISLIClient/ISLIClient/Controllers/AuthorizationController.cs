@@ -35,10 +35,6 @@ namespace ISLIClient.Controllers
         public string Paging(PageParams pageParams)
         {
             string json = WebApiHelper.GetApiResult("post", "BackStage", "Paging", pageParams);
-            //var paging = JsonConvert.DeserializeObject<PageResult<PublishApply>>(json);
-            //ViewBag.totalCount = paging.TotalCount;
-            //ViewBag.totalPage = paging.TotalPage;
-            //ViewBag.Index = pageParams.PageIndex;
             return json;
         }
 
