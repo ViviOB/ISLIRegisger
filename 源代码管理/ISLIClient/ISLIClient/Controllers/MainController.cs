@@ -13,6 +13,10 @@ using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ISLIClient.Controllers
 {
@@ -36,7 +40,6 @@ namespace ISLIClient.Controllers
         static string _CertificatePublica = string.Empty;
 
         #region 主页面
-
         /// <summary>
         /// 菜单导航
         /// </summary>
@@ -53,10 +56,15 @@ namespace ISLIClient.Controllers
         /// 左菜单
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         public IActionResult Left()
         {
-            //获取用户菜单
-            ViewBag.LoginInfo = RedisHelper.Get<UserInfo>("userinfo");
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                var name = User.Claims.Where(m => m.Type == "key").Single().Value;
+                //获取用户菜单
+                ViewBag.LoginInfo = RedisHelper.Get<UserInfo>(name);
+            }
             return View();
         }
 
@@ -70,11 +78,9 @@ namespace ISLIClient.Controllers
             ViewBag.LoginInfo = RedisHelper.Get<UserInfo>("userinfo");
             return View();
         }
-
         #endregion
 
         #region 出版单位注册
-
         /// <summary>
         /// 出版单位注册界面
         /// </summary>
@@ -159,11 +165,9 @@ namespace ISLIClient.Controllers
             }
             return true;
         }
-
         #endregion
 
         #region 技术服务商注册
-
         /// <summary>
         /// 技术服务商注册页面
         /// </summary>
@@ -196,11 +200,9 @@ namespace ISLIClient.Controllers
             var result = Convert.ToInt32(WebApiHelper.GetApiResult("post", "Jurisdiction", "QualificationAdd", facilitator));
             return result;
         }
-
         #endregion
 
         #region 方法
-
         /// <summary>
         /// 注册界面
         /// </summary>
@@ -226,6 +228,16 @@ namespace ISLIClient.Controllers
             if (userinfo != null)
             {
                 RedisHelper.Set<UserInfo>("userinfo", userinfo);
+                //构造ClaimsIdentity 对象
+                var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+                //创建 Claim 类型,传入 ClaimsIdentity 中
+                identity.AddClaim(new Claim("key", userinfo.UserName));
+
+                //创建ClaimsPrincipal对象,传入ClaimsIdentity 对象,调用HttpContext.SignInAsync完成登录
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+
+                //存储redis
+                RedisHelper.Set<UserInfo>(userinfo.UserName, userinfo);
                 return true;
             }
             return false;
@@ -234,22 +246,20 @@ namespace ISLIClient.Controllers
         /// <summary>
         /// 退出
         /// </summary>
-        public void SignOut()
+        public IActionResult Logout()
         {
-            RedisHelper.Remove("userinfo");
-            Response.Redirect("/main/login");
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction(nameof(MainController.Login), "main");
         }
-        
+
         /// <summary>
         /// 服务条款
         /// </summary>
         /// <returns></returns>
         public IActionResult TOS() => View();
-
         #endregion
 
         #region Enum转list<selectlistitem>
-
         /// <summary>
         /// 获取省份
         /// </summary>
@@ -308,7 +318,6 @@ namespace ISLIClient.Controllers
                 listItem.Add(new SelectListItem { Text = firstText, Value = firstValue });
             }
         }
-
         #endregion
     }
 }

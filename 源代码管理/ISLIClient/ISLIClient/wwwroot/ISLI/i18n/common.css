@@ -1,0 +1,49 @@
+@charset "utf-8";
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, font, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td {
+ margin: 0;padding: 0;border: 0;outline: 0;font-size: 100%;vertical-align: baseline;background: transparent;  font-family: Microsoft YaHei,mingliu,Arial,Helvetica,sans-serif;}
+body {line-height: 1;-webkit-text-size-adjust:none;font-size:12px}
+ol, ul {list-style: none;}
+ul li{list-style-type:none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,
+q:before, q:after {content: '';content: none;}
+:focus {outline: 0;}
+ins {text-decoration: none;}
+del {text-decoration: line-through;}
+table {border-collapse: collapse;border-spacing: 0;}
+input，a{outline：none;}
+a{text-decoration:none;cursor:pointer;}
+img{border:none; vertical-align:top}
+input,select,textarea,button {vertical-align:middle; font-family: Microsoft YaHei,mingliu,Arial,Helvetica,sans-serif;}  
+button {border:0 none;background-color:transparent;cursor:pointer} 
+table {width:100%;border-collapse:collapse;border-spacing:0;table-layout:fixed;} 
+body{-webkit-text-size-adjust:none;}  
+.clearfix:before,.clearfix:after {content:"";display:table;}
+.clearfix:after {clear:both;overflow:hidden;}
+.clearfix {zoom:1;}
+a{cursor: pointer;}
+div.maxlength{
+	display: none;
+}
+/**placholder 的字体颜色**/
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+　color: #ACA899;
+　}
+input:-moz-placeholder, textarea:-moz-placeholder {
+　color:#ACA899;
+　}
+input::-moz-placeholder, textarea::-moz-placeholder {
+　color:#ACA899;
+　}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder{
+	color: #ACA899;
+　}
+input{
+	color:#666;
+}
+.autocomplete-suggestions{
+	top:248px!important;
+	width:450px!important;
+}
+[class^="dynicspan"]{margin-right:15px;display: inline-block;float:left;}
+input[type="text"]::-ms-clear,input::-ms-reveal{display: none!important;}

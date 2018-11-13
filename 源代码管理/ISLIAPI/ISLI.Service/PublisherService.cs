@@ -85,7 +85,7 @@ namespace ISLI.Service
         public int AddUser(Publisher_Certificate pcertificate)
         {
             User user = new User() {
-                IsEnabled=0,
+                IsEnabled=1,
                 SubmissionState=1,
                 UserInfoId= pcertificate.UserInfoId,
                 UserName= pcertificate.UserName,
