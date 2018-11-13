@@ -32,5 +32,17 @@ namespace ISLIAPI.Controllers
             var list = _authorization.AuthorizeList();
             return list;
         }
+
+        /// <summary>
+        /// 提交授权
+        /// </summary>
+        /// <param name="authorize"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public int AddAuthorize(Authorize authorize)
+        {
+            var i = _authorization.AddAuthorize(authorize);
+            return i;
+        }
     }
 }
