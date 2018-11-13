@@ -12,5 +12,12 @@ namespace ISLI.IService
         /// </summary>
         /// <returns></returns>
         List<Authorize> AuthorizeList();
+
+        /// <summary>
+        /// 提交授权
+        /// </summary>
+        /// <param name="authorize"></param>
+        /// <returns></returns>
+        int AddAuthorize(Authorize authorize);
     }
 }

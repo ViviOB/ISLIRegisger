@@ -11,6 +11,20 @@ namespace ISLI.Service
     public class AuthorizationService : IAuthorization
     {
         /// <summary>
+        /// 提交授权
+        /// </summary>
+        /// <param name="authorize"></param>
+        /// <returns></returns>
+        public int AddAuthorize(Authorize authorize)
+        {
+            using (SqlSugarClient db = BaseDB.GetClient())
+            {
+                var i = db.Insertable(authorize).ExecuteCommand();
+                return i;
+            }
+        }
+
+        /// <summary>
         /// 显示授权详情表
         /// </summary>
         /// <returns></returns>
