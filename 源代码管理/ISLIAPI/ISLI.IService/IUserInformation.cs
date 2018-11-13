@@ -31,6 +31,6 @@ namespace ISLI.IService
         /// 下拉显示服务商代码
         /// </summary>
         /// <returns></returns>
-        List<User> GetFacilitators();
+        List<UserInfo> GetFacilitators();
     }
 }

@@ -23,11 +23,15 @@ namespace ISLI.Service
             }
         }
 
-        public List<User> GetFacilitators()
+        /// <summary>
+        /// 下拉显示
+        /// </summary>
+        /// <returns></returns>
+        public List<UserInfo> GetFacilitators()
         {
             using (SqlSugarClient db = BaseDB.GetClient())
             {
-                var list = db.Queryable<Facilitator, User>((sc, st) => new object[] { JoinType.Inner, st.UserInfoId == sc.Id }).Select<User>().Where(st => st.UserTypeId== 2).ToList();
+                var list = db.Queryable<Facilitator, User>((sc, st) => new object[] { JoinType.Inner, st.UserInfoId == sc.Id }).Select<UserInfo>().Where(st => st.UserTypeId== 2).ToList();
                 return list;
             }
         }

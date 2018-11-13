@@ -64,10 +64,10 @@ namespace ISLIClient.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public List<User> GetUsers()
+        public List<UserInfo> GetUsers()
         {
             var list = WebApiHelper.GetApiResult("get", "UserInfo", "GetUsersItem", null);
-            return JsonConvert.DeserializeObject<List<User>>(list);
+            return JsonConvert.DeserializeObject<List<UserInfo>>(list);
         }
         #endregion
     }
