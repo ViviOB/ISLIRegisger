@@ -27,9 +27,13 @@ namespace ISLIClient.Controllers
         [HttpPost]
         public string BookSearch(string str="")
         {
+            if(str==null)
+            {
+                str = "";
+            }
             Page page = new Page();
             page.pageindex = 1;
-            page.pagesize = 1;
+            page.pagesize = 5;
             page.name = str;
             page.counts = 0;
             var json = WebApiHelper.GetApiResult("post", "Books", "GetList", page);
@@ -43,15 +47,11 @@ namespace ISLIClient.Controllers
         {
             Page page = new Page();
             page.pageindex = index;
-            page.pagesize = 1;
+            page.pagesize = 5;
             page.name = "";
             page.counts = 0;
-            var json = WebApiHelper.GetApiResult("post", "Books", "GetList", page);
-            DataTable<Books> data = JsonConvert.DeserializeObject<DataTable<Books>>(json);
-
-            var list = data.list;
-            int count = data.counts;
-            return JsonConvert.SerializeObject(list);
+            var json = WebApiHelper.GetApiResult("post", "Books", "GetList", page);                    
+            return json;
         }
 
         #region /// 图书详情

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ISLI.Model;
+using ISLI.Unility;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ISLIClient.Controllers
@@ -16,5 +18,46 @@ namespace ISLIClient.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// 接收从API返回的数据，用来显示
+        /// </summary>
+        /// <returns></returns>
+        public string GetList(PageParams pageParams, string isliCode, string sourceName, string allocationTime)
+        {
+            string wherestr = "1=1";
+            if (!string.IsNullOrEmpty(isliCode))
+            {
+                wherestr += " and islicode like '%" + isliCode + "%' ";
+            }
+            if (!string.IsNullOrEmpty(sourceName))
+            {
+                wherestr += " and CompanyName like '%" + sourceName + "%' ";
+            }
+            if (!string.IsNullOrEmpty(allocationTime))
+            {
+                wherestr += " and allocationTime = " + allocationTime;
+            }
+            pageParams.StrWhere = wherestr;
+            var result = WebApiHelper.GetApiResult("post", "Authorization", "GetPagedList", pageParams);
+            return result;
+        }
+
+
+        #region/// 新增授权
+        public IActionResult ApplyAuthorize()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public int ApplyAuthorize(Authorize authorize)
+        {
+            authorize.AuthorizaionDate = DateTime.Now;
+
+            var i = WebApiHelper.GetApiResult("post", "Authorization", "AddAuthorize", authorize);
+            return Convert.ToInt32(i);
+        }
+        #endregion
     }
 }

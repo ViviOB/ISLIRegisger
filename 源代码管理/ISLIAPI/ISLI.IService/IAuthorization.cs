@@ -19,5 +19,12 @@ namespace ISLI.IService
         /// <param name="authorize"></param>
         /// <returns></returns>
         int AddAuthorize(Authorize authorize);
+
+        /// <summary>
+        /// 获取分页方法
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        PageResult<Authorize> GetPagedList(PageParams pageParams);
     }
 }

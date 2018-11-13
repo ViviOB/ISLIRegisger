@@ -36,5 +36,16 @@ namespace ISLI.Service
                 return getList;
             }
         }
+
+        /// <summary>
+        /// 分页显示
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Authorize> GetPagedList(PageParams pageParams)
+        {
+            var result = BaseDB.PageList<Authorize>(pageParams);
+            return result;
+        }
     }
 }
