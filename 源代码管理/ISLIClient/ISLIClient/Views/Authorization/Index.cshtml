@@ -15,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="~/css/x-admin.css" media="all">
     <link rel="stylesheet" href="~/css/pag.css" media="all">
-    <script src="~/js/jquery.js"></script>
+    <script src="~/js/jquery-1.11.0.min.js"></script>
     <script src="~/lib/layer/2.4/layer.js"></script>
     <link href="~/lib/layer/2.4/skin/layer.css" rel="stylesheet" />
     <script src="~/Vue/axios.js"></script>
@@ -155,123 +155,128 @@
                         that.totalPage = res.data.totalPage;
                     })
             },
-            prevpage: function () {
-                var that = this;
-                if (that.currpage > 1) {
-                    that.currpage -= 1;
-                    axios({
-                        method: "get",
-                        url: "/authorization/paging",
-                        params: { 'PageIndex': that.currpage }
-                    }).then(function (res) {
-                        console.log(res.data)
-                        that.dataList = res.data.dataList;
-                        that.totalCount = res.data.totalCount;
-                        that.totalPage = res.data.totalPage;
-                    })
-                }
-            },
-            nextpage: function () {
-                var that = this;
-                if (that.currpage < that.totalCount) {
-                    that.currpage += 1;
-                    axios({
-                        method: "get",
-                        url: "/authorization/paging",
-                        params: { 'PageIndex': that.currpage }
-                    }).then(function (res) {
-                        console.log(res.data)
-                        that.dataList = res.data.dataList;
-                        that.totalCount = res.data.totalCount;
-                        that.totalPage = res.data.totalPage;
-                    })
-                }
-            },
-            thispage: function (page) {
-                var that = this;
-                that.currpage = page;
-                axios({
-                    method: "get",
-                    url: "/authorization/paging",
-                    params: { 'PageIndex': that.currpage }
-                }).then(function (res) {
-                    console.log(res.data)
-                    that.dataList = res.data.dataList;
-                    that.totalCount = res.data.totalCount;
-                    that.totalPage = res.data.totalPage;
-                })
-            },
-            search: function () {
-                var that = this;
-                that.currpage = 1;
-                axios({
-                    method: "get",
-                    url: "/authorization/paging",
-                    params: { 'PageIndex': that.currpage }
-                }).then(function (res) {
-                    console.log(res.data)
-                    that.dataList = res.data.dataList;
-                    that.totalCount = res.data.totalCount;
-                    that.totalPage = res.data.totalPage;
-                })
-            },
-            goto: function () {
-                var that = this;
-                if (that.gotopage > 0 && that.gotopage <= that.totalPage) {
-                    axios({
-                        method: "get",
-                        url: "/authorization/paging",
-                        params: { 'PageIndex': that.gotopage }
-                    }).then(function (res) {
-                        console.log(res.data)
-                        that.currpage = that.gotopage;
-                        that.dataList = res.data.dataList;
-                        that.totalCount = res.data.totalCount;
-                        that.totalPage = res.data.totalPage;
-                    })
-                }
-                else {
-                    alert("请输入正确的页码")
-                }
-            },
-            ChangeToPass: function (id) {
-                var that = this;
-                that.id = id;
-                axios({
-                    method: "get",
-                    url: "/authorization/UpdateSbumissionStateToPass",
-                    params: { 'id': that.id }
-                }).then(function (res) {
-                    console.log(res.data)
-                    if (res.data > 0) {
-                        layer.msg('已通过!', { icon: 1, time: 3000 });
+            methods: {
+                data_management_look: function (title, url, w, h) {
+                    x_admin_show(title, url, w, h);
+                },
+                prevpage: function () {
+                    var that = this;
+                    if (that.currpage > 1) {
+                        that.currpage -= 1;
+                        axios({
+                            method: "get",
+                            url: "/authorization/paging",
+                            params: { 'PageIndex': that.currpage }
+                        }).then(function (res) {
+                            console.log(res.data)
+                            that.dataList = res.data.dataList;
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                        })
                     }
-                })
-            },
-            ChangeToDeny: function (id) {
-                $.ajax({
-                    url: "/authorization/UpdateSbumissionStateToDeny?id=" + id,
-                    type: "get",
-                    success: function (data) {
-                        console.log(data)
-                        if (data > 0) {
-                            parent.layer.msg('已冻结!', { icon: 5, time: 3000 });
+                },
+                nextpage: function () {
+                    var that = this;
+                    if (that.currpage < that.totalCount) {
+                        that.currpage += 1;
+                        axios({
+                            method: "get",
+                            url: "/authorization/paging",
+                            params: { 'PageIndex': that.currpage }
+                        }).then(function (res) {
+                            console.log(res.data)
+                            that.dataList = res.data.dataList;
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                        })
+                    }
+                },
+                thispage: function (page) {
+                    var that = this;
+                    that.currpage = page;
+                    axios({
+                        method: "get",
+                        url: "/authorization/paging",
+                        params: { 'PageIndex': that.currpage }
+                    }).then(function (res) {
+                        console.log(res.data)
+                        that.dataList = res.data.dataList;
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                    })
+                },
+                search: function () {
+                    var that = this;
+                    that.currpage = 1;
+                    axios({
+                        method: "get",
+                        url: "/authorization/paging",
+                        params: { 'PageIndex': that.currpage }
+                    }).then(function (res) {
+                        console.log(res.data)
+                        that.dataList = res.data.dataList;
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                    })
+                },
+                goto: function () {
+                    var that = this;
+                    if (that.gotopage > 0 && that.gotopage <= that.totalPage) {
+                        axios({
+                            method: "get",
+                            url: "/authorization/paging",
+                            params: { 'PageIndex': that.gotopage }
+                        }).then(function (res) {
+                            console.log(res.data)
+                            that.currpage = that.gotopage;
+                            that.dataList = res.data.dataList;
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                        })
+                    }
+                    else {
+                        alert("请输入正确的页码")
+                    }
+                },
+                ChangeToPass: function (id) {
+                    var that = this;
+                    that.id = id;
+                    axios({
+                        method: "get",
+                        url: "/authorization/UpdateSbumissionStateToPass",
+                        params: { 'id': that.id }
+                    }).then(function (res) {
+                        console.log(res.data)
+                        if (res.data > 0) {
+                            layer.msg('已通过!', { icon: 1, time: 3000 });
                         }
-                    }
-                })
-            },
-            ToDetail: function (id) {
-                var that = this;
-                that.id = id;
-                axios({
-                    method: "get",
-                    url: "/authorization/UpdateById",
-                    params: { 'id': that.id }
-                }).then(function (res) {
-                    location.href = "/authorization/UpdateById?id=" + that.id;
-                })
+                    })
+                },
+                ChangeToDeny: function (id) {
+                    $.ajax({
+                        url: "/authorization/UpdateSbumissionStateToDeny?id=" + id,
+                        type: "get",
+                        success: function (data) {
+                            console.log(data)
+                            if (data > 0) {
+                                parent.layer.msg('已冻结!', { icon: 5, time: 3000 });
+                            }
+                        }
+                    })
+                },
+                ToDetail: function (id) {
+                    var that = this;
+                    that.id = id;
+                    axios({
+                        method: "get",
+                        url: "/authorization/UpdateById",
+                        params: { 'id': that.id }
+                    }).then(function (res) {
+                        location.href = "/authorization/UpdateById?id=" + that.id;
+                    })
+                }
             }
-        }
+        })
     </script>
 </body>
 </html>
