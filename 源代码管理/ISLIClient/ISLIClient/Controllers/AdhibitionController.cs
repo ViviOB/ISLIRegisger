@@ -58,10 +58,20 @@ namespace ISLIClient.Controllers
             return View(adhibition);
         }
 
-
+        /// <summary>
+        /// 添加关联信息
+        /// </summary>
+        /// <returns></returns>i
         public IActionResult AddAdhibition()
         {
             return View();
+        }
+        [HttpPost]
+        public int AddAdhibition(Adhibition adhibition)
+        {
+            var i = WebApiHelper.GetApiResult("post", "Audio", "AddAdhibition", adhibition);
+           // var n = WebApiHelper.GetApiResult("post", "RichText", "AddRichText", richText);
+            return Convert.ToInt32(i);
         }
     }
 }
