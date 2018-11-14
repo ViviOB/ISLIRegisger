@@ -245,8 +245,7 @@
                     }).then(function (res) {
                         console.log(res.data)
                         if (res.data > 0) {
-                            parent.layer.msg('已通过!', { icon: 1, time: 2000 });
-                            location.href = "javascript:location.replace(location.href);"
+                          layer.msg('已通过!', { icon: 1, time: 2000 });
                         }
                     })
                 },
@@ -257,8 +256,7 @@
                         success: function (data) {
                             console.log(data)
                             if (data > 0) {
-                                parent.layer.msg('已冻结!', { icon: 5, time: 2000 });
-                                location.href = "javascript:location.replace(location.href);"
+                               layer.msg('已冻结!', { icon: 5, time: 2000 });
                             }
                         }
                     })
