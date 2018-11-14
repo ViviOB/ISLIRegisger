@@ -30,7 +30,7 @@
                 <li><span><img src="~/images/t02.png" /></span>编辑</li>
                 <li><span><img src="~/images/t09.png" /></span>批量导出</li>
             </ul>
-            <span class="x-right" style="line-height:25px">共有数据：88 条</span>
+            <span class="x-right" style="line-height:25px">共有数据：{{totalCount}} 条</span>
         </div>
         @using (Html.BeginForm())
         {
@@ -156,9 +156,6 @@
                     })
             },
             methods: {
-                data_management_look: function (title, url, w, h) {
-                    x_admin_show(title, url, w, h);
-                },
                 prevpage: function () {
                     var that = this;
                     if (that.currpage > 1) {
@@ -248,7 +245,8 @@
                     }).then(function (res) {
                         console.log(res.data)
                         if (res.data > 0) {
-                            layer.msg('已通过!', { icon: 1, time: 3000 });
+                            parent.layer.msg('已通过!', { icon: 1, time: 2000 });
+                            location.href = "javascript:location.replace(location.href);"
                         }
                     })
                 },
@@ -259,7 +257,8 @@
                         success: function (data) {
                             console.log(data)
                             if (data > 0) {
-                                parent.layer.msg('已冻结!', { icon: 5, time: 3000 });
+                                parent.layer.msg('已冻结!', { icon: 5, time: 2000 });
+                                location.href = "javascript:location.replace(location.href);"
                             }
                         }
                     })

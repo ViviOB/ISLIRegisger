@@ -61,7 +61,7 @@ namespace ISLI.Service
             using (SqlSugarClient db = BaseDB.GetClient())
             {
                // List<PublishApply> page = db.Queryable<PublishApply>().ToPageList(pageIndex, pageSize, ref totalCount);
-                var page = db.Queryable<User, Publisher>((st, sc) => new object[] {JoinType.Inner,st.UserInfoId==sc.PId}).Select<PublishApply>().Where(st => st.UserTypeId == 2).ToPageList(pageParams.PageIndex, pageParams.PageSize, ref totalCount);
+                var page = db.Queryable<User, Publisher>((st, sc) => new object[] {JoinType.Inner,st.UserInfoId==sc.PId}).Select<PublishApply>().ToPageList(pageParams.PageIndex, pageParams.PageSize, ref totalCount);
                 PageResult<PublishApply> pageResult = new PageResult<PublishApply>();
                 pageResult.TotalCount = totalCount;
                 int i = totalCount / pageParams.PageSize;
