@@ -121,7 +121,7 @@ namespace ISLIClient.Controllers
                 // 创建新文件
                 using (FileStream fs = System.IO.File.Create(fullPath))
                 {
-                    _UnifiedSocial = "/images/" + new Guid() + unifiedsocial.FileName;
+                    _UnifiedSocial = "/images/" + unifiedsocial.FileName;
                     // 复制文件
                     unifiedsocial.CopyTo(fs);
                     // 清空缓冲区数据
@@ -151,7 +151,7 @@ namespace ISLIClient.Controllers
                 // 创建新文件
                 using (FileStream fs = System.IO.File.Create(fullPath))
                 {
-                    _CertificatePublica = "/images/" + new Guid() + certificatepublica.FileName;
+                    _CertificatePublica = "/images/"  + certificatepublica.FileName;
                     // 复制文件
                     certificatepublica.CopyTo(fs);
                     // 清空缓冲区数据

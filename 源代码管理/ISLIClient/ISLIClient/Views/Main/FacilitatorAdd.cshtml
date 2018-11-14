@@ -265,60 +265,65 @@
                         required: true,
                         minlength: 2
                     },
-                    //    UserPwd: {
-                    //        required: true,
-                    //        minlength: 2
-                    //    },
-                    //    ApplicantEmail: {
-                    //        required: true,
-                    //        email: true
-                    //    },
-                    //    ApplicantName:
-                    //    {
-                    //        required: true
-                    //    },
-                    //    CellPhone: {
-                    //        required: true,
-                    //        number: true,
-                    //        maxlength: 11,
-                    //        minlength:11
-                    //    },
-                    //    CompanyName: {
-                    //        required: true
-                    //    },
-                    //    RegistrationAddres:{
-                    //        required: true
-                    //    },
-                    //    Postcode: {
-                    //        required: true,
-                    //        maxlength: 6,
-                    //        minlength: 6
-                    //    },
-                    //    RepresentativeName: {
-                    //        required: true
-                    //    },
-                    //    CreditCode: {
-                    //        required: true,
-                    //        maxlength: 15,
-                    //        minlength: 11
-                    //    },
-                    //    ContactName: {
-                    //        required: true
-                    //    },
-                    //    ContactPhone: {
-                    //        required: true,
-                    //        number: true,
-                    //        maxlength: 11,
-                    //        minlength: 11
-                    //    },
-                    //    ContactEmail: {
-                    //        required: true,
-                    //        email: true
-                    //    },
-                    //    Email: {
-                    //        required: true,
-                    //        email: true
-                    //    }
+                        UserPwd: {
+                            required: true,
+                            minlength: 2
+                        },
+                        ApplicantEmail: {
+                            required: true,
+                            email: true
+                        },
+                        ApplicantName:
+                        {
+                            required: true
+                        },
+                        CellPhone: {
+                            required: true,
+                            number: true,
+                            digits: true,
+                            maxlength: 11,
+                            minlength:11
+                        },
+                        CompanyName: {
+                            required: true
+                        },
+                        RegistrationAddres:{
+                            required: true
+                        },
+                        Postcode: {
+                            required: true,
+                            number: true,
+                            digits: true,
+                            maxlength: 6,
+                            minlength: 6
+                        },
+                        RepresentativeName: {
+                            required: true
+                        },
+                        CreditCode: {
+                            required: true,
+                            digits: true,
+                            maxlength: 15,
+                            minlength: 11
+                        },
+                        ContactName: {
+                            required: true
+                        },
+                        ContactPhone: {
+                            required: true,
+                            number: true,
+                            digits: true,
+                            maxlength: 11,
+                            minlength: 11
+                        },
+                        ContactEmail: {
+                            required: true,
+                            email: true
+                        },
+                        Email: {
+                            required: true,
+                            email: true
+                        }
                 },
                 //success: function () {
                 //    $("#facilitatoradd").ajaxForm(function (data) {
@@ -365,10 +370,6 @@
             var uploading = false;
 
             $("#qualification").on("change", function () {
-                if (uploading) {
-                    alert("文件正在上传中，请稍候");
-                    return false;
-                }
                 $.ajax({
                     url: "/main/UploadUnifiedsocial",
                     type: 'POST',
