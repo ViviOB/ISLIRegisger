@@ -34,7 +34,7 @@ namespace ISLI.Model
         /// <summary>
         /// 申请人联系手机
         /// </summary>
-        public int CellPhone { get; set; }
+        public string CellPhone { get; set; }
 
         /// <summary>
         /// 企业名称
@@ -54,12 +54,12 @@ namespace ISLI.Model
         /// <summary>
         /// 注册地址邮编
         /// </summary>
-        public int Postcode { get; set; }
+        public string Postcode { get; set; }
 
         /// <summary>
         /// 注册地行政区代码
         /// </summary>
-        public int RegistrationCode { get; set; }
+        public string RegistrationCode { get; set; }
 
         /// <summary>
         /// 法人代表姓名
@@ -90,10 +90,5 @@ namespace ISLI.Model
         /// 统一社会信用代码
         /// </summary>
         public string CreditCode { get; set; }
-
-        /// <summary>
-        /// 用户Id
-        /// </summary>
-        public int UserId { get; set; }
     }
 }

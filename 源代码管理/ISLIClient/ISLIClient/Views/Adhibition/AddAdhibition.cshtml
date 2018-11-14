@@ -38,6 +38,8 @@
             $("#div_audio").hide();
             $("#div_video").hide();
             $("#div_richtext").hide();
+
+            //下拉改变事件
             $("#Select1").change(function () {
               
                 var item = $("#Select1").val();
@@ -66,6 +68,47 @@
                     $("#div_richtext").show();
                 }
             })
+
+            //提交
+            $("#btnOk").click(function () {
+                var item = $("#Select1").val();
+                if (item == 4) {
+                    var typename = $("#TypeName").val();
+                    var introduction = $("#Introduction").val();
+                    var classification = $("#Classification").val();
+                    var textlabel = $("#TextLabel").val();
+                    var filesize = $("#FileSize").val();
+                    var resourcelist = $("#ResourceList").val();
+
+                    var islicode = $("#code1").val() + $("#code2").val() + $("#code3").val() + $("#code4").val();
+                    var sourcename = $("#SourceName").val();
+                    var sourcefragment = $("#SourceFragment").val();
+                    var allocationtime = new Date();
+                    var targetid = parseInt($("#TargetId").val());
+
+                    $.ajax({
+                        url: "/Adhibition/AddAdhibition",
+                        type: "post",
+                        data: {
+                            ISLICode: islicode,
+                            SourceName: sourcename,
+                            SourceFragment: sourcefragment,
+                            AllocationTime: allocationtime,
+                            TargetId: targetid
+                        },
+                        success: function (data) {
+                            if (data > 0 ) {
+                                layer.msg(data.msg, { icon: 1, shade: 0.4 }, function () {
+                                    layer.alert("添加成功！");
+                                    location.href = '/AuthorizationService/AuthorizationService';
+                                });
+                            }
+                        }
+                    })
+        
+                }//判断结束
+
+            })//提交结束
 
         })
 
@@ -103,8 +146,8 @@
                             ISLI编码：
                         </dt>
                         <dd>
-                            <input name="code1" type="text" style="width:70px"/>-<input name="code2" type="text" style="width:70px"/>-
-                            <input name="code3" type="text" style="width:70px"/>-<input name="code4" type="text" style="width:70px"/>
+                            <input id="code1" type="text" style="width:70px"/>-<input id="code2" type="text" style="width:70px"/>-
+                            <input id="code3" type="text" style="width:70px"/>-<input id="code4" type="text" style="width:70px"/>
                         </dd>
                     </dl>                 
                     <dl>
@@ -113,7 +156,12 @@
                             源类型：
                         </dt>
                         <dd>
-                            <input name="TargetId" type="text" value="图书" />
+                            <select id="TargetId">
+                                <option value="1">图书</option>
+                                <option value="2">音频</option>
+                                <option value="3">视频</option>
+                                <option value="4">富文本作品</option>
+                            </select>
                         </dd>
                     </dl>
                     <dl>
@@ -122,10 +170,7 @@
                             源名称：
                         </dt>
                         <dd>
-                            <select name="SourceName">
-                                <option></option>
-
-                            </select>
+                            <input id="SourceName" type="text" />
                         </dd>
                     </dl>
                     <dl>
@@ -133,7 +178,7 @@
                             <span class="red">*</span>目标名称：
                         </dt>
                         <dd>
-                            <input name="SourceFragment" type="text" />
+                            <input id="SourceFragment" type="text" />
                         </dd>
                     </dl>
                     <dl>
@@ -141,8 +186,7 @@
                             <span class="red">*</span>目标资源类型：
                         </dt>
                         <dd>
-                            <select id="Select1">
-                                <option value="0">-请选择-</option>
+                            <select id="Select1">                        
                                 <option value="1" selected>-图片-</option>
                                 <option value="2">-音频-</option>
                                 <option value="3">-视频-</option>
@@ -567,36 +611,12 @@
                     </div>
                 </div>
                 <div class="servicesBtn servicesBtnL centerButton" id="show2">
-                    <input type="button" name="leave" value="返回" class="btnBackh ml-15" onclick="location.href='/authorization/index'" />
+                    <input type="button" name="leave" value="返回" class="btnBackh ml-15" onclick="location.href='/Adhibition/Adhibition'" />
+                    <input id="btnOk" type="button" value="确定" class="btnOk ml-15"/>
                 </div>
             </div>
         </div>
     </form>
-    <script>
-        $(function () {
-            $("input[name='next']").click(function () {
-                $("#publis").prop("hidden", "hidden")
-                $("#certify").prop("hidden", "")
-                $("[class='ml91']").find("li").eq(0).removeClass('selected')
-                $("[class='ml91']").find("li").eq(1).addClass('selected')
-            })
-            $("input[name='last']").click(function () {
-                $("#certify").prop("hidden", "hidden")
-                $("#publis").prop("hidden", "")
-                $("[class='ml91']").find("li").eq(1).removeClass('selected')
-                $("[class='ml91']").find("li").eq(0).addClass('selected')
-            })
-        })
-        function radioselect(res) {
-            console.log(res.value)
-            if (res.value == 1) {
-                $("#certify").find("dl").eq(1).find("dt").html('<span class="red">*</span>出版物资质证明')
-            }
-            else if (res.value == 2) {
-                $("#certify").find("dl").eq(1).find("dt").html('<span class="red">*</span>营业执照')
-            }
-        }
-    </script>
 </body>
 
 </html>
