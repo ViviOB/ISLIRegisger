@@ -18,7 +18,8 @@ namespace ISLIClient.Controllers
         /// <returns></returns>
         public IActionResult UpdatePwd()
         {
-            ViewBag.UserInfo = RedisHelper.Get<UserInfo>("userinfo");
+           string pwd = RedisHelper.Get<UserInfo>("userinfo").UserPwd;
+            ViewBag.UserPwd = pwd;
             return View();
         }
 

@@ -9,6 +9,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>UpdatePwd</title>
+    <script src="~/js/jquery.js"></script>
     <link href="~/css/style.css" rel="stylesheet" />
     <script language="JavaScript" src="~/js/jquery2.js"></script>
     <script src="~/js/cloud.js"></script>
@@ -16,23 +17,22 @@
     <link href="~/css/x-admin.css" rel="stylesheet" />
     <link href="~/css/pag.css" rel="stylesheet" />
     <script src="~/js/jquery-1.11.0.min.js"></script>
-    <script src="~/Vue/axios.js"></script>
-    <script src="~/Vue/vue.js"></script>
 
 </head>
 <body>
     <div class="loginbody">
         <span class="systemlogo"></span>
         <div class="loginbox">
+            <input id="pw" type="hidden" value="@ViewBag.UserPwd" class="hidden" />
             <ul>
                 <li>
-                    <input name="pwd" type="text" class="loginpwd" value="原密码" onclick="JavaScript:this.value=''" id="pwd"/>
+                    <input name="pwd" type="text" class="loginpwd" value="原密码" onclick="JavaScript:this.value=''" id="pwd" />
                 </li>
                 <li>
-                    <input name="newpwd" type="text" class="loginpwd" value="密码" onclick="JavaScript:this.value=''" id="newpwd"/>
+                    <input name="newpwd" type="text" class="loginpwd" value="密码" onclick="JavaScript:this.value=''" id="newpwd" />
                 </li>
                 <li>
-                    <input name="rpwd" type="text" class="loginpwd" value="确认密码" onclick="JavaScript:this.value=''"id="rpwd" />
+                    <input name="rpwd" type="text" class="loginpwd" value="确认密码" onclick="JavaScript:this.value=''" id="rpwd" />
                 </li>
                 <li>
                     <input id="Button1" class="layui-btn" type="button" onclick="search()" value="修改密码" />
@@ -44,8 +44,10 @@
 </body>
 </html>
 <script>
+    var pwd = $("#pw").value;
     function search() {
-        if (@ViewBag.UserPwd!= $("#pwd").val()) {
+        var pwd =@ViewBag.UserPwd;
+        if (pwd != $("#pwd").val()) {
             alert("原密码不正确，请重新输入！");
         }
         else if ($("#rpwd").val() != $("#newpwd").val()) {
@@ -55,4 +57,9 @@
             alert("修改成功！");
         }
     }
+
+
+
+
+
 </script>
